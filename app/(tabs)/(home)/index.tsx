@@ -8,13 +8,16 @@ import {
   Pressable,
   Image,
   Platform,
+  ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Stack } from 'expo-router';
 import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
-import { BEACHES, generateBeachConditions, getTideSchedule } from '@/data/beachData';
+import { BEACHES } from '@/data/beachData';
 import { useBeachStorage } from '@/hooks/useBeachStorage';
+import { useBeachConditions } from '@/hooks/useBeachConditions';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function HomeScreen() {
@@ -27,9 +30,17 @@ export default function HomeScreen() {
     : [BEACHES[0]]; // Default to first beach if no home beaches
   
   const beach = displayBeaches[currentBeachIndex] || BEACHES[0];
-  const conditions = generateBeachConditions(beach.id);
-  const tideSchedule = getTideSchedule();
+  const { 
+    conditions, 
+    tideSchedule, 
+    loading, 
+    error, 
+    refresh,
+    lastRefreshed 
+  } = useBeachConditions(beach.id);
+  
   const isFavorite = favorites.includes(beach.id);
+  const [refreshing, setRefreshing] = useState(false);
 
   const handlePreviousBeach = () => {
     setCurrentBeachIndex((prev) => 
@@ -42,6 +53,41 @@ export default function HomeScreen() {
       prev === displayBeaches.length - 1 ? 0 : prev + 1
     );
   };
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    await refresh();
+    setRefreshing(false);
+  };
+
+  // Show loading state
+  if (loading && !conditions) {
+    return (
+      <SafeAreaView style={styles.container} edges={['top']}>
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color={colors.primary} />
+          <Text style={styles.loadingText}>Loading beach conditions from NOAA...</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  // Show error state
+  if (error && !conditions) {
+    return (
+      <SafeAreaView style={styles.container} edges={['top']}>
+        <View style={styles.errorContainer}>
+          <IconSymbol name="exclamationmark.triangle" size={48} color="#FF3B30" />
+          <Text style={styles.errorText}>{error}</Text>
+          <Pressable style={styles.retryButton} onPress={refresh}>
+            <Text style={styles.retryButtonText}>Retry</Text>
+          </Pressable>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  if (!conditions) return null;
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -57,6 +103,13 @@ export default function HomeScreen() {
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={handleRefresh}
+            tintColor={colors.primary}
+          />
+        }
       >
         {/* Header with Gradient */}
         <LinearGradient
@@ -131,13 +184,27 @@ export default function HomeScreen() {
         />
 
         {/* Safe Conditions Banner */}
-        <Pressable style={styles.safeConditionsBanner}>
+        <Pressable style={[
+          styles.safeConditionsBanner,
+          conditions.flagWarning === 'green' && styles.greenBanner,
+          conditions.flagWarning === 'yellow' && styles.yellowBanner,
+          conditions.flagWarning === 'red' && styles.redBanner,
+          conditions.flagWarning === 'purple' && styles.purpleBanner,
+        ]}>
           <View style={styles.safeConditionsContent}>
             <IconSymbol name="exclamationmark.triangle.fill" size={20} color="#FFFFFF" />
-            <Text style={styles.safeConditionsText}>Safe conditions</Text>
+            <Text style={styles.safeConditionsText}>{conditions.flagWarningText}</Text>
           </View>
           <IconSymbol name="chevron.right" size={20} color="#FFFFFF" />
         </Pressable>
+
+        {/* Data Source Badge */}
+        <View style={styles.dataSourceBadge}>
+          <IconSymbol name="checkmark.circle.fill" size={16} color="#34C759" />
+          <Text style={styles.dataSourceText}>
+            Live data from NOAA • Updated {conditions.lastUpdated}
+          </Text>
+        </View>
 
         {/* Current Conditions */}
         <View style={styles.section}>
@@ -145,17 +212,17 @@ export default function HomeScreen() {
           <View style={styles.conditionsGrid}>
             <View style={styles.conditionCard}>
               <IconSymbol name="thermometer" size={32} color="#4A90E2" />
-              <Text style={styles.conditionValue}>{conditions.airTemp}°F</Text>
+              <Text style={styles.conditionValue}>{conditions.airTemp.toFixed(1)}°F</Text>
               <Text style={styles.conditionLabel}>Air Temperature</Text>
             </View>
             <View style={styles.conditionCard}>
               <IconSymbol name="wind" size={32} color="#4A90E2" />
-              <Text style={styles.conditionValue}>{conditions.windSpeed} mph</Text>
+              <Text style={styles.conditionValue}>{conditions.windSpeed.toFixed(1)} mph</Text>
               <Text style={styles.conditionLabel}>Wind {conditions.windDirection}</Text>
             </View>
             <View style={styles.conditionCard}>
               <IconSymbol name="drop.fill" size={32} color="#4A90E2" />
-              <Text style={styles.conditionValue}>{conditions.humidity}%</Text>
+              <Text style={styles.conditionValue}>{conditions.humidity.toFixed(0)}%</Text>
               <Text style={styles.conditionLabel}>Humidity</Text>
             </View>
             <View style={styles.conditionCard}>
@@ -171,7 +238,8 @@ export default function HomeScreen() {
           <Text style={styles.sectionTitle}>Water Temperature</Text>
           <View style={styles.waterTempCard}>
             <IconSymbol name="drop.fill" size={24} color="#4A90E2" />
-            <Text style={styles.waterTempValue}>{conditions.waterTemp}°F</Text>
+            <Text style={styles.waterTempValue}>{conditions.waterTemp.toFixed(1)}°F</Text>
+            <Text style={styles.waterTempSource}>From NOAA Station</Text>
           </View>
         </View>
 
@@ -252,36 +320,49 @@ export default function HomeScreen() {
             <View style={styles.currentTideContent}>
               <Text style={styles.currentTideValue}>{conditions.currentTide.toFixed(1)} ft</Text>
               <View style={styles.tideStatusBadge}>
-                <IconSymbol name="arrow.up" size={14} color="#4A90E2" />
+                <IconSymbol 
+                  name={conditions.tideStatus === 'Rising' || conditions.tideStatus === 'High' ? "arrow.up" : "arrow.down"} 
+                  size={14} 
+                  color="#4A90E2" 
+                />
                 <Text style={styles.tideStatusText}>{conditions.tideStatus}</Text>
               </View>
             </View>
           </View>
 
-          {tideSchedule.map((tide, index) => (
-            <View key={index} style={styles.tideRow}>
-              <Text style={styles.tideTime}>{tide.time}</Text>
-              <View style={styles.tideInfo}>
-                <Text style={[
-                  styles.tideType,
-                  tide.type === 'High Tide' ? styles.highTide : styles.lowTide
-                ]}>
-                  {tide.type}
-                </Text>
-                <Text style={styles.tideHeight}>{tide.height.toFixed(1)} ft</Text>
+          {tideSchedule.length > 0 ? (
+            tideSchedule.map((tide, index) => (
+              <View key={index} style={styles.tideRow}>
+                <Text style={styles.tideTime}>{tide.time}</Text>
+                <View style={styles.tideInfo}>
+                  <Text style={[
+                    styles.tideType,
+                    tide.type === 'High Tide' ? styles.highTide : styles.lowTide
+                  ]}>
+                    {tide.type}
+                  </Text>
+                  <Text style={styles.tideHeight}>{tide.height.toFixed(1)} ft</Text>
+                </View>
               </View>
-            </View>
-          ))}
+            ))
+          ) : (
+            <Text style={styles.noDataText}>Tide schedule unavailable</Text>
+          )}
         </View>
 
         {/* View Live Camera Button */}
-        <Pressable style={styles.cameraButton}>
-          <IconSymbol name="video.fill" size={20} color="#FFFFFF" />
-          <Text style={styles.cameraButtonText}>View Live Camera</Text>
-        </Pressable>
+        {conditions.liveCameraUrl && (
+          <Pressable style={styles.cameraButton}>
+            <IconSymbol name="video.fill" size={20} color="#FFFFFF" />
+            <Text style={styles.cameraButtonText}>View Live Camera</Text>
+          </Pressable>
+        )}
 
         {/* Last Updated */}
-        <Text style={styles.lastUpdated}>Last updated: {conditions.lastUpdated}</Text>
+        <Text style={styles.lastUpdated}>
+          Last updated: {conditions.lastUpdated}
+          {lastRefreshed && ` • Refreshed ${lastRefreshed.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}`}
+        </Text>
       </ScrollView>
     </SafeAreaView>
   );
@@ -297,6 +378,42 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingBottom: 120,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  loadingText: {
+    marginTop: 16,
+    fontSize: 16,
+    color: '#585858',
+    textAlign: 'center',
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  errorText: {
+    marginTop: 16,
+    fontSize: 16,
+    color: '#585858',
+    textAlign: 'center',
+  },
+  retryButton: {
+    marginTop: 20,
+    backgroundColor: colors.primary,
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  retryButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
   header: {
     paddingHorizontal: 16,
@@ -414,12 +531,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#E0E0E0',
   },
   safeConditionsBanner: {
-    backgroundColor: '#34C759',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 14,
+  },
+  greenBanner: {
+    backgroundColor: '#34C759',
+  },
+  yellowBanner: {
+    backgroundColor: '#FFCC00',
+  },
+  redBanner: {
+    backgroundColor: '#FF3B30',
+  },
+  purpleBanner: {
+    backgroundColor: '#AF52DE',
   },
   safeConditionsContent: {
     flexDirection: 'row',
@@ -430,6 +558,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: '#FFFFFF',
+  },
+  dataSourceBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    backgroundColor: '#F0F9FF',
+    marginHorizontal: 16,
+    marginTop: 12,
+    borderRadius: 8,
+  },
+  dataSourceText: {
+    fontSize: 12,
+    color: '#34C759',
+    fontWeight: '600',
   },
   section: {
     paddingHorizontal: 16,
@@ -481,6 +626,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '700',
     color: '#202020',
+  },
+  waterTempSource: {
+    fontSize: 12,
+    color: '#585858',
+    marginLeft: 'auto',
   },
   uvHeader: {
     flexDirection: 'row',
@@ -645,6 +795,12 @@ const styles = StyleSheet.create({
   tideHeight: {
     fontSize: 14,
     color: '#585858',
+  },
+  noDataText: {
+    fontSize: 14,
+    color: '#585858',
+    textAlign: 'center',
+    padding: 16,
   },
   cameraButton: {
     backgroundColor: '#00A8E8',

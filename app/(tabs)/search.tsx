@@ -15,10 +15,12 @@ import { IconSymbol } from '@/components/IconSymbol';
 import { BEACHES } from '@/data/beachData';
 import { Beach } from '@/types/beach';
 import { useBeachStorage } from '@/hooks/useBeachStorage';
+import { useRouter } from 'expo-router';
 
 export default function SearchScreen() {
   const [searchQuery, setSearchQuery] = useState('');
-  const { favorites, toggleFavorite } = useBeachStorage();
+  const { favorites, addToHome, isOnHome } = useBeachStorage();
+  const router = useRouter();
   
   const filteredBeaches = BEACHES.filter(beach =>
     beach.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -26,8 +28,30 @@ export default function SearchScreen() {
     beach.state.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const handleAddToHome = async (beachId: string) => {
+    console.log('Adding beach to home:', beachId);
+    await addToHome(beachId);
+    // Redirect to home page after adding
+    router.push('/(tabs)/(home)');
+  };
+
   const renderBeachItem = ({ item }: { item: Beach }) => {
     const isFavorite = favorites.includes(item.id);
+    const onHome = isOnHome(item.id);
+    
+    // Determine which icon to show
+    let iconName: 'plus' | 'checkmark' | 'heart.fill' = 'plus';
+    let iconColor = colors.primary;
+    
+    if (isFavorite) {
+      // If it's a favorite, show filled heart
+      iconName = 'heart.fill';
+      iconColor = colors.danger;
+    } else if (onHome) {
+      // If it's on home page but not favorite, show checkmark
+      iconName = 'checkmark';
+      iconColor = colors.success;
+    }
     
     return (
       <View style={styles.beachItem}>
@@ -40,14 +64,14 @@ export default function SearchScreen() {
           </View>
         </View>
         <Pressable
-          onPress={() => toggleFavorite(item.id)}
+          onPress={() => handleAddToHome(item.id)}
           hitSlop={8}
-          style={styles.favoriteButton}
+          style={styles.actionButton}
         >
           <IconSymbol
-            name={isFavorite ? 'heart.fill' : 'heart'}
+            name={iconName}
             size={24}
-            color={isFavorite ? colors.danger : colors.textSecondary}
+            color={iconColor}
           />
         </Pressable>
       </View>
@@ -69,7 +93,7 @@ export default function SearchScreen() {
           />
           {searchQuery.length > 0 && (
             <Pressable onPress={() => setSearchQuery('')} hitSlop={8}>
-              <IconSymbol name="xmark.circle.fill" size={20} color={colors.textSecondary} />
+              <IconSymbol name="xmark" size={20} color={colors.textSecondary} />
             </Pressable>
           )}
         </View>
@@ -166,7 +190,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.textSecondary,
   },
-  favoriteButton: {
+  actionButton: {
     padding: 8,
   },
   emptyState: {

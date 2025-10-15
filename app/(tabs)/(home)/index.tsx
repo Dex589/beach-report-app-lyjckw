@@ -161,12 +161,22 @@ export default function HomeScreen() {
                 style={styles.navButton}
                 hitSlop={8}
               >
-                <IconSymbol name="chevron.left" size={20} color="#FFFFFF" />
+                <IconSymbol name="chevron.left" size={24} color="#FFFFFF" />
               </Pressable>
               
-              <View style={styles.weatherIndicator}>
-                <IconSymbol name="cloud.sun.fill" size={24} color="#FFFFFF" />
+              <View style={styles.beachIndicator}>
+                <Text style={styles.beachIndicatorText}>
+                  {currentBeachIndex + 1} / {displayBeaches.length}
+                </Text>
               </View>
+
+              <Pressable 
+                onPress={handleNextBeach}
+                style={styles.navButton}
+                hitSlop={8}
+              >
+                <IconSymbol name="chevron.right" size={24} color="#FFFFFF" />
+              </Pressable>
             </View>
           )}
         </LinearGradient>
@@ -496,19 +506,27 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   navButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     backgroundColor: 'rgba(255, 255, 255, 0.25)',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.3)',
   },
-  weatherIndicator: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  beachIndicator: {
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+  },
+  beachIndicatorText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#FFFFFF',
   },
   waveContainer: {
     height: 20,

@@ -17,16 +17,24 @@ import { useBeachStorage } from '@/hooks/useBeachStorage';
 import { useRouter } from 'expo-router';
 
 export default function FavoriteScreen() {
-  const { favorites, toggleFavorite } = useBeachStorage();
+  const { favorites, toggleFavorite, addToHome } = useBeachStorage();
   const router = useRouter();
   
   const favoriteBeaches = BEACHES.filter(beach => favorites.includes(beach.id));
+
+  const handleBeachPress = async (beachId: string) => {
+    console.log('Navigate to beach:', beachId);
+    // Add the beach to home beaches so it appears on the home page
+    await addToHome(beachId);
+    // Navigate to home page
+    router.push('/(tabs)/(home)');
+  };
 
   const renderBeachItem = ({ item }: { item: Beach }) => {
     return (
       <Pressable 
         style={styles.beachItem}
-        onPress={() => console.log('Navigate to beach:', item.id)}
+        onPress={() => handleBeachPress(item.id)}
       >
         <Image source={{ uri: item.imageUrl }} style={styles.beachImage} />
         <View style={styles.beachInfo}>
@@ -37,14 +45,17 @@ export default function FavoriteScreen() {
           </View>
         </View>
         <Pressable
-          onPress={() => toggleFavorite(item.id)}
+          onPress={(e) => {
+            e.stopPropagation();
+            toggleFavorite(item.id);
+          }}
           hitSlop={8}
           style={styles.favoriteButton}
         >
           <IconSymbol
             name="heart.fill"
             size={24}
-            color={colors.danger}
+            color="#FF0000"
           />
         </Pressable>
       </Pressable>

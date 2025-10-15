@@ -19,6 +19,8 @@ import { BEACHES } from '@/data/beachData';
 import { useBeachStorage } from '@/hooks/useBeachStorage';
 import { useBeachConditions } from '@/hooks/useBeachConditions';
 import { LinearGradient } from 'expo-linear-gradient';
+import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+import * as Haptics from 'expo-haptics';
 
 export default function HomeScreen() {
   const { favorites, toggleFavorite, homeBeaches } = useBeachStorage();
@@ -43,12 +45,14 @@ export default function HomeScreen() {
   const [refreshing, setRefreshing] = useState(false);
 
   const handlePreviousBeach = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setCurrentBeachIndex((prev) => 
       prev === 0 ? displayBeaches.length - 1 : prev - 1
     );
   };
 
   const handleNextBeach = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setCurrentBeachIndex((prev) => 
       prev === displayBeaches.length - 1 ? 0 : prev + 1
     );
@@ -59,6 +63,20 @@ export default function HomeScreen() {
     await refresh();
     setRefreshing(false);
   };
+
+  // Swipe gesture for beach navigation
+  const swipeGesture = Gesture.Pan()
+    .onEnd((event) => {
+      const SWIPE_THRESHOLD = 50;
+      
+      if (event.translationX > SWIPE_THRESHOLD) {
+        // Swipe right - go to previous beach
+        handlePreviousBeach();
+      } else if (event.translationX < -SWIPE_THRESHOLD) {
+        // Swipe left - go to next beach
+        handleNextBeach();
+      }
+    });
 
   // Show loading state
   if (loading && !conditions) {
@@ -186,12 +204,51 @@ export default function HomeScreen() {
           <View style={styles.wave} />
         </View>
 
-        {/* Beach Image */}
-        <Image 
-          source={{ uri: beach.imageUrl }} 
-          style={styles.beachImage}
-          resizeMode="cover"
-        />
+        {/* Beach Image with Swipe Gesture and Overlay Buttons */}
+        <View style={styles.beachImageContainer}>
+          <GestureDetector gesture={swipeGesture}>
+            <View>
+              <Image 
+                source={{ uri: beach.imageUrl }} 
+                style={styles.beachImage}
+                resizeMode="cover"
+              />
+              
+              {/* Overlay Navigation Buttons */}
+              {displayBeaches.length > 1 && (
+                <>
+                  {/* Left Button */}
+                  <Pressable 
+                    onPress={handlePreviousBeach}
+                    style={styles.overlayButtonLeft}
+                    hitSlop={8}
+                  >
+                    <View style={styles.overlayButtonInner}>
+                      <IconSymbol name="chevron.left" size={28} color="#FFFFFF" />
+                    </View>
+                  </Pressable>
+
+                  {/* Right Button */}
+                  <Pressable 
+                    onPress={handleNextBeach}
+                    style={styles.overlayButtonRight}
+                    hitSlop={8}
+                  >
+                    <View style={styles.overlayButtonInner}>
+                      <IconSymbol name="chevron.right" size={28} color="#FFFFFF" />
+                    </View>
+                  </Pressable>
+
+                  {/* Swipe Indicator */}
+                  <View style={styles.swipeIndicator}>
+                    <IconSymbol name="hand.draw" size={16} color="#FFFFFF" />
+                    <Text style={styles.swipeIndicatorText}>Swipe to navigate</Text>
+                  </View>
+                </>
+              )}
+            </View>
+          </GestureDetector>
+        </View>
 
         {/* Safe Conditions Banner */}
         <Pressable style={[
@@ -543,10 +600,61 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 100,
     borderBottomRightRadius: 100,
   },
+  beachImageContainer: {
+    position: 'relative',
+    width: '100%',
+    height: 200,
+  },
   beachImage: {
     width: '100%',
     height: 200,
     backgroundColor: '#E0E0E0',
+  },
+  overlayButtonLeft: {
+    position: 'absolute',
+    left: 16,
+    top: '50%',
+    marginTop: -28,
+    zIndex: 10,
+  },
+  overlayButtonRight: {
+    position: 'absolute',
+    right: 16,
+    top: '50%',
+    marginTop: -28,
+    zIndex: 10,
+  },
+  overlayButtonInner: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: 'rgba(255, 255, 255, 0.8)',
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)',
+    elevation: 5,
+  },
+  swipeIndicator: {
+    position: 'absolute',
+    bottom: 12,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 16,
+    alignSelf: 'center',
+  },
+  swipeIndicatorText: {
+    fontSize: 12,
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
   safeConditionsBanner: {
     flexDirection: 'row',

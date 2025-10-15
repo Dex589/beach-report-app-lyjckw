@@ -12,7 +12,7 @@ import {
   RefreshControl,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import { BEACHES } from '@/data/beachData';
@@ -23,6 +23,7 @@ import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
 
 export default function HomeScreen() {
+  const router = useRouter();
   const { favorites, toggleFavorite, homeBeaches } = useBeachStorage();
   const [currentBeachIndex, setCurrentBeachIndex] = useState(0);
   
@@ -62,6 +63,14 @@ export default function HomeScreen() {
     setRefreshing(true);
     await refresh();
     setRefreshing(false);
+  };
+
+  const handleAlertsPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push({
+      pathname: '/(tabs)/(home)/alerts',
+      params: { beachId: beach.id }
+    });
   };
 
   // Swipe gesture for beach navigation
@@ -250,14 +259,17 @@ export default function HomeScreen() {
           </GestureDetector>
         </View>
 
-        {/* Safe Conditions Banner */}
-        <Pressable style={[
-          styles.safeConditionsBanner,
-          conditions.flagWarning === 'green' && styles.greenBanner,
-          conditions.flagWarning === 'yellow' && styles.yellowBanner,
-          conditions.flagWarning === 'red' && styles.redBanner,
-          conditions.flagWarning === 'purple' && styles.purpleBanner,
-        ]}>
+        {/* Safe Conditions Banner - Now Clickable */}
+        <Pressable 
+          style={[
+            styles.safeConditionsBanner,
+            conditions.flagWarning === 'green' && styles.greenBanner,
+            conditions.flagWarning === 'yellow' && styles.yellowBanner,
+            conditions.flagWarning === 'red' && styles.redBanner,
+            conditions.flagWarning === 'purple' && styles.purpleBanner,
+          ]}
+          onPress={handleAlertsPress}
+        >
           <View style={styles.safeConditionsContent}>
             <IconSymbol name="exclamationmark.triangle.fill" size={20} color="#FFFFFF" />
             <Text style={styles.safeConditionsText}>{conditions.flagWarningText}</Text>

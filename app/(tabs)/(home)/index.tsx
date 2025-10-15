@@ -1,225 +1,236 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   ScrollView,
-  Dimensions,
   Pressable,
+  Image,
   Platform,
-  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Stack, useRouter } from 'expo-router';
-import { colors, commonStyles } from '@/styles/commonStyles';
-import { BeachCard } from '@/components/BeachCard';
-import { WaveHeader } from '@/components/WaveHeader';
+import { Stack } from 'expo-router';
+import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
-import { BEACHES } from '@/data/beachData';
+import { BEACHES, generateBeachConditions, getTideSchedule } from '@/data/beachData';
 import { useBeachStorage } from '@/hooks/useBeachStorage';
-import { useLocation } from '@/hooks/useLocation';
-import { Beach } from '@/types/beach';
-
-const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
-  const router = useRouter();
-  const scrollViewRef = useRef<ScrollView>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const { homeBeaches, favorites, toggleFavorite, loading: storageLoading } = useBeachStorage();
-  const { location, loading: locationLoading, calculateDistance } = useLocation();
-
-  // Get beaches to display on home screen
-  const getHomeBeaches = (): Beach[] => {
-    if (storageLoading) return [];
-
-    // If we have saved home beaches, use those
-    if (homeBeaches.length > 0) {
-      return homeBeaches
-        .map(id => BEACHES.find(b => b.id === id))
-        .filter(Boolean) as Beach[];
-    }
-
-    // Otherwise, show nearest beaches or favorites
-    let beachesToShow = [...BEACHES];
-
-    // Add distance if location is available
-    if (location) {
-      beachesToShow = beachesToShow.map(beach => ({
-        ...beach,
-        distance: calculateDistance(
-          location.latitude,
-          location.longitude,
-          beach.latitude,
-          beach.longitude
-        ),
-      }));
-      beachesToShow.sort((a, b) => (a.distance || 0) - (b.distance || 0));
-    }
-
-    // Prioritize favorites
-    const favoriteBeaches = beachesToShow.filter(b => favorites.includes(b.id));
-    const otherBeaches = beachesToShow.filter(b => !favorites.includes(b.id));
-
-    return [...favoriteBeaches, ...otherBeaches].slice(0, 5);
-  };
-
-  const displayBeaches = getHomeBeaches();
-
-  const handleScroll = (event: any) => {
-    const offsetX = event.nativeEvent.contentOffset.x;
-    const index = Math.round(offsetX / width);
-    setCurrentIndex(index);
-  };
-
-  const scrollToIndex = (index: number) => {
-    scrollViewRef.current?.scrollTo({
-      x: index * width,
-      animated: true,
-    });
-    setCurrentIndex(index);
-  };
-
-  const handlePrevious = () => {
-    if (currentIndex > 0) {
-      scrollToIndex(currentIndex - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (currentIndex < displayBeaches.length - 1) {
-      scrollToIndex(currentIndex + 1);
-    }
-  };
-
-  const handleBeachPress = (beachId: string) => {
-    router.push(`/beach-detail?id=${beachId}`);
-  };
-
-  if (storageLoading || locationLoading) {
-    return (
-      <SafeAreaView style={commonStyles.container} edges={['top']}>
-        <WaveHeader />
-        <View style={[commonStyles.container, styles.centerContent]}>
-          <ActivityIndicator size="large" color={colors.primary} />
-          <Text style={[commonStyles.text, styles.loadingText]}>Loading beaches...</Text>
-        </View>
-      </SafeAreaView>
-    );
-  }
+  const { favorites, toggleFavorite } = useBeachStorage();
+  const [currentBeachId] = useState('1'); // Miami Beach as default
+  
+  const beach = BEACHES.find(b => b.id === currentBeachId) || BEACHES[0];
+  const conditions = generateBeachConditions(currentBeachId);
+  const tideSchedule = getTideSchedule();
+  const isFavorite = favorites.includes(beach.id);
 
   return (
-    <SafeAreaView style={commonStyles.container} edges={['top']}>
+    <SafeAreaView style={styles.container} edges={['top']}>
       {Platform.OS === 'ios' && (
         <Stack.Screen
           options={{
-            title: 'Beach Report',
-            headerTransparent: true,
-            headerBlurEffect: 'light',
+            headerShown: false,
           }}
         />
       )}
       
-      <WaveHeader />
-
-      <View style={styles.header}>
-        <View style={styles.logoContainer}>
-          <IconSymbol name="water.waves" size={32} color={colors.card} />
-          <Text style={styles.logoText}>
-            Beach <Text style={styles.logoAccent}>Report</Text>
-          </Text>
-        </View>
-      </View>
-
-      <View style={styles.container}>
-        {displayBeaches.length === 0 ? (
-          <View style={styles.emptyState}>
-            <IconSymbol name="magnifyingglass" size={64} color={colors.textSecondary} />
-            <Text style={styles.emptyTitle}>No Beaches Yet</Text>
-            <Text style={styles.emptyText}>
-              Search for beaches to add them to your home screen
-            </Text>
-            <Pressable
-              style={styles.searchButton}
-              onPress={() => router.push('/(tabs)/search')}
-            >
-              <Text style={styles.searchButtonText}>Search Beaches</Text>
-            </Pressable>
-          </View>
-        ) : (
-          <>
-            <View style={styles.carouselContainer}>
-              <ScrollView
-                ref={scrollViewRef}
-                horizontal
-                pagingEnabled
-                showsHorizontalScrollIndicator={false}
-                onScroll={handleScroll}
-                scrollEventThrottle={16}
-                decelerationRate="fast"
-                snapToInterval={width}
-                snapToAlignment="center"
-              >
-                {displayBeaches.map((beach) => (
-                  <View key={beach.id} style={styles.cardWrapper}>
-                    <BeachCard
-                      beach={beach}
-                      onPress={() => handleBeachPress(beach.id)}
-                      onFavoritePress={() => toggleFavorite(beach.id)}
-                      isFavorite={favorites.includes(beach.id)}
-                      showDistance={!!location}
-                    />
-                  </View>
-                ))}
-              </ScrollView>
-
-              {displayBeaches.length > 1 && (
-                <>
-                  {currentIndex > 0 && (
-                    <Pressable style={styles.arrowLeft} onPress={handlePrevious}>
-                      <IconSymbol name="chevron.left" size={24} color={colors.card} />
-                    </Pressable>
-                  )}
-                  {currentIndex < displayBeaches.length - 1 && (
-                    <Pressable style={styles.arrowRight} onPress={handleNext}>
-                      <IconSymbol name="chevron.right" size={24} color={colors.card} />
-                    </Pressable>
-                  )}
-                </>
-              )}
+      <ScrollView 
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
+        {/* Header */}
+        <View style={styles.header}>
+          <View style={styles.headerTop}>
+            <View style={styles.titleRow}>
+              <IconSymbol name="water.waves" size={24} color="#FFFFFF" />
+              <Text style={styles.appTitle}>Beach Report</Text>
             </View>
-
-            {displayBeaches.length > 1 && (
-              <View style={styles.pagination}>
-                {displayBeaches.map((_, index) => (
-                  <View
-                    key={index}
-                    style={[
-                      styles.paginationDot,
-                      index === currentIndex && styles.paginationDotActive,
-                    ]}
-                  />
-                ))}
-              </View>
-            )}
-
-            <View style={styles.infoSection}>
-              <Text style={styles.infoTitle}>Recently Viewed</Text>
-              <Text style={styles.infoSubtitle}>
-                {displayBeaches[currentIndex]?.name}
-              </Text>
-              <Pressable
-                style={styles.viewDetailsButton}
-                onPress={() => handleBeachPress(displayBeaches[currentIndex]?.id)}
+            <View style={styles.headerIcons}>
+              <Pressable 
+                onPress={() => toggleFavorite(beach.id)}
+                hitSlop={8}
               >
-                <Text style={styles.viewDetailsText}>View Details</Text>
-                <IconSymbol name="arrow.right" size={16} color={colors.primary} />
+                <IconSymbol 
+                  name={isFavorite ? "heart.fill" : "heart"} 
+                  size={24} 
+                  color="#FFFFFF" 
+                />
               </Pressable>
+              <IconSymbol name="cloud" size={24} color="#FFFFFF" />
             </View>
-          </>
-        )}
-      </View>
+          </View>
+          
+          <Text style={styles.recentlyViewed}>Recently Viewed • {beach.name}</Text>
+          
+          <View style={styles.locationRow}>
+            <IconSymbol name="location.fill" size={16} color="#FFFFFF" />
+            <Text style={styles.locationText}>{beach.location}, {beach.state}</Text>
+            <IconSymbol name="location" size={16} color="#FFFFFF" />
+          </View>
+        </View>
+
+        {/* Beach Image */}
+        <Image 
+          source={{ uri: beach.imageUrl }} 
+          style={styles.beachImage}
+          resizeMode="cover"
+        />
+
+        {/* Safe Conditions Banner */}
+        <Pressable style={styles.safeConditionsBanner}>
+          <View style={styles.safeConditionsContent}>
+            <IconSymbol name="exclamationmark.triangle.fill" size={20} color="#FFFFFF" />
+            <Text style={styles.safeConditionsText}>Safe conditions</Text>
+          </View>
+          <IconSymbol name="chevron.right" size={20} color="#FFFFFF" />
+        </Pressable>
+
+        {/* Current Conditions */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Current Conditions</Text>
+          <View style={styles.conditionsGrid}>
+            <View style={styles.conditionCard}>
+              <IconSymbol name="thermometer" size={32} color="#4A90E2" />
+              <Text style={styles.conditionValue}>{conditions.airTemp}°F</Text>
+              <Text style={styles.conditionLabel}>Air Temperature</Text>
+            </View>
+            <View style={styles.conditionCard}>
+              <IconSymbol name="wind" size={32} color="#4A90E2" />
+              <Text style={styles.conditionValue}>{conditions.windSpeed} mph</Text>
+              <Text style={styles.conditionLabel}>Wind {conditions.windDirection}</Text>
+            </View>
+            <View style={styles.conditionCard}>
+              <IconSymbol name="drop.fill" size={32} color="#4A90E2" />
+              <Text style={styles.conditionValue}>{conditions.humidity}%</Text>
+              <Text style={styles.conditionLabel}>Humidity</Text>
+            </View>
+            <View style={styles.conditionCard}>
+              <IconSymbol name="water.waves" size={32} color="#4A90E2" />
+              <Text style={styles.conditionValue}>{conditions.surfHeight.toFixed(1)} ft</Text>
+              <Text style={styles.conditionLabel}>Surf Height</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Water Temperature */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Water Temperature</Text>
+          <View style={styles.waterTempCard}>
+            <IconSymbol name="drop.fill" size={24} color="#4A90E2" />
+            <Text style={styles.waterTempValue}>{conditions.waterTemp}°F</Text>
+          </View>
+        </View>
+
+        {/* UV Protection Guide */}
+        <View style={styles.section}>
+          <View style={styles.uvHeader}>
+            <IconSymbol name="sun.max.fill" size={20} color="#FF9500" />
+            <Text style={styles.uvTitle}>UV Protection Guide</Text>
+          </View>
+          <View style={styles.uvCard}>
+            <View style={styles.uvIndexRow}>
+              <View style={styles.uvIndexBadge}>
+                <Text style={styles.uvIndexText}>UV {conditions.uvIndex}</Text>
+              </View>
+              <Text style={styles.uvIndexLabel}>{conditions.uvGuide}</Text>
+            </View>
+            
+            <View style={styles.uvGuideItem}>
+              <IconSymbol name="sun.max" size={18} color="#FF9500" />
+              <View style={styles.uvGuideContent}>
+                <Text style={styles.uvGuideTitle}>Sunscreen</Text>
+                <Text style={styles.uvGuideText}>SPF 30+</Text>
+              </View>
+            </View>
+
+            <View style={styles.uvGuideItem}>
+              <IconSymbol name="tshirt" size={18} color="#FF9500" />
+              <View style={styles.uvGuideContent}>
+                <Text style={styles.uvGuideTitle}>Clothing</Text>
+                <Text style={styles.uvGuideText}>Shirt, hat recommended</Text>
+              </View>
+            </View>
+
+            <View style={styles.uvGuideItem}>
+              <IconSymbol name="clock" size={18} color="#FF9500" />
+              <View style={styles.uvGuideContent}>
+                <Text style={styles.uvGuideTitle}>Timing</Text>
+                <Text style={styles.uvGuideText}>Seek shade during midday hours</Text>
+              </View>
+            </View>
+
+            <View style={styles.uvGuideItem}>
+              <IconSymbol name="umbrella.fill" size={18} color="#FF9500" />
+              <View style={styles.uvGuideContent}>
+                <Text style={styles.uvGuideTitle}>Shade</Text>
+                <Text style={styles.uvGuideText}>Shade recommended 10am-4pm</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        {/* Sun Times */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Sun Times</Text>
+          <View style={styles.sunTimesRow}>
+            <View style={styles.sunTimeCard}>
+              <IconSymbol name="sunrise.fill" size={32} color="#FF9500" />
+              <Text style={styles.sunTimeLabel}>Sunrise</Text>
+              <Text style={styles.sunTimeValue}>{conditions.sunrise}</Text>
+            </View>
+            <View style={styles.sunTimeCard}>
+              <IconSymbol name="sunset.fill" size={32} color="#FF6B35" />
+              <Text style={styles.sunTimeLabel}>Sunset</Text>
+              <Text style={styles.sunTimeValue}>{conditions.sunset}</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Tide Information */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Tide Information</Text>
+          
+          <View style={styles.currentTideCard}>
+            <View style={styles.currentTideHeader}>
+              <IconSymbol name="water.waves" size={20} color="#4A90E2" />
+              <Text style={styles.currentTideTitle}>Current Tide</Text>
+            </View>
+            <View style={styles.currentTideContent}>
+              <Text style={styles.currentTideValue}>{conditions.currentTide.toFixed(1)} ft</Text>
+              <View style={styles.tideStatusBadge}>
+                <IconSymbol name="arrow.up" size={14} color="#4A90E2" />
+                <Text style={styles.tideStatusText}>{conditions.tideStatus}</Text>
+              </View>
+            </View>
+          </View>
+
+          {tideSchedule.map((tide, index) => (
+            <View key={index} style={styles.tideRow}>
+              <Text style={styles.tideTime}>{tide.time}</Text>
+              <View style={styles.tideInfo}>
+                <Text style={[
+                  styles.tideType,
+                  tide.type === 'High Tide' ? styles.highTide : styles.lowTide
+                ]}>
+                  {tide.type}
+                </Text>
+                <Text style={styles.tideHeight}>{tide.height.toFixed(1)} ft</Text>
+              </View>
+            </View>
+          ))}
+        </View>
+
+        {/* View Live Camera Button */}
+        <Pressable style={styles.cameraButton}>
+          <IconSymbol name="video.fill" size={20} color="#FFFFFF" />
+          <Text style={styles.cameraButtonText}>View Live Camera</Text>
+        </Pressable>
+
+        {/* Last Updated */}
+        <Text style={styles.lastUpdated}>Last updated: {conditions.lastUpdated}</Text>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -227,150 +238,318 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 20,
+    backgroundColor: '#F5F5F5',
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingBottom: Platform.OS === 'ios' ? 100 : 120,
   },
   header: {
-    paddingHorizontal: 20,
-    paddingTop: 60,
-    paddingBottom: 20,
+    backgroundColor: '#4A90E2',
+    paddingHorizontal: 16,
+    paddingTop: 12,
+    paddingBottom: 16,
   },
-  logoContainer: {
+  headerTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  appTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  headerIcons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+  },
+  recentlyViewed: {
+    fontSize: 12,
+    color: '#FFFFFF',
+    opacity: 0.9,
+    marginBottom: 4,
+  },
+  locationRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  locationText: {
+    fontSize: 14,
+    color: '#FFFFFF',
+    fontWeight: '500',
+  },
+  beachImage: {
+    width: '100%',
+    height: 200,
+    backgroundColor: '#E0E0E0',
+  },
+  safeConditionsBanner: {
+    backgroundColor: '#34C759',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+  },
+  safeConditionsContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  safeConditionsText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF',
+  },
+  section: {
+    paddingHorizontal: 16,
+    marginTop: 20,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#202020',
+    marginBottom: 12,
+  },
+  conditionsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+  },
+  conditionCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    alignItems: 'center',
+    width: '47%',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
+    elevation: 2,
+  },
+  conditionValue: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#202020',
+    marginTop: 8,
+  },
+  conditionLabel: {
+    fontSize: 12,
+    color: '#585858',
+    marginTop: 4,
+    textAlign: 'center',
+  },
+  waterTempCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
+    elevation: 2,
+  },
+  waterTempValue: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#202020',
+  },
+  uvHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 12,
+  },
+  uvTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#FF9500',
+  },
+  uvCard: {
+    backgroundColor: '#FFF9F0',
+    borderRadius: 12,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#FFE5CC',
+  },
+  uvIndexRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    marginBottom: 16,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#FFE5CC',
+  },
+  uvIndexBadge: {
+    backgroundColor: '#FF9500',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+  },
+  uvIndexText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  uvIndexLabel: {
+    fontSize: 14,
+    color: '#202020',
+    flex: 1,
+  },
+  uvGuideItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+    marginBottom: 12,
+  },
+  uvGuideContent: {
+    flex: 1,
+  },
+  uvGuideTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#202020',
+    marginBottom: 2,
+  },
+  uvGuideText: {
+    fontSize: 13,
+    color: '#585858',
+  },
+  sunTimesRow: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  sunTimeCard: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    alignItems: 'center',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
+    elevation: 2,
+  },
+  sunTimeLabel: {
+    fontSize: 12,
+    color: '#585858',
+    marginTop: 8,
+  },
+  sunTimeValue: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#202020',
+    marginTop: 4,
+  },
+  currentTideCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
+    elevation: 2,
+  },
+  currentTideHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 12,
+  },
+  currentTideTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#585858',
+  },
+  currentTideContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  currentTideValue: {
+    fontSize: 32,
+    fontWeight: '700',
+    color: '#4A90E2',
+  },
+  tideStatusBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: '#E3F2FD',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+  },
+  tideStatusText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#4A90E2',
+  },
+  tideRow: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
+    elevation: 2,
+  },
+  tideTime: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#202020',
+  },
+  tideInfo: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
   },
-  logoText: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: colors.card,
-  },
-  logoAccent: {
-    color: colors.accent,
-  },
-  carouselContainer: {
-    height: 320,
-    marginBottom: 20,
-  },
-  cardWrapper: {
-    width: width,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  arrowLeft: {
-    position: 'absolute',
-    left: 8,
-    top: '50%',
-    transform: [{ translateY: -20 }],
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(70, 130, 180, 0.9)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.2)',
-    elevation: 4,
-  },
-  arrowRight: {
-    position: 'absolute',
-    right: 8,
-    top: '50%',
-    transform: [{ translateY: -20 }],
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(70, 130, 180, 0.9)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.2)',
-    elevation: 4,
-  },
-  pagination: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 8,
-    marginBottom: 20,
-  },
-  paginationDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: colors.secondary,
-  },
-  paginationDotActive: {
-    width: 24,
-    backgroundColor: colors.primary,
-  },
-  infoSection: {
-    paddingHorizontal: 20,
-    paddingBottom: Platform.OS !== 'ios' ? 100 : 20,
-  },
-  infoTitle: {
+  tideType: {
     fontSize: 14,
-    color: colors.textSecondary,
-    marginBottom: 4,
+    fontWeight: '600',
   },
-  infoSubtitle: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: colors.text,
-    marginBottom: 16,
+  highTide: {
+    color: '#4A90E2',
   },
-  viewDetailsButton: {
+  lowTide: {
+    color: '#FF9500',
+  },
+  tideHeight: {
+    fontSize: 14,
+    color: '#585858',
+  },
+  cameraButton: {
+    backgroundColor: '#00A8E8',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     gap: 8,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    backgroundColor: colors.card,
-    borderRadius: 8,
-    alignSelf: 'flex-start',
-    boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
-    elevation: 2,
-  },
-  viewDetailsText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: colors.primary,
-  },
-  emptyState: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 40,
-    paddingBottom: Platform.OS !== 'ios' ? 100 : 20,
-  },
-  emptyTitle: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: colors.text,
+    marginHorizontal: 16,
     marginTop: 20,
-    marginBottom: 8,
-  },
-  emptyText: {
-    fontSize: 16,
-    color: colors.textSecondary,
-    textAlign: 'center',
-    marginBottom: 24,
-    lineHeight: 24,
-  },
-  searchButton: {
-    backgroundColor: colors.primary,
     paddingVertical: 14,
-    paddingHorizontal: 32,
-    borderRadius: 8,
+    borderRadius: 12,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+    elevation: 3,
   },
-  searchButtonText: {
+  cameraButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: colors.card,
+    color: '#FFFFFF',
   },
-  centerContent: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  loadingText: {
-    marginTop: 16,
-    color: colors.textSecondary,
+  lastUpdated: {
+    fontSize: 12,
+    color: '#585858',
+    textAlign: 'center',
+    marginTop: 12,
+    marginHorizontal: 16,
   },
 });

@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   },
   listContent: {
     padding: 16,
-    paddingBottom: 100,
+    paddingBottom: 120,
   },
   beachItem: {
     flexDirection: 'row',

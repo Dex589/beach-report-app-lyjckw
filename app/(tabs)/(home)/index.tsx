@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: Platform.OS === 'ios' ? 100 : 120,
+    paddingBottom: 120,
   },
   header: {
     paddingHorizontal: 16,
@@ -670,5 +670,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 12,
     marginHorizontal: 16,
+    marginBottom: 20,
   },
 });

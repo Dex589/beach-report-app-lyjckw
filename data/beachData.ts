@@ -1,0 +1,195 @@
+
+import { Beach, BeachConditions, TideInfo } from '@/types/beach';
+
+// Sample beach data - in a real app, this would come from an API
+export const BEACHES: Beach[] = [
+  {
+    id: '1',
+    name: 'Miami Beach',
+    location: 'Miami Beach',
+    state: 'Florida',
+    latitude: 25.7907,
+    longitude: -80.1300,
+    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+  },
+  {
+    id: '2',
+    name: 'Clearwater Beach',
+    location: 'Clearwater',
+    state: 'Florida',
+    latitude: 27.9659,
+    longitude: -82.8001,
+    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+  },
+  {
+    id: '3',
+    name: 'Indian Rocks Beach',
+    location: 'Indian Rocks Beach',
+    state: 'Florida',
+    latitude: 27.8964,
+    longitude: -82.8426,
+    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+  },
+  {
+    id: '4',
+    name: 'Caladesi Island',
+    location: 'Dunedin',
+    state: 'Florida',
+    latitude: 28.0089,
+    longitude: -82.8065,
+    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+  },
+  {
+    id: '5',
+    name: 'Belleair Beach',
+    location: 'Belleair Beach',
+    state: 'Florida',
+    latitude: 27.9192,
+    longitude: -82.8376,
+    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+  },
+  {
+    id: '6',
+    name: 'Indian Shores',
+    location: 'Indian Shores',
+    state: 'Florida',
+    latitude: 27.8506,
+    longitude: -82.8426,
+    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+  },
+  {
+    id: '7',
+    name: 'Santa Monica Beach',
+    location: 'Santa Monica',
+    state: 'California',
+    latitude: 34.0195,
+    longitude: -118.4912,
+    imageUrl: 'https://images.unsplash.com/photo-1503891617560-5b8c2e28cbf6?w=800',
+  },
+  {
+    id: '8',
+    name: 'Venice Beach',
+    location: 'Venice',
+    state: 'California',
+    latitude: 33.9850,
+    longitude: -118.4695,
+    imageUrl: 'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800',
+  },
+  {
+    id: '9',
+    name: 'Malibu Beach',
+    location: 'Malibu',
+    state: 'California',
+    latitude: 34.0259,
+    longitude: -118.7798,
+    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+  },
+  {
+    id: '10',
+    name: 'Huntington Beach',
+    location: 'Huntington Beach',
+    state: 'California',
+    latitude: 33.6595,
+    longitude: -117.9988,
+    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+  },
+];
+
+// Generate mock beach conditions
+export const generateBeachConditions = (beachId: string): BeachConditions => {
+  const conditions: BeachConditions[] = [
+    {
+      beachId: '1',
+      waterTemp: 74.9,
+      surfHeight: 2.0,
+      currentTide: 1.6,
+      tideStatus: 'Rising',
+      airTemp: 84,
+      windSpeed: 12,
+      windDirection: 'NE',
+      humidity: 53,
+      uvIndex: 5,
+      uvGuide: 'Moderate - Wear sunscreen',
+      sunrise: '7:18 AM',
+      sunset: '6:53 PM',
+      liveCameraUrl: 'https://example.com/camera',
+      currentConditions: 'Safe conditions',
+      flagWarning: 'green',
+      flagWarningText: 'Safe conditions - No hazards',
+      lastUpdated: new Date().toLocaleTimeString(),
+    },
+    {
+      beachId: '2',
+      waterTemp: 72.5,
+      surfHeight: 1.5,
+      currentTide: 2.1,
+      tideStatus: 'High',
+      airTemp: 82,
+      windSpeed: 8,
+      windDirection: 'E',
+      humidity: 58,
+      uvIndex: 6,
+      uvGuide: 'High - Wear sunscreen',
+      sunrise: '7:20 AM',
+      sunset: '6:55 PM',
+      liveCameraUrl: 'https://example.com/camera',
+      currentConditions: 'Excellent conditions',
+      flagWarning: 'green',
+      flagWarningText: 'Safe conditions - No hazards',
+      lastUpdated: new Date().toLocaleTimeString(),
+    },
+    {
+      beachId: '3',
+      waterTemp: 73.2,
+      surfHeight: 1.8,
+      currentTide: 1.3,
+      tideStatus: 'Falling',
+      airTemp: 83,
+      windSpeed: 10,
+      windDirection: 'SE',
+      humidity: 55,
+      uvIndex: 7,
+      uvGuide: 'High - Wear sunscreen',
+      sunrise: '7:19 AM',
+      sunset: '6:54 PM',
+      currentConditions: 'Good conditions',
+      flagWarning: 'yellow',
+      flagWarningText: 'Caution - Moderate surf',
+      lastUpdated: new Date().toLocaleTimeString(),
+    },
+  ];
+
+  // Return specific conditions or generate random ones
+  const existing = conditions.find(c => c.beachId === beachId);
+  if (existing) return existing;
+
+  // Generate random conditions for other beaches
+  return {
+    beachId,
+    waterTemp: 70 + Math.random() * 10,
+    surfHeight: 1 + Math.random() * 3,
+    currentTide: 0.5 + Math.random() * 2,
+    tideStatus: ['Rising', 'Falling', 'High', 'Low'][Math.floor(Math.random() * 4)] as any,
+    airTemp: 75 + Math.random() * 15,
+    windSpeed: 5 + Math.random() * 15,
+    windDirection: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'][Math.floor(Math.random() * 8)],
+    humidity: 40 + Math.random() * 40,
+    uvIndex: Math.floor(1 + Math.random() * 10),
+    uvGuide: 'Moderate - Wear sunscreen',
+    sunrise: '7:18 AM',
+    sunset: '6:53 PM',
+    currentConditions: 'Good conditions',
+    flagWarning: ['green', 'yellow', 'red'][Math.floor(Math.random() * 3)] as any,
+    flagWarningText: 'Safe conditions',
+    lastUpdated: new Date().toLocaleTimeString(),
+  };
+};
+
+export const getTideSchedule = (): TideInfo[] => {
+  return [
+    { time: '5:13 PM', type: 'High Tide', height: 2.5 },
+    { time: '11:28 PM', type: 'Low Tide', height: 0.8 },
+    { time: '5:38 AM', type: 'High Tide', height: 2.5 },
+    { time: '11:57 AM', type: 'Low Tide', height: 0.7 },
+  ];
+};

@@ -1,161 +1,376 @@
-import React from "react";
-import { Stack, Link } from "expo-router";
-import { FlatList, Pressable, StyleSheet, View, Text, Alert, Platform } from "react-native";
-import { IconSymbol } from "@/components/IconSymbol";
-import { GlassView } from "expo-glass-effect";
-import { useTheme } from "@react-navigation/native";
 
-const ICON_COLOR = "#007AFF";
+import React, { useState, useRef, useEffect } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Dimensions,
+  Pressable,
+  Platform,
+  ActivityIndicator,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Stack, useRouter } from 'expo-router';
+import { colors, commonStyles } from '@/styles/commonStyles';
+import { BeachCard } from '@/components/BeachCard';
+import { WaveHeader } from '@/components/WaveHeader';
+import { IconSymbol } from '@/components/IconSymbol';
+import { BEACHES } from '@/data/beachData';
+import { useBeachStorage } from '@/hooks/useBeachStorage';
+import { useLocation } from '@/hooks/useLocation';
+import { Beach } from '@/types/beach';
+
+const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
-  const theme = useTheme();
-  const modalDemos = [
-    {
-      title: "Standard Modal",
-      description: "Full screen modal presentation",
-      route: "/modal",
-      color: "#007AFF",
-    },
-    {
-      title: "Form Sheet",
-      description: "Bottom sheet with detents and grabber",
-      route: "/formsheet",
-      color: "#34C759",
-    },
-    {
-      title: "Transparent Modal",
-      description: "Overlay without obscuring background",
-      route: "/transparent-modal",
-      color: "#FF9500",
+  const router = useRouter();
+  const scrollViewRef = useRef<ScrollView>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const { homeBeaches, favorites, toggleFavorite, loading: storageLoading } = useBeachStorage();
+  const { location, loading: locationLoading, calculateDistance } = useLocation();
+
+  // Get beaches to display on home screen
+  const getHomeBeaches = (): Beach[] => {
+    if (storageLoading) return [];
+
+    // If we have saved home beaches, use those
+    if (homeBeaches.length > 0) {
+      return homeBeaches
+        .map(id => BEACHES.find(b => b.id === id))
+        .filter(Boolean) as Beach[];
     }
-  ];
 
-  const renderModalDemo = ({ item }: { item: (typeof modalDemos)[0] }) => (
-    <GlassView style={[
-      styles.demoCard,
-      Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-    ]} glassEffectStyle="regular">
-      <View style={[styles.demoIcon, { backgroundColor: item.color }]}>
-        <IconSymbol name="square.grid.3x3" color="white" size={24} />
-      </View>
-      <View style={styles.demoContent}>
-        <Text style={[styles.demoTitle, { color: theme.colors.text }]}>{item.title}</Text>
-        <Text style={[styles.demoDescription, { color: theme.dark ? '#98989D' : '#666' }]}>{item.description}</Text>
-      </View>
-      <Link href={item.route as any} asChild>
-        <Pressable>
-          <GlassView style={[
-            styles.tryButton,
-            Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.08)' }
-          ]} glassEffectStyle="clear">
-            <Text style={[styles.tryButtonText, { color: theme.colors.primary }]}>Try It</Text>
-          </GlassView>
-        </Pressable>
-      </Link>
-    </GlassView>
-  );
+    // Otherwise, show nearest beaches or favorites
+    let beachesToShow = [...BEACHES];
 
-  const renderHeaderRight = () => (
-    <Pressable
-      onPress={() => Alert.alert("Not Implemented", "This feature is not implemented yet")}
-      style={styles.headerButtonContainer}
-    >
-      <IconSymbol name="plus" color={theme.colors.primary} />
-    </Pressable>
-  );
+    // Add distance if location is available
+    if (location) {
+      beachesToShow = beachesToShow.map(beach => ({
+        ...beach,
+        distance: calculateDistance(
+          location.latitude,
+          location.longitude,
+          beach.latitude,
+          beach.longitude
+        ),
+      }));
+      beachesToShow.sort((a, b) => (a.distance || 0) - (b.distance || 0));
+    }
 
-  const renderHeaderLeft = () => (
-    <Pressable
-      onPress={() => Alert.alert("Not Implemented", "This feature is not implemented yet")}
-      style={styles.headerButtonContainer}
-    >
-      <IconSymbol
-        name="gear"
-        color={theme.colors.primary}
-      />
-    </Pressable>
-  );
+    // Prioritize favorites
+    const favoriteBeaches = beachesToShow.filter(b => favorites.includes(b.id));
+    const otherBeaches = beachesToShow.filter(b => !favorites.includes(b.id));
+
+    return [...favoriteBeaches, ...otherBeaches].slice(0, 5);
+  };
+
+  const displayBeaches = getHomeBeaches();
+
+  const handleScroll = (event: any) => {
+    const offsetX = event.nativeEvent.contentOffset.x;
+    const index = Math.round(offsetX / width);
+    setCurrentIndex(index);
+  };
+
+  const scrollToIndex = (index: number) => {
+    scrollViewRef.current?.scrollTo({
+      x: index * width,
+      animated: true,
+    });
+    setCurrentIndex(index);
+  };
+
+  const handlePrevious = () => {
+    if (currentIndex > 0) {
+      scrollToIndex(currentIndex - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentIndex < displayBeaches.length - 1) {
+      scrollToIndex(currentIndex + 1);
+    }
+  };
+
+  const handleBeachPress = (beachId: string) => {
+    router.push(`/beach-detail?id=${beachId}`);
+  };
+
+  if (storageLoading || locationLoading) {
+    return (
+      <SafeAreaView style={commonStyles.container} edges={['top']}>
+        <WaveHeader />
+        <View style={[commonStyles.container, styles.centerContent]}>
+          <ActivityIndicator size="large" color={colors.primary} />
+          <Text style={[commonStyles.text, styles.loadingText]}>Loading beaches...</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
-    <>
+    <SafeAreaView style={commonStyles.container} edges={['top']}>
       {Platform.OS === 'ios' && (
         <Stack.Screen
           options={{
-            title: "Building the app...",
-            headerRight: renderHeaderRight,
-            headerLeft: renderHeaderLeft,
+            title: 'Beach Report',
+            headerTransparent: true,
+            headerBlurEffect: 'light',
           }}
         />
       )}
-      <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-        <FlatList
-          data={modalDemos}
-          renderItem={renderModalDemo}
-          keyExtractor={(item) => item.route}
-          contentContainerStyle={[
-            styles.listContainer,
-            Platform.OS !== 'ios' && styles.listContainerWithTabBar
-          ]}
-          contentInsetAdjustmentBehavior="automatic"
-          showsVerticalScrollIndicator={false}
-        />
+      
+      <WaveHeader />
+
+      <View style={styles.header}>
+        <View style={styles.logoContainer}>
+          <IconSymbol name="water.waves" size={32} color={colors.card} />
+          <Text style={styles.logoText}>
+            Beach <Text style={styles.logoAccent}>Report</Text>
+          </Text>
+        </View>
       </View>
-    </>
+
+      <View style={styles.container}>
+        {displayBeaches.length === 0 ? (
+          <View style={styles.emptyState}>
+            <IconSymbol name="magnifyingglass" size={64} color={colors.textSecondary} />
+            <Text style={styles.emptyTitle}>No Beaches Yet</Text>
+            <Text style={styles.emptyText}>
+              Search for beaches to add them to your home screen
+            </Text>
+            <Pressable
+              style={styles.searchButton}
+              onPress={() => router.push('/(tabs)/search')}
+            >
+              <Text style={styles.searchButtonText}>Search Beaches</Text>
+            </Pressable>
+          </View>
+        ) : (
+          <>
+            <View style={styles.carouselContainer}>
+              <ScrollView
+                ref={scrollViewRef}
+                horizontal
+                pagingEnabled
+                showsHorizontalScrollIndicator={false}
+                onScroll={handleScroll}
+                scrollEventThrottle={16}
+                decelerationRate="fast"
+                snapToInterval={width}
+                snapToAlignment="center"
+              >
+                {displayBeaches.map((beach) => (
+                  <View key={beach.id} style={styles.cardWrapper}>
+                    <BeachCard
+                      beach={beach}
+                      onPress={() => handleBeachPress(beach.id)}
+                      onFavoritePress={() => toggleFavorite(beach.id)}
+                      isFavorite={favorites.includes(beach.id)}
+                      showDistance={!!location}
+                    />
+                  </View>
+                ))}
+              </ScrollView>
+
+              {displayBeaches.length > 1 && (
+                <>
+                  {currentIndex > 0 && (
+                    <Pressable style={styles.arrowLeft} onPress={handlePrevious}>
+                      <IconSymbol name="chevron.left" size={24} color={colors.card} />
+                    </Pressable>
+                  )}
+                  {currentIndex < displayBeaches.length - 1 && (
+                    <Pressable style={styles.arrowRight} onPress={handleNext}>
+                      <IconSymbol name="chevron.right" size={24} color={colors.card} />
+                    </Pressable>
+                  )}
+                </>
+              )}
+            </View>
+
+            {displayBeaches.length > 1 && (
+              <View style={styles.pagination}>
+                {displayBeaches.map((_, index) => (
+                  <View
+                    key={index}
+                    style={[
+                      styles.paginationDot,
+                      index === currentIndex && styles.paginationDotActive,
+                    ]}
+                  />
+                ))}
+              </View>
+            )}
+
+            <View style={styles.infoSection}>
+              <Text style={styles.infoTitle}>Recently Viewed</Text>
+              <Text style={styles.infoSubtitle}>
+                {displayBeaches[currentIndex]?.name}
+              </Text>
+              <Pressable
+                style={styles.viewDetailsButton}
+                onPress={() => handleBeachPress(displayBeaches[currentIndex]?.id)}
+              >
+                <Text style={styles.viewDetailsText}>View Details</Text>
+                <IconSymbol name="arrow.right" size={16} color={colors.primary} />
+              </Pressable>
+            </View>
+          </>
+        )}
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor handled dynamically
+    paddingTop: 20,
   },
-  listContainer: {
-    paddingVertical: 16,
-    paddingHorizontal: 16,
+  header: {
+    paddingHorizontal: 20,
+    paddingTop: 60,
+    paddingBottom: 20,
   },
-  listContainerWithTabBar: {
-    paddingBottom: 100, // Extra padding for floating tab bar
-  },
-  demoCard: {
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
+  logoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 12,
   },
-  demoIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+  logoText: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: colors.card,
+  },
+  logoAccent: {
+    color: colors.accent,
+  },
+  carouselContainer: {
+    height: 320,
+    marginBottom: 20,
+  },
+  cardWrapper: {
+    width: width,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 16,
   },
-  demoContent: {
-    flex: 1,
+  arrowLeft: {
+    position: 'absolute',
+    left: 8,
+    top: '50%',
+    transform: [{ translateY: -20 }],
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(70, 130, 180, 0.9)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.2)',
+    elevation: 4,
   },
-  demoTitle: {
-    fontSize: 18,
-    fontWeight: '600',
+  arrowRight: {
+    position: 'absolute',
+    right: 8,
+    top: '50%',
+    transform: [{ translateY: -20 }],
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(70, 130, 180, 0.9)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.2)',
+    elevation: 4,
+  },
+  pagination: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 20,
+  },
+  paginationDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: colors.secondary,
+  },
+  paginationDotActive: {
+    width: 24,
+    backgroundColor: colors.primary,
+  },
+  infoSection: {
+    paddingHorizontal: 20,
+    paddingBottom: Platform.OS !== 'ios' ? 100 : 20,
+  },
+  infoTitle: {
+    fontSize: 14,
+    color: colors.textSecondary,
     marginBottom: 4,
-    // color handled dynamically
   },
-  demoDescription: {
-    fontSize: 14,
-    lineHeight: 18,
-    // color handled dynamically
+  infoSubtitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 16,
   },
-  headerButtonContainer: {
-    padding: 6,
+  viewDetailsButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    backgroundColor: colors.card,
+    borderRadius: 8,
+    alignSelf: 'flex-start',
+    boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
+    elevation: 2,
   },
-  tryButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 6,
-  },
-  tryButtonText: {
-    fontSize: 14,
+  viewDetailsText: {
+    fontSize: 16,
     fontWeight: '600',
-    // color handled dynamically
+    color: colors.primary,
+  },
+  emptyState: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 40,
+    paddingBottom: Platform.OS !== 'ios' ? 100 : 20,
+  },
+  emptyTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: colors.text,
+    marginTop: 20,
+    marginBottom: 8,
+  },
+  emptyText: {
+    fontSize: 16,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    marginBottom: 24,
+    lineHeight: 24,
+  },
+  searchButton: {
+    backgroundColor: colors.primary,
+    paddingVertical: 14,
+    paddingHorizontal: 32,
+    borderRadius: 8,
+  },
+  searchButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.card,
+  },
+  centerContent: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  loadingText: {
+    marginTop: 16,
+    color: colors.textSecondary,
   },
 });

@@ -15,15 +15,33 @@ import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import { BEACHES, generateBeachConditions, getTideSchedule } from '@/data/beachData';
 import { useBeachStorage } from '@/hooks/useBeachStorage';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function HomeScreen() {
-  const { favorites, toggleFavorite } = useBeachStorage();
-  const [currentBeachId] = useState('1'); // Miami Beach as default
+  const { favorites, toggleFavorite, homeBeaches } = useBeachStorage();
+  const [currentBeachIndex, setCurrentBeachIndex] = useState(0);
   
-  const beach = BEACHES.find(b => b.id === currentBeachId) || BEACHES[0];
-  const conditions = generateBeachConditions(currentBeachId);
+  // Get beaches to display (favorites first, then home beaches)
+  const displayBeaches = homeBeaches.length > 0 
+    ? homeBeaches.map(id => BEACHES.find(b => b.id === id)).filter(Boolean)
+    : [BEACHES[0]]; // Default to first beach if no home beaches
+  
+  const beach = displayBeaches[currentBeachIndex] || BEACHES[0];
+  const conditions = generateBeachConditions(beach.id);
   const tideSchedule = getTideSchedule();
   const isFavorite = favorites.includes(beach.id);
+
+  const handlePreviousBeach = () => {
+    setCurrentBeachIndex((prev) => 
+      prev === 0 ? displayBeaches.length - 1 : prev - 1
+    );
+  };
+
+  const handleNextBeach = () => {
+    setCurrentBeachIndex((prev) => 
+      prev === displayBeaches.length - 1 ? 0 : prev + 1
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -40,35 +58,69 @@ export default function HomeScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        {/* Header */}
-        <View style={styles.header}>
+        {/* Header with Gradient */}
+        <LinearGradient
+          colors={['#00CED1', '#4169E1']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.header}
+        >
           <View style={styles.headerTop}>
             <View style={styles.titleRow}>
               <IconSymbol name="water.waves" size={24} color="#FFFFFF" />
-              <Text style={styles.appTitle}>Beach Report</Text>
+              <Text style={styles.appTitle}>
+                Beach <Text style={styles.appTitleHighlight}>Report</Text>
+              </Text>
             </View>
-            <View style={styles.headerIcons}>
+            <View style={styles.headerButtons}>
+              <Pressable style={styles.viewDetailsButton}>
+                <Text style={styles.viewDetailsText}>View Details</Text>
+              </Pressable>
               <Pressable 
                 onPress={() => toggleFavorite(beach.id)}
                 hitSlop={8}
+                style={styles.heartButton}
               >
                 <IconSymbol 
                   name={isFavorite ? "heart.fill" : "heart"} 
                   size={24} 
-                  color="#FFFFFF" 
+                  color={isFavorite ? "#FF0000" : "#FFFFFF"} 
                 />
               </Pressable>
-              <IconSymbol name="cloud" size={24} color="#FFFFFF" />
             </View>
           </View>
           
-          <Text style={styles.recentlyViewed}>Recently Viewed • {beach.name}</Text>
+          <Text style={styles.recentlyViewed}>
+            {isFavorite ? '⭐ Favorite' : '🕐 Recently Viewed'} • {beach.name}
+          </Text>
           
           <View style={styles.locationRow}>
             <IconSymbol name="location.fill" size={16} color="#FFFFFF" />
             <Text style={styles.locationText}>{beach.location}, {beach.state}</Text>
-            <IconSymbol name="location" size={16} color="#FFFFFF" />
+            <View style={styles.greenDot} />
           </View>
+
+          {/* Navigation Arrows */}
+          {displayBeaches.length > 1 && (
+            <View style={styles.navigationRow}>
+              <Pressable 
+                onPress={handlePreviousBeach}
+                style={styles.navButton}
+                hitSlop={8}
+              >
+                <IconSymbol name="chevron.left" size={20} color="#FFFFFF" />
+              </Pressable>
+              
+              <View style={styles.weatherIndicator}>
+                <IconSymbol name="cloud.sun.fill" size={24} color="#FFFFFF" />
+              </View>
+            </View>
+          )}
+        </LinearGradient>
+
+        {/* Wave decoration */}
+        <View style={styles.waveContainer}>
+          <View style={styles.wave} />
         </View>
 
         {/* Beach Image */}
@@ -247,16 +299,15 @@ const styles = StyleSheet.create({
     paddingBottom: Platform.OS === 'ios' ? 100 : 120,
   },
   header: {
-    backgroundColor: '#4A90E2',
     paddingHorizontal: 16,
     paddingTop: 12,
-    paddingBottom: 16,
+    paddingBottom: 20,
   },
   headerTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 8,
   },
   titleRow: {
     flexDirection: 'row',
@@ -264,30 +315,98 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   appTitle: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: '700',
     color: '#FFFFFF',
   },
-  headerIcons: {
+  appTitleHighlight: {
+    color: '#FFD700',
+  },
+  headerButtons: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 16,
+    gap: 12,
+  },
+  viewDetailsButton: {
+    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.4)',
+  },
+  viewDetailsText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#FFFFFF',
+  },
+  heartButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   recentlyViewed: {
-    fontSize: 12,
+    fontSize: 13,
     color: '#FFFFFF',
-    opacity: 0.9,
-    marginBottom: 4,
+    opacity: 0.95,
+    marginBottom: 6,
   },
   locationRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: 6,
+    marginBottom: 12,
   },
   locationText: {
     fontSize: 14,
     color: '#FFFFFF',
     fontWeight: '500',
+  },
+  greenDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#00FF00',
+    marginLeft: 2,
+  },
+  navigationRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 8,
+  },
+  navButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+  },
+  weatherIndicator: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  waveContainer: {
+    height: 20,
+    overflow: 'hidden',
+    backgroundColor: '#F5F5F5',
+  },
+  wave: {
+    position: 'absolute',
+    top: -10,
+    left: 0,
+    right: 0,
+    height: 30,
+    backgroundColor: '#4169E1',
+    borderBottomLeftRadius: 100,
+    borderBottomRightRadius: 100,
   },
   beachImage: {
     width: '100%',

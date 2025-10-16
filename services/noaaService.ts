@@ -118,6 +118,111 @@ export const NOAA_STATIONS: Record<string, {
   
   // New Hampshire Beaches
   '75': { tideStation: '8423898', weatherLat: 42.9001, weatherLon: -70.8109 }, // Hampton Beach
+  
+  // Hawaii Beaches
+  '76': { tideStation: '1612340', weatherLat: 21.2691, weatherLon: -157.6942 }, // Hanauma Bay - Honolulu
+  '98': { tideStation: '1612480', weatherLat: 21.3931, weatherLon: -157.7179 }, // Lanikai Beach - Kailua
+  
+  // New Jersey Beaches (continued)
+  '77': { tideStation: '8533840', weatherLat: 39.6959, weatherLon: -74.1376 }, // Harvey Cedars
+  '81': { tideStation: '8533840', weatherLat: 39.6326, weatherLon: -74.2043 }, // Holgate - Long Beach Township
+  '103': { tideStation: '8533840', weatherLat: 39.6626, weatherLon: -74.1876 }, // Long Beach Island
+  '106': { tideStation: '8531680', weatherLat: 40.3043, weatherLon: -73.9923 }, // Long Branch
+  '107': { tideStation: '8533840', weatherLat: 39.7043, weatherLon: -74.1626 }, // Loveladies - Long Beach Township
+  '110': { tideStation: '8531680', weatherLat: 40.1165, weatherLon: -74.0376 }, // Manasquan
+  '134': { tideStation: '8534720', weatherLat: 39.2776, weatherLon: -74.5746 }, // Ocean City Boardwalk
+  '150': { tideStation: '8531680', weatherLat: 40.0826, weatherLon: -74.0476 }, // Point Pleasant
+  
+  // North Carolina Beaches (continued)
+  '78': { tideStation: '8654467', weatherLat: 35.2118, weatherLon: -75.6874 }, // Hatteras
+  '94': { tideStation: '8651370', weatherLat: 36.0321, weatherLon: -75.6768 }, // Kill Devil Hills
+  '95': { tideStation: '8651370', weatherLat: 36.0626, weatherLon: -75.7060 }, // Kitty Hawk
+  '124': { tideStation: '8652587', weatherLat: 35.9571, weatherLon: -75.6240 }, // Nags Head
+  '141': { tideStation: '8654467', weatherLat: 35.5585, weatherLon: -75.4665 }, // Outer Banks
+  
+  // California Beaches (continued)
+  '79': { tideStation: '9410660', weatherLat: 33.8622, weatherLon: -118.3998 }, // Hermosa Beach
+  '84': { tideStation: '9410580', weatherLat: 33.6595, weatherLon: -118.0000 }, // Huntington Beach
+  '85': { tideStation: '9410170', weatherLat: 32.5839, weatherLon: -117.1131 }, // Imperial Beach
+  '96': { tideStation: '9410660', weatherLat: 33.5427, weatherLon: -117.7854 }, // Laguna Beach
+  '97': { tideStation: '9410230', weatherLat: 32.8509, weatherLon: -117.2713 }, // La Jolla Cove
+  '100': { tideStation: '9410840', weatherLat: 34.0459, weatherLon: -118.9381 }, // Leo Carrillo Beach - Malibu
+  '109': { tideStation: '9410840', weatherLat: 34.0259, weatherLon: -118.7798 }, // Malibu Beach
+  '111': { tideStation: '9410660', weatherLat: 33.8847, weatherLon: -118.4109 }, // Manhattan Beach
+  '112': { tideStation: '9410660', weatherLat: 33.8847, weatherLon: -118.4109 }, // Manhattan State Beach
+  '118': { tideStation: '9416841', weatherLat: 39.3077, weatherLon: -123.7994 }, // Mendocino
+  '119': { tideStation: '9410170', weatherLat: 32.7701, weatherLon: -117.2528 }, // Mission Beach - San Diego
+  '121': { tideStation: '9413450', weatherLat: 36.6002, weatherLon: -121.8947 }, // Monterey Bay
+  '129': { tideStation: '9410580', weatherLat: 33.6189, weatherLon: -117.9289 }, // Newport Beach CA
+  '132': { tideStation: '9410170', weatherLat: 32.7533, weatherLon: -117.2494 }, // Ocean Beach - San Diego
+  '142': { tideStation: '9410170', weatherLat: 32.7964, weatherLon: -117.2296 }, // Pacific Beach - San Diego
+  '147': { tideStation: '9412110', weatherLat: 35.1428, weatherLon: -120.6413 }, // Pismo Beach
+  '149': { tideStation: '9410840', weatherLat: 34.0059, weatherLon: -118.8081 }, // Point Dume - Malibu
+  
+  // South Carolina Beaches (continued)
+  '80': { tideStation: '8670870', weatherLat: 32.2163, weatherLon: -80.7526 }, // Hilton Head
+  '93': { tideStation: '8665530', weatherLat: 32.6085, weatherLon: -80.0842 }, // Kiawah Island
+  '123': { tideStation: '8661070', weatherLat: 33.6891, weatherLon: -78.8867 }, // Myrtle Beach
+  
+  // Florida Beaches (continued)
+  '82': { tideStation: '8723214', weatherLat: 26.0112, weatherLon: -80.1248 }, // Hollywood Beach
+  '83': { tideStation: '8726724', weatherLat: 28.0656, weatherLon: -82.8276 }, // Honeymoon Island - Dunedin
+  '86': { tideStation: '8726724', weatherLat: 27.8964, weatherLon: -82.8426 }, // Indian Rocks Beach
+  '87': { tideStation: '8726724', weatherLat: 27.8564, weatherLon: -82.8476 }, // Indian Shores
+  '88': { tideStation: '8723970', weatherLat: 24.9243, weatherLon: -80.6278 }, // Islamorada
+  '91': { tideStation: '8723214', weatherLat: 25.6926, weatherLon: -80.1631 }, // Key Biscayne
+  '92': { tideStation: '8724580', weatherLat: 24.5551, weatherLon: -81.7800 }, // Key West Beach
+  '101': { tideStation: '8726384', weatherLat: 27.3164, weatherLon: -82.5831 }, // Lido Key - Sarasota
+  '105': { tideStation: '8726384', weatherLat: 27.4103, weatherLon: -82.6540 }, // Longboat Key
+  '108': { tideStation: '8726724', weatherLat: 27.7970, weatherLon: -82.7976 }, // Madeira Beach
+  '114': { tideStation: '8723970', weatherLat: 24.7137, weatherLon: -81.0865 }, // Marathon
+  '115': { tideStation: '8725110', weatherLat: 25.9412, weatherLon: -81.7187 }, // Marco Island
+  '126': { tideStation: '8725110', weatherLat: 26.1420, weatherLon: -81.7948 }, // Naples Beach
+  '128': { tideStation: '8721120', weatherLat: 29.0258, weatherLon: -80.9270 }, // New Smyrna Beach
+  '140': { tideStation: '8721120', weatherLat: 29.2858, weatherLon: -81.0559 }, // Ormond Beach
+  '145': { tideStation: '8729108', weatherLat: 30.1766, weatherLon: -85.8055 }, // Panama City Beach
+  '146': { tideStation: '8726520', weatherLat: 27.6953, weatherLon: -82.7426 }, // Pass-a-Grille Beach - St. Pete Beach
+  
+  // New York Beaches (continued)
+  '89': { tideStation: '8516945', weatherLat: 40.5926, weatherLon: -73.5087 }, // Jones Beach - Wantagh
+  '120': { tideStation: '8510560', weatherLat: 41.0357, weatherLon: -71.9579 }, // Montauk
+  
+  // Maine Beaches (continued)
+  '90': { tideStation: '8419317', weatherLat: 43.3615, weatherLon: -70.4767 }, // Kennebunk Beach
+  '136': { tideStation: '8419317', weatherLat: 43.2493, weatherLon: -70.5989 }, // Ogunquit Beach
+  '137': { tideStation: '8418150', weatherLat: 43.5170, weatherLon: -70.3770 }, // Old Orchard Beach
+  
+  // Massachusetts Beaches (continued)
+  '116': { tideStation: '8447930', weatherLat: 41.3888, weatherLon: -70.6189 }, // Martha's Vineyard
+  '125': { tideStation: '8449130', weatherLat: 41.2835, weatherLon: -70.0995 }, // Nantucket
+  '139': { tideStation: '8447930', weatherLat: 41.7899, weatherLon: -69.9897 }, // Orleans
+  '148': { tideStation: '8443970', weatherLat: 42.8159, weatherLon: -70.8159 }, // Plum Island - Newburyport
+  
+  // Oregon Beaches (continued)
+  '102': { tideStation: '9435380', weatherLat: 44.9579, weatherLon: -124.0179 }, // Lincoln City
+  '113': { tideStation: '9435380', weatherLat: 45.7179, weatherLon: -123.9365 }, // Manzanita Beach
+  '130': { tideStation: '9435380', weatherLat: 44.6368, weatherLon: -124.0529 }, // Newport Beach OR
+  '143': { tideStation: '9435380', weatherLat: 45.1979, weatherLon: -123.9615 }, // Pacific City
+  
+  // Washington Beaches
+  '99': { tideStation: '9442396', weatherLat: 47.9037, weatherLon: -124.6368 }, // La Push Beach
+  '104': { tideStation: '9440910', weatherLat: 46.3523, weatherLon: -124.0543 }, // Long Beach Peninsula
+  '135': { tideStation: '9441102', weatherLat: 46.9737, weatherLon: -124.1568 }, // Ocean Shores
+  
+  // Texas Beaches (continued)
+  '117': { tideStation: '8772447', weatherLat: 28.6903, weatherLon: -95.9688 }, // Matagorda Beach
+  '122': { tideStation: '8775870', weatherLat: 27.8339, weatherLon: -97.0614 }, // Mustang Island - Port Aransas
+  '144': { tideStation: '8775870', weatherLat: 27.5808, weatherLon: -97.2108 }, // Padre Island
+  
+  // Rhode Island Beaches (continued)
+  '127': { tideStation: '8452660', weatherLat: 41.4326, weatherLon: -71.4537 }, // Narragansett Beach
+  '131': { tideStation: '8452660', weatherLat: 41.4901, weatherLon: -71.3128 }, // Newport Beach RI
+  
+  // Maryland Beaches (continued)
+  '133': { tideStation: '8570283', weatherLat: 38.3365, weatherLon: -75.0849 }, // Ocean City MD
+  
+  // Alabama Beaches (continued)
+  '138': { tideStation: '8735180', weatherLat: 30.2943, weatherLon: -87.5711 }, // Orange Beach
 };
 
 interface NOAAWaterLevelData {

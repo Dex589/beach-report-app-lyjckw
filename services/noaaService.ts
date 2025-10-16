@@ -223,6 +223,58 @@ export const NOAA_STATIONS: Record<string, {
   
   // Alabama Beaches (continued)
   '138': { tideStation: '8735180', weatherLat: 30.2943, weatherLon: -87.5711 }, // Orange Beach
+  
+  // Beaches 151-200
+  '151': { tideStation: '8722670', weatherLat: 26.2379, weatherLon: -80.1248 }, // Pompano Beach - FL
+  '152': { tideStation: '8770822', weatherLat: 29.8849, weatherLon: -93.9399 }, // Port Arthur Beach - TX
+  '153': { tideStation: '8773259', weatherLat: 28.6150, weatherLon: -96.6260 }, // Port Lavaca Beach - TX
+  '154': { tideStation: '8446121', weatherLat: 42.0526, weatherLon: -70.1826 }, // Provincetown - MA
+  '155': { tideStation: '8726724', weatherLat: 27.8164, weatherLon: -82.8176 }, // Redington Beach - FL
+  '156': { tideStation: '8726724', weatherLat: 27.8264, weatherLon: -82.8276 }, // Redington Shores - FL
+  '157': { tideStation: '9410660', weatherLat: 33.8492, weatherLon: -118.3884 }, // Redondo Beach - CA
+  '158': { tideStation: '8557380', weatherLat: 38.7209, weatherLon: -75.0760 }, // Rehoboth Beach - DE
+  '159': { tideStation: '9442396', weatherLat: 47.9204, weatherLon: -124.6368 }, // Rialto Beach - WA
+  '160': { tideStation: '8774770', weatherLat: 28.0217, weatherLon: -97.0544 }, // Rockport Beach - TX
+  '161': { tideStation: '8654467', weatherLat: 35.5932, weatherLon: -75.4668 }, // Rodanthe - NC
+  '162': { tideStation: '8423898', weatherLat: 43.0093, weatherLon: -70.7698 }, // Rye Beach - NH
+  '163': { tideStation: '8443970', weatherLat: 42.8426, weatherLon: -70.8109 }, // Salisbury Beach - MA
+  '164': { tideStation: '8654467', weatherLat: 35.5418, weatherLon: -75.4729 }, // Salvo - NC
+  '165': { tideStation: '9410660', weatherLat: 33.4270, weatherLon: -117.6120 }, // San Clemente - CA
+  '166': { tideStation: '8725110', weatherLat: 26.4487, weatherLon: -82.1248 }, // Sanibel Island - FL
+  '167': { tideStation: '9410840', weatherLat: 34.0095, weatherLon: -118.4965 }, // Santa Monica Beach - CA
+  '168': { tideStation: '8536110', weatherLat: 39.1526, weatherLon: -74.6932 }, // Sea Isle City - NJ
+  '169': { tideStation: '9435380', weatherLat: 45.9932, weatherLon: -123.9226 }, // Seaside Beach - OR
+  '170': { tideStation: '8531680', weatherLat: 39.9443, weatherLon: -74.0726 }, // Seaside Heights - NJ
+  '171': { tideStation: '8533840', weatherLat: 39.6426, weatherLon: -74.1793 }, // Ship Bottom - NJ
+  '172': { tideStation: '8726384', weatherLat: 27.2639, weatherLon: -82.5454 }, // Siesta Key Beach - FL
+  '173': { tideStation: '9410230', weatherLat: 32.9911, weatherLon: -117.2714 }, // Solana Beach - CA
+  '174': { tideStation: '8723214', weatherLat: 25.7907, weatherLon: -80.1300 }, // South Beach - Miami Beach, FL
+  '175': { tideStation: '8651370', weatherLat: 36.1293, weatherLon: -75.7460 }, // Southern Shores - NC
+  '176': { tideStation: '8779770', weatherLat: 26.1118, weatherLon: -97.1681 }, // South Padre Island - TX
+  '177': { tideStation: '8531680', weatherLat: 40.1532, weatherLon: -74.0282 }, // Spring Lake - NJ
+  '178': { tideStation: '8720218', weatherLat: 29.8572, weatherLon: -81.2664 }, // St. Augustine Beach - FL
+  '179': { tideStation: '9414863', weatherLat: 37.9021, weatherLon: -122.6447 }, // Stinson Beach - CA
+  '180': { tideStation: '8536110', weatherLat: 39.0493, weatherLon: -74.7615 }, // Stone Harbor - NJ
+  '181': { tideStation: '8726520', weatherLat: 27.7253, weatherLon: -82.7412 }, // St. Pete Beach - FL
+  '182': { tideStation: '8723214', weatherLat: 25.9426, weatherLon: -80.1231 }, // Sunny Isles Beach - FL
+  '183': { tideStation: '8533840', weatherLat: 39.6626, weatherLon: -74.1643 }, // Surf City - NJ
+  '184': { tideStation: '8772447', weatherLat: 28.9447, weatherLon: -95.2860 }, // Surfside Beach - TX
+  '185': { tideStation: '8726724', weatherLat: 28.1461, weatherLon: -82.7568 }, // Tarpon Springs Beach - FL
+  '186': { tideStation: '8510560', weatherLat: 40.9632, weatherLon: -72.1848 }, // The Hamptons - East Hampton, NY
+  '187': { tideStation: '9410230', weatherLat: 32.9326, weatherLon: -117.2526 }, // Torrey Pines - La Jolla, CA
+  '188': { tideStation: '8726724', weatherLat: 27.7689, weatherLon: -82.7687 }, // Treasure Island - FL
+  '189': { tideStation: '8447930', weatherLat: 41.9993, weatherLon: -70.0626 }, // Truro - MA
+  '190': { tideStation: '8670870', weatherLat: 32.0002, weatherLon: -80.8454 }, // Tybee Island - GA
+  '191': { tideStation: '8725110', weatherLat: 27.0998, weatherLon: -82.4543 }, // Venice Beach FL - Venice, FL
+  '192': { tideStation: '9410840', weatherLat: 33.9850, weatherLon: -118.4695 }, // Venice Beach - Venice, CA
+  '193': { tideStation: '8638863', weatherLat: 36.8529, weatherLon: -75.9780 }, // Virginia Beach - VA
+  '194': { tideStation: '1612340', weatherLat: 21.2793, weatherLon: -157.8293 }, // Waikiki Beach - Honolulu, HI
+  '195': { tideStation: '8654467', weatherLat: 35.5518, weatherLon: -75.4696 }, // Waves - NC
+  '196': { tideStation: '8447930', weatherLat: 41.9376, weatherLon: -70.0326 }, // Wellfleet - MA
+  '197': { tideStation: '8419317', weatherLat: 43.3220, weatherLon: -70.5798 }, // Wells Beach - ME
+  '198': { tideStation: '8536110', weatherLat: 38.9918, weatherLon: -74.8149 }, // Wildwood - NJ
+  '199': { tideStation: '8419317', weatherLat: 43.1726, weatherLon: -70.6098 }, // York Beach - ME
+  '200': { tideStation: '9410840', weatherLat: 34.0159, weatherLon: -118.8231 }, // Zuma Beach - Malibu, CA
 };
 
 interface NOAAWaterLevelData {

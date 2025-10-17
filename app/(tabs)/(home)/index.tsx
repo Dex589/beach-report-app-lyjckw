@@ -218,7 +218,7 @@ export default function HomeScreen() {
           <GestureDetector gesture={swipeGesture}>
             <View>
               <Image 
-                source={{ uri: beach.imageUrl }} 
+                source={beach.image} 
                 style={styles.beachImage}
                 resizeMode="cover"
               />

@@ -11,7 +11,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 30.6719,
     longitude: -81.4651,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/amelia-island.jpg'),
   },
   {
     id: '2',
@@ -20,7 +20,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.5314,
     longitude: -82.7326,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/anna-maria-island.jpg'),
   },
   {
     id: '8',
@@ -29,7 +29,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 25.8915,
     longitude: -80.1248,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/bal-harbour.jpg'),
   },
   {
     id: '13',
@@ -38,7 +38,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.9192,
     longitude: -82.8376,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/belleair-beach.jpg'),
   },
   {
     id: '17',
@@ -47,7 +47,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 24.6696,
     longitude: -81.3534,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/big-pine-key.jpg'),
   },
   {
     id: '20',
@@ -56,7 +56,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 26.7273,
     longitude: -82.2626,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/boca-grande.jpg'),
   },
   {
     id: '22',
@@ -65,7 +65,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 26.3398,
     longitude: -81.8773,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/bonita-springs.jpg'),
   },
   {
     id: '28',
@@ -74,7 +74,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 28.0089,
     longitude: -82.8065,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/caladesi-island.jpg'),
   },
   {
     id: '34',
@@ -83,7 +83,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 26.5320,
     longitude: -82.1876,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/captiva-island.jpg'),
   },
   {
     id: '37',
@@ -92,7 +92,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.1253,
     longitude: -82.4959,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/casey-key.jpg'),
   },
   {
     id: '39',
@@ -101,7 +101,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.9659,
     longitude: -82.8001,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/clearwater-beach.jpg'),
   },
   {
     id: '40',
@@ -110,7 +110,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 28.3200,
     longitude: -80.6076,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/cocoa-beach.jpg'),
   },
   {
     id: '46',
@@ -119,7 +119,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 28.0856,
     longitude: -82.7873,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/crystal-beach.jpg'),
   },
   {
     id: '48',
@@ -128,7 +128,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 29.2108,
     longitude: -81.0228,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/daytona-beach.jpg'),
   },
   {
     id: '49',
@@ -137,7 +137,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 26.3184,
     longitude: -80.0998,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/deerfield-beach.jpg'),
   },
   {
     id: '58',
@@ -146,7 +146,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 26.9620,
     longitude: -82.3526,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/englewood-beach.jpg'),
   },
   {
     id: '61',
@@ -155,7 +155,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 29.4730,
     longitude: -81.1284,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/flagler-beach.jpg'),
   },
   {
     id: '64',
@@ -164,7 +164,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 26.1224,
     longitude: -80.1373,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/fort-lauderdale-beach.jpg'),
   },
   {
     id: '65',
@@ -173,7 +173,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 26.4518,
     longitude: -81.9484,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/fort-myers-beach.jpg'),
   },
   {
     id: '74',
@@ -182,7 +182,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 25.9812,
     longitude: -80.1248,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/hallandale-beach.jpg'),
   },
   {
     id: '82',
@@ -191,7 +191,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 26.0112,
     longitude: -80.1248,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/hollywood-beach.jpg'),
   },
   {
     id: '83',
@@ -200,7 +200,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 28.0656,
     longitude: -82.8276,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/honeymoon-island.jpg'),
   },
   {
     id: '86',
@@ -209,7 +209,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.8964,
     longitude: -82.8426,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/indian-rocks-beach.jpg'),
   },
   {
     id: '87',
@@ -218,7 +218,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.8564,
     longitude: -82.8476,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/indian-shores.jpg'),
   },
   {
     id: '88',
@@ -227,7 +227,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 24.9243,
     longitude: -80.6278,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/islamorada.jpg'),
   },
   {
     id: '91',
@@ -236,7 +236,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 25.6926,
     longitude: -80.1631,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/key-biscayne.jpg'),
   },
   {
     id: '92',
@@ -245,7 +245,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 24.5551,
     longitude: -81.7800,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/key-west-beach.jpg'),
   },
   {
     id: '101',
@@ -254,7 +254,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.3164,
     longitude: -82.5831,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/lido-key.jpg'),
   },
   {
     id: '105',
@@ -263,7 +263,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.4103,
     longitude: -82.6540,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/longboat-key.jpg'),
   },
   {
     id: '108',
@@ -272,7 +272,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.7970,
     longitude: -82.7976,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/madeira-beach.jpg'),
   },
   {
     id: '114',
@@ -281,7 +281,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 24.7137,
     longitude: -81.0865,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/marathon.jpg'),
   },
   {
     id: '115',
@@ -290,7 +290,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 25.9412,
     longitude: -81.7187,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/marco-island.jpg'),
   },
   {
     id: '126',
@@ -299,7 +299,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 26.1420,
     longitude: -81.7948,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/naples-beach.jpg'),
   },
   {
     id: '128',
@@ -308,7 +308,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 29.0258,
     longitude: -80.9270,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/new-smyrna-beach.jpg'),
   },
   {
     id: '140',
@@ -317,7 +317,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 29.2858,
     longitude: -81.0559,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/ormond-beach.jpg'),
   },
   {
     id: '145',
@@ -326,7 +326,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 30.1766,
     longitude: -85.8055,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/panama-city-beach.jpg'),
   },
   {
     id: '146',
@@ -335,7 +335,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.6953,
     longitude: -82.7426,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/pass-a-grille-beach.jpg'),
   },
   {
     id: '151',
@@ -344,7 +344,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 26.2379,
     longitude: -80.1248,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/pompano-beach.jpg'),
   },
   {
     id: '155',
@@ -353,7 +353,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.8164,
     longitude: -82.8176,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/redington-beach.jpg'),
   },
   {
     id: '156',
@@ -362,7 +362,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.8264,
     longitude: -82.8276,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/redington-shores.jpg'),
   },
   {
     id: '166',
@@ -371,7 +371,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 26.4487,
     longitude: -82.1248,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/sanibel-island.jpg'),
   },
   {
     id: '172',
@@ -380,7 +380,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.2639,
     longitude: -82.5454,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/siesta-key-beach.jpg'),
   },
   {
     id: '174',
@@ -389,7 +389,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 25.7907,
     longitude: -80.1300,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/south-beach.jpg'),
   },
   {
     id: '178',
@@ -398,7 +398,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 29.8572,
     longitude: -81.2664,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/st-augustine-beach.jpg'),
   },
   {
     id: '181',
@@ -407,7 +407,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.7253,
     longitude: -82.7412,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/st-pete-beach.jpg'),
   },
   {
     id: '182',
@@ -416,7 +416,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 25.9426,
     longitude: -80.1231,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/sunny-isles-beach.jpg'),
   },
   {
     id: '185',
@@ -425,7 +425,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 28.1461,
     longitude: -82.7568,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/tarpon-springs-beach.jpg'),
   },
   {
     id: '188',
@@ -434,7 +434,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.7689,
     longitude: -82.7687,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/treasure-island.jpg'),
   },
   {
     id: '191',
@@ -443,7 +443,7 @@ export const BEACHES: Beach[] = [
     state: 'Florida',
     latitude: 27.0998,
     longitude: -82.4543,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/venice-beach-fl.jpg'),
   },
   
   // New Jersey Beaches
@@ -454,7 +454,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 40.2204,
     longitude: -74.0121,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/asbury-park.jpg'),
   },
   {
     id: '5',
@@ -463,7 +463,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.3643,
     longitude: -74.4229,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/atlantic-city.jpg'),
   },
   {
     id: '6',
@@ -472,7 +472,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.1007,
     longitude: -74.7165,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/avalon-beach.jpg'),
   },
   {
     id: '11',
@@ -481,7 +481,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.7543,
     longitude: -74.1065,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/barnegat-light.jpg'),
   },
   {
     id: '12',
@@ -490,7 +490,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.5593,
     longitude: -74.2432,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/beach-haven.jpg'),
   },
   {
     id: '14',
@@ -499,7 +499,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 40.1785,
     longitude: -74.0218,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/belmar.jpg'),
   },
   {
     id: '23',
@@ -508,7 +508,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 40.2026,
     longitude: -74.0121,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/bradley-beach.jpg'),
   },
   {
     id: '24',
@@ -517,7 +517,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.6493,
     longitude: -74.1876,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/brant-beach.jpg'),
   },
   {
     id: '32',
@@ -526,7 +526,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 38.9351,
     longitude: -74.9060,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/cape-may.jpg'),
   },
   {
     id: '77',
@@ -535,7 +535,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.6959,
     longitude: -74.1376,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/harvey-cedars.jpg'),
   },
   {
     id: '81',
@@ -544,7 +544,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.6326,
     longitude: -74.2043,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/holgate.jpg'),
   },
   {
     id: '103',
@@ -553,7 +553,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.6626,
     longitude: -74.1876,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/long-beach-island.jpg'),
   },
   {
     id: '106',
@@ -562,7 +562,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 40.3043,
     longitude: -73.9923,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/long-branch.jpg'),
   },
   {
     id: '107',
@@ -571,7 +571,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.7043,
     longitude: -74.1626,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/loveladies.jpg'),
   },
   {
     id: '110',
@@ -580,7 +580,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 40.1165,
     longitude: -74.0376,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/manasquan.jpg'),
   },
   {
     id: '134',
@@ -589,7 +589,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.2776,
     longitude: -74.5746,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/ocean-city-boardwalk.jpg'),
   },
   {
     id: '150',
@@ -598,7 +598,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 40.0826,
     longitude: -74.0476,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/point-pleasant.jpg'),
   },
   {
     id: '168',
@@ -607,7 +607,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.1526,
     longitude: -74.6932,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/sea-isle-city.jpg'),
   },
   {
     id: '170',
@@ -616,7 +616,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.9443,
     longitude: -74.0726,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/seaside-heights.jpg'),
   },
   {
     id: '171',
@@ -625,7 +625,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.6426,
     longitude: -74.1793,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/ship-bottom.jpg'),
   },
   {
     id: '177',
@@ -634,7 +634,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 40.1532,
     longitude: -74.0282,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/spring-lake.jpg'),
   },
   {
     id: '180',
@@ -643,7 +643,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.0493,
     longitude: -74.7615,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/stone-harbor.jpg'),
   },
   {
     id: '183',
@@ -652,7 +652,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 39.6626,
     longitude: -74.1643,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/surf-city.jpg'),
   },
   {
     id: '198',
@@ -661,7 +661,7 @@ export const BEACHES: Beach[] = [
     state: 'New Jersey',
     latitude: 38.9918,
     longitude: -74.8149,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/wildwood.jpg'),
   },
   
   // Maryland Beaches
@@ -672,7 +672,7 @@ export const BEACHES: Beach[] = [
     state: 'Maryland',
     latitude: 38.2211,
     longitude: -75.1535,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/assateague-island.jpg'),
   },
   {
     id: '133',
@@ -681,7 +681,7 @@ export const BEACHES: Beach[] = [
     state: 'Maryland',
     latitude: 38.3365,
     longitude: -75.0849,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/ocean-city.jpg'),
   },
   
   // North Carolina Beaches
@@ -692,7 +692,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 35.3532,
     longitude: -75.5063,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/avon.jpg'),
   },
   {
     id: '27',
@@ -701,7 +701,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 35.2693,
     longitude: -75.5396,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/buxton.jpg'),
   },
   {
     id: '31',
@@ -710,7 +710,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 35.2226,
     longitude: -75.5297,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/cape-hatteras.jpg'),
   },
   {
     id: '42',
@@ -719,7 +719,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 36.3765,
     longitude: -75.8268,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/corolla.jpg'),
   },
   {
     id: '53',
@@ -728,7 +728,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 36.1593,
     longitude: -75.7460,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/duck.jpg'),
   },
   {
     id: '67',
@@ -737,7 +737,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 35.2382,
     longitude: -75.6235,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/frisco.jpg'),
   },
   {
     id: '78',
@@ -746,7 +746,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 35.2118,
     longitude: -75.6874,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/hatteras.jpg'),
   },
   {
     id: '94',
@@ -755,7 +755,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 36.0321,
     longitude: -75.6768,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/kill-devil-hills.jpg'),
   },
   {
     id: '95',
@@ -764,7 +764,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 36.0626,
     longitude: -75.7060,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/kitty-hawk.jpg'),
   },
   {
     id: '124',
@@ -773,7 +773,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 35.9571,
     longitude: -75.6240,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/nags-head.jpg'),
   },
   {
     id: '141',
@@ -782,7 +782,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 35.5585,
     longitude: -75.4665,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/outer-banks.jpg'),
   },
   {
     id: '161',
@@ -791,7 +791,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 35.5932,
     longitude: -75.4668,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/rodanthe.jpg'),
   },
   {
     id: '164',
@@ -800,7 +800,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 35.5418,
     longitude: -75.4729,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/salvo.jpg'),
   },
   {
     id: '175',
@@ -809,7 +809,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 36.1293,
     longitude: -75.7460,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/southern-shores.jpg'),
   },
   {
     id: '195',
@@ -818,7 +818,7 @@ export const BEACHES: Beach[] = [
     state: 'North Carolina',
     latitude: 35.5518,
     longitude: -75.4696,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/waves.jpg'),
   },
   
   // Oregon Beaches
@@ -829,7 +829,7 @@ export const BEACHES: Beach[] = [
     state: 'Oregon',
     latitude: 43.1190,
     longitude: -124.4084,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/bandon-beach.jpg'),
   },
   {
     id: '25',
@@ -838,7 +838,7 @@ export const BEACHES: Beach[] = [
     state: 'Oregon',
     latitude: 42.0526,
     longitude: -124.2840,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/brookings-beach.jpg'),
   },
   {
     id: '29',
@@ -847,7 +847,7 @@ export const BEACHES: Beach[] = [
     state: 'Oregon',
     latitude: 45.8918,
     longitude: -123.9615,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/cannon-beach.jpg'),
   },
   {
     id: '62',
@@ -856,7 +856,7 @@ export const BEACHES: Beach[] = [
     state: 'Oregon',
     latitude: 43.9829,
     longitude: -124.1012,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/florence-beach.jpg'),
   },
   {
     id: '69',
@@ -865,7 +865,7 @@ export const BEACHES: Beach[] = [
     state: 'Oregon',
     latitude: 42.4071,
     longitude: -124.4218,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/gold-beach.jpg'),
   },
   {
     id: '102',
@@ -874,7 +874,7 @@ export const BEACHES: Beach[] = [
     state: 'Oregon',
     latitude: 44.9579,
     longitude: -124.0179,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/lincoln-city.jpg'),
   },
   {
     id: '113',
@@ -883,7 +883,7 @@ export const BEACHES: Beach[] = [
     state: 'Oregon',
     latitude: 45.7179,
     longitude: -123.9365,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/manzanita-beach.jpg'),
   },
   {
     id: '130',
@@ -892,7 +892,7 @@ export const BEACHES: Beach[] = [
     state: 'Oregon',
     latitude: 44.6368,
     longitude: -124.0529,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/newport-beach-or.jpg'),
   },
   {
     id: '143',
@@ -901,7 +901,7 @@ export const BEACHES: Beach[] = [
     state: 'Oregon',
     latitude: 45.1979,
     longitude: -123.9615,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/pacific-city.jpg'),
   },
   {
     id: '169',
@@ -910,7 +910,7 @@ export const BEACHES: Beach[] = [
     state: 'Oregon',
     latitude: 45.9932,
     longitude: -123.9226,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/seaside-beach.jpg'),
   },
   
   // Maine Beaches
@@ -921,7 +921,7 @@ export const BEACHES: Beach[] = [
     state: 'Maine',
     latitude: 44.3876,
     longitude: -68.2039,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/bar-harbor.jpg'),
   },
   {
     id: '90',
@@ -930,7 +930,7 @@ export const BEACHES: Beach[] = [
     state: 'Maine',
     latitude: 43.3615,
     longitude: -70.4767,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/kennebunk-beach.jpg'),
   },
   {
     id: '136',
@@ -939,7 +939,7 @@ export const BEACHES: Beach[] = [
     state: 'Maine',
     latitude: 43.2493,
     longitude: -70.5989,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/ogunquit-beach.jpg'),
   },
   {
     id: '137',
@@ -948,7 +948,7 @@ export const BEACHES: Beach[] = [
     state: 'Maine',
     latitude: 43.5170,
     longitude: -70.3770,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/old-orchard-beach.jpg'),
   },
   {
     id: '197',
@@ -957,7 +957,7 @@ export const BEACHES: Beach[] = [
     state: 'Maine',
     latitude: 43.3220,
     longitude: -70.5798,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/wells-beach.jpg'),
   },
   {
     id: '199',
@@ -966,7 +966,7 @@ export const BEACHES: Beach[] = [
     state: 'Maine',
     latitude: 43.1726,
     longitude: -70.6098,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/york-beach.jpg'),
   },
   
   // Mississippi Beaches
@@ -977,7 +977,7 @@ export const BEACHES: Beach[] = [
     state: 'Mississippi',
     latitude: 30.3960,
     longitude: -88.8853,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/biloxi-beach.jpg'),
   },
   
   // Rhode Island Beaches
@@ -988,7 +988,7 @@ export const BEACHES: Beach[] = [
     state: 'Rhode Island',
     latitude: 41.1726,
     longitude: -71.5773,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/block-island.jpg'),
   },
   {
     id: '127',
@@ -997,7 +997,7 @@ export const BEACHES: Beach[] = [
     state: 'Rhode Island',
     latitude: 41.4326,
     longitude: -71.4537,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/narragansett-beach.jpg'),
   },
   {
     id: '131',
@@ -1006,7 +1006,7 @@ export const BEACHES: Beach[] = [
     state: 'Rhode Island',
     latitude: 41.4901,
     longitude: -71.3128,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/newport-beach.jpg'),
   },
   
   // Texas Beaches
@@ -1017,7 +1017,7 @@ export const BEACHES: Beach[] = [
     state: 'Texas',
     latitude: 29.4669,
     longitude: -94.6849,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/bolivar-peninsula.jpg'),
   },
   {
     id: '26',
@@ -1026,7 +1026,7 @@ export const BEACHES: Beach[] = [
     state: 'Texas',
     latitude: 25.9970,
     longitude: -97.1594,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/brownsville-beach.jpg'),
   },
   {
     id: '44',
@@ -1035,7 +1035,7 @@ export const BEACHES: Beach[] = [
     state: 'Texas',
     latitude: 27.6406,
     longitude: -97.2253,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/corpus-christi-beach.jpg'),
   },
   {
     id: '66',
@@ -1044,7 +1044,7 @@ export const BEACHES: Beach[] = [
     state: 'Texas',
     latitude: 28.9536,
     longitude: -95.3596,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/freeport-beach.jpg'),
   },
   {
     id: '68',
@@ -1053,7 +1053,7 @@ export const BEACHES: Beach[] = [
     state: 'Texas',
     latitude: 29.3013,
     longitude: -94.7977,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/galveston-beach.jpg'),
   },
   {
     id: '117',
@@ -1062,7 +1062,7 @@ export const BEACHES: Beach[] = [
     state: 'Texas',
     latitude: 28.6903,
     longitude: -95.9688,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/matagorda-beach.jpg'),
   },
   {
     id: '122',
@@ -1071,7 +1071,7 @@ export const BEACHES: Beach[] = [
     state: 'Texas',
     latitude: 27.8339,
     longitude: -97.0614,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/mustang-island.jpg'),
   },
   {
     id: '144',
@@ -1080,7 +1080,7 @@ export const BEACHES: Beach[] = [
     state: 'Texas',
     latitude: 27.5808,
     longitude: -97.2108,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/padre-island.jpg'),
   },
   {
     id: '152',
@@ -1089,7 +1089,7 @@ export const BEACHES: Beach[] = [
     state: 'Texas',
     latitude: 29.8849,
     longitude: -93.9399,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/port-arthur-beach.jpg'),
   },
   {
     id: '153',
@@ -1098,7 +1098,7 @@ export const BEACHES: Beach[] = [
     state: 'Texas',
     latitude: 28.6150,
     longitude: -96.6260,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/port-lavaca-beach.jpg'),
   },
   {
     id: '160',
@@ -1107,7 +1107,7 @@ export const BEACHES: Beach[] = [
     state: 'Texas',
     latitude: 28.0217,
     longitude: -97.0544,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/rockport-beach.jpg'),
   },
   {
     id: '176',
@@ -1116,7 +1116,7 @@ export const BEACHES: Beach[] = [
     state: 'Texas',
     latitude: 26.1118,
     longitude: -97.1681,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/south-padre-island.jpg'),
   },
   {
     id: '184',
@@ -1125,7 +1125,7 @@ export const BEACHES: Beach[] = [
     state: 'Texas',
     latitude: 28.9447,
     longitude: -95.2860,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/surfside-beach.jpg'),
   },
   
   // Massachusetts Beaches
@@ -1136,7 +1136,7 @@ export const BEACHES: Beach[] = [
     state: 'Massachusetts',
     latitude: 41.9270,
     longitude: -70.0461,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/cape-cod-national-seashore.jpg'),
   },
   {
     id: '38',
@@ -1145,7 +1145,7 @@ export const BEACHES: Beach[] = [
     state: 'Massachusetts',
     latitude: 41.6821,
     longitude: -69.9597,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/chatham.jpg'),
   },
   {
     id: '45',
@@ -1154,7 +1154,7 @@ export const BEACHES: Beach[] = [
     state: 'Massachusetts',
     latitude: 42.6959,
     longitude: -70.7698,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/crane-beach.jpg'),
   },
   {
     id: '54',
@@ -1163,7 +1163,7 @@ export const BEACHES: Beach[] = [
     state: 'Massachusetts',
     latitude: 41.8301,
     longitude: -69.9745,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/eastham.jpg'),
   },
   {
     id: '70',
@@ -1172,7 +1172,7 @@ export const BEACHES: Beach[] = [
     state: 'Massachusetts',
     latitude: 42.6259,
     longitude: -70.6698,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/good-harbor-beach.jpg'),
   },
   {
     id: '116',
@@ -1181,7 +1181,7 @@ export const BEACHES: Beach[] = [
     state: 'Massachusetts',
     latitude: 41.3888,
     longitude: -70.6189,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/marthas-vineyard.jpg'),
   },
   {
     id: '125',
@@ -1190,7 +1190,7 @@ export const BEACHES: Beach[] = [
     state: 'Massachusetts',
     latitude: 41.2835,
     longitude: -70.0995,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/nantucket.jpg'),
   },
   {
     id: '139',
@@ -1199,7 +1199,7 @@ export const BEACHES: Beach[] = [
     state: 'Massachusetts',
     latitude: 41.7899,
     longitude: -69.9897,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/orleans.jpg'),
   },
   {
     id: '148',
@@ -1208,7 +1208,7 @@ export const BEACHES: Beach[] = [
     state: 'Massachusetts',
     latitude: 42.8159,
     longitude: -70.8159,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/plum-island.jpg'),
   },
   {
     id: '154',
@@ -1217,7 +1217,7 @@ export const BEACHES: Beach[] = [
     state: 'Massachusetts',
     latitude: 42.0526,
     longitude: -70.1826,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/provincetown.jpg'),
   },
   {
     id: '163',
@@ -1226,7 +1226,7 @@ export const BEACHES: Beach[] = [
     state: 'Massachusetts',
     latitude: 42.8426,
     longitude: -70.8109,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/salisbury-beach.jpg'),
   },
   {
     id: '189',
@@ -1235,7 +1235,7 @@ export const BEACHES: Beach[] = [
     state: 'Massachusetts',
     latitude: 41.9993,
     longitude: -70.0626,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/truro.jpg'),
   },
   {
     id: '196',
@@ -1244,7 +1244,7 @@ export const BEACHES: Beach[] = [
     state: 'Massachusetts',
     latitude: 41.9376,
     longitude: -70.0326,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/wellfleet.jpg'),
   },
   
   // California Beaches
@@ -1255,7 +1255,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 36.9752,
     longitude: -121.9532,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/capitola-beach.jpg'),
   },
   {
     id: '35',
@@ -1264,7 +1264,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.1581,
     longitude: -117.3506,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/carlsbad-beach.jpg'),
   },
   {
     id: '36',
@@ -1273,7 +1273,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 36.5553,
     longitude: -121.9233,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/carmel-beach.jpg'),
   },
   {
     id: '43',
@@ -1282,7 +1282,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 32.6859,
     longitude: -117.1831,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/coronado-beach.jpg'),
   },
   {
     id: '47',
@@ -1291,7 +1291,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.4673,
     longitude: -117.6981,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/dana-point.jpg'),
   },
   {
     id: '50',
@@ -1300,7 +1300,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 32.9595,
     longitude: -117.2653,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/del-mar-beach.jpg'),
   },
   {
     id: '52',
@@ -1309,7 +1309,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.9192,
     longitude: -118.4365,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/dockweiler-beach.jpg'),
   },
   {
     id: '55',
@@ -1318,7 +1318,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 34.0359,
     longitude: -118.8781,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/el-matador-beach.jpg'),
   },
   {
     id: '56',
@@ -1327,7 +1327,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.9192,
     longitude: -118.4165,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/el-segundo-beach.jpg'),
   },
   {
     id: '57',
@@ -1336,7 +1336,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.0370,
     longitude: -117.2920,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/encinitas.jpg'),
   },
   {
     id: '73',
@@ -1345,7 +1345,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 37.4636,
     longitude: -122.4286,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/half-moon-bay.jpg'),
   },
   {
     id: '79',
@@ -1354,7 +1354,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.8622,
     longitude: -118.3998,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/hermosa-beach.jpg'),
   },
   {
     id: '84',
@@ -1363,7 +1363,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.6595,
     longitude: -118.0000,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/huntington-beach.jpg'),
   },
   {
     id: '85',
@@ -1372,7 +1372,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 32.5839,
     longitude: -117.1131,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/imperial-beach.jpg'),
   },
   {
     id: '96',
@@ -1381,7 +1381,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.5427,
     longitude: -117.7854,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/laguna-beach.jpg'),
   },
   {
     id: '97',
@@ -1390,7 +1390,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 32.8509,
     longitude: -117.2713,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/la-jolla-cove.jpg'),
   },
   {
     id: '100',
@@ -1399,7 +1399,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 34.0459,
     longitude: -118.9381,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/leo-carrillo-beach.jpg'),
   },
   {
     id: '109',
@@ -1408,7 +1408,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 34.0259,
     longitude: -118.7798,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/malibu-beach.jpg'),
   },
   {
     id: '111',
@@ -1417,7 +1417,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.8847,
     longitude: -118.4109,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/manhattan-beach.jpg'),
   },
   {
     id: '112',
@@ -1426,7 +1426,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.8847,
     longitude: -118.4109,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/manhattan-state-beach.jpg'),
   },
   {
     id: '118',
@@ -1435,7 +1435,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 39.3077,
     longitude: -123.7994,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/mendocino.jpg'),
   },
   {
     id: '119',
@@ -1444,7 +1444,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 32.7701,
     longitude: -117.2528,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/mission-beach.jpg'),
   },
   {
     id: '121',
@@ -1453,7 +1453,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 36.6002,
     longitude: -121.8947,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/monterey-bay.jpg'),
   },
   {
     id: '129',
@@ -1462,7 +1462,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.6189,
     longitude: -117.9289,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/newport-beach-ca.jpg'),
   },
   {
     id: '132',
@@ -1471,7 +1471,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 32.7533,
     longitude: -117.2494,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/ocean-beach.jpg'),
   },
   {
     id: '142',
@@ -1480,7 +1480,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 32.7964,
     longitude: -117.2296,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/pacific-beach.jpg'),
   },
   {
     id: '147',
@@ -1489,7 +1489,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 35.1428,
     longitude: -120.6413,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/pismo-beach.jpg'),
   },
   {
     id: '149',
@@ -1498,7 +1498,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 34.0059,
     longitude: -118.8081,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/point-dume.jpg'),
   },
   {
     id: '157',
@@ -1507,7 +1507,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.8492,
     longitude: -118.3884,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/redondo-beach.jpg'),
   },
   {
     id: '165',
@@ -1516,7 +1516,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.4270,
     longitude: -117.6120,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/san-clemente.jpg'),
   },
   {
     id: '167',
@@ -1525,7 +1525,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 34.0095,
     longitude: -118.4965,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/santa-monica-beach.jpg'),
   },
   {
     id: '173',
@@ -1534,7 +1534,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 32.9911,
     longitude: -117.2714,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/solana-beach.jpg'),
   },
   {
     id: '179',
@@ -1543,7 +1543,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 37.9021,
     longitude: -122.6447,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/stinson-beach.jpg'),
   },
   {
     id: '187',
@@ -1552,7 +1552,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 32.9326,
     longitude: -117.2526,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/torrey-pines.jpg'),
   },
   {
     id: '192',
@@ -1561,7 +1561,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 33.9850,
     longitude: -118.4695,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/venice-beach.jpg'),
   },
   {
     id: '200',
@@ -1570,7 +1570,7 @@ export const BEACHES: Beach[] = [
     state: 'California',
     latitude: 34.0159,
     longitude: -118.8231,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/zuma-beach.jpg'),
   },
   
   // Delaware Beaches
@@ -1581,7 +1581,7 @@ export const BEACHES: Beach[] = [
     state: 'Delaware',
     latitude: 38.5393,
     longitude: -75.0552,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/bethany-beach.jpg'),
   },
   {
     id: '51',
@@ -1590,7 +1590,7 @@ export const BEACHES: Beach[] = [
     state: 'Delaware',
     latitude: 38.6929,
     longitude: -75.0732,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/dewey-beach.jpg'),
   },
   {
     id: '59',
@@ -1599,7 +1599,7 @@ export const BEACHES: Beach[] = [
     state: 'Delaware',
     latitude: 38.4601,
     longitude: -75.0535,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/fenwick-island.jpg'),
   },
   {
     id: '158',
@@ -1608,7 +1608,7 @@ export const BEACHES: Beach[] = [
     state: 'Delaware',
     latitude: 38.7209,
     longitude: -75.0760,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/rehoboth-beach.jpg'),
   },
   
   // New York Beaches
@@ -1619,7 +1619,7 @@ export const BEACHES: Beach[] = [
     state: 'New York',
     latitude: 40.5755,
     longitude: -73.9707,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/coney-island.jpg'),
   },
   {
     id: '60',
@@ -1628,7 +1628,7 @@ export const BEACHES: Beach[] = [
     state: 'New York',
     latitude: 40.6451,
     longitude: -73.1568,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/fire-island.jpg'),
   },
   {
     id: '89',
@@ -1637,7 +1637,7 @@ export const BEACHES: Beach[] = [
     state: 'New York',
     latitude: 40.5926,
     longitude: -73.5087,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/jones-beach.jpg'),
   },
   {
     id: '120',
@@ -1646,7 +1646,7 @@ export const BEACHES: Beach[] = [
     state: 'New York',
     latitude: 41.0357,
     longitude: -71.9579,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/montauk.jpg'),
   },
   {
     id: '186',
@@ -1655,7 +1655,7 @@ export const BEACHES: Beach[] = [
     state: 'New York',
     latitude: 40.9632,
     longitude: -72.1848,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/the-hamptons.jpg'),
   },
   
   // South Carolina Beaches
@@ -1666,7 +1666,7 @@ export const BEACHES: Beach[] = [
     state: 'South Carolina',
     latitude: 32.6552,
     longitude: -79.9403,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/folly-beach.jpg'),
   },
   {
     id: '80',
@@ -1675,7 +1675,7 @@ export const BEACHES: Beach[] = [
     state: 'South Carolina',
     latitude: 32.2163,
     longitude: -80.7526,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/hilton-head.jpg'),
   },
   {
     id: '93',
@@ -1684,7 +1684,7 @@ export const BEACHES: Beach[] = [
     state: 'South Carolina',
     latitude: 32.6085,
     longitude: -80.0842,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/kiawah-island.jpg'),
   },
   {
     id: '123',
@@ -1693,7 +1693,7 @@ export const BEACHES: Beach[] = [
     state: 'South Carolina',
     latitude: 33.6891,
     longitude: -78.8867,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/myrtle-beach.jpg'),
   },
   
   // Louisiana Beaches
@@ -1704,7 +1704,7 @@ export const BEACHES: Beach[] = [
     state: 'Louisiana',
     latitude: 29.2633,
     longitude: -89.9570,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/grand-isle.jpg'),
   },
   
   // Alabama Beaches
@@ -1715,7 +1715,7 @@ export const BEACHES: Beach[] = [
     state: 'Alabama',
     latitude: 30.2460,
     longitude: -87.7008,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/gulf-shores.jpg'),
   },
   {
     id: '138',
@@ -1724,7 +1724,7 @@ export const BEACHES: Beach[] = [
     state: 'Alabama',
     latitude: 30.2943,
     longitude: -87.5711,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/orange-beach.jpg'),
   },
   
   // New Hampshire Beaches
@@ -1735,7 +1735,7 @@ export const BEACHES: Beach[] = [
     state: 'New Hampshire',
     latitude: 42.9001,
     longitude: -70.8109,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/hampton-beach.jpg'),
   },
   {
     id: '162',
@@ -1744,7 +1744,7 @@ export const BEACHES: Beach[] = [
     state: 'New Hampshire',
     latitude: 43.0093,
     longitude: -70.7698,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/rye-beach.jpg'),
   },
   
   // Hawaii Beaches
@@ -1755,7 +1755,7 @@ export const BEACHES: Beach[] = [
     state: 'Hawaii',
     latitude: 21.2691,
     longitude: -157.6942,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/hanauma-bay.jpg'),
   },
   {
     id: '98',
@@ -1764,7 +1764,7 @@ export const BEACHES: Beach[] = [
     state: 'Hawaii',
     latitude: 21.3931,
     longitude: -157.7179,
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
+    image: require('@/assets/images/beaches/lanikai-beach.jpg'),
   },
   {
     id: '194',
@@ -1773,7 +1773,7 @@ export const BEACHES: Beach[] = [
     state: 'Hawaii',
     latitude: 21.2793,
     longitude: -157.8293,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/waikiki-beach.jpg'),
   },
   
   // Washington Beaches
@@ -1784,7 +1784,7 @@ export const BEACHES: Beach[] = [
     state: 'Washington',
     latitude: 47.9037,
     longitude: -124.6368,
-    imageUrl: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
+    image: require('@/assets/images/beaches/la-push-beach.jpg'),
   },
   {
     id: '104',
@@ -1793,7 +1793,7 @@ export const BEACHES: Beach[] = [
     state: 'Washington',
     latitude: 46.3523,
     longitude: -124.0543,
-    imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800',
+    image: require('@/assets/images/beaches/long-beach-peninsula.jpg'),
   },
   {
     id: '135',
@@ -1802,7 +1802,7 @@ export const BEACHES: Beach[] = [
     state: 'Washington',
     latitude: 46.9737,
     longitude: -124.1568,
-    imageUrl: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800',
+    image: require('@/assets/images/beaches/ocean-shores.jpg'),
   },
   {
     id: '159',
@@ -1811,7 +1811,7 @@ export const BEACHES: Beach[] = [
     state: 'Washington',
     latitude: 47.9204,
     longitude: -124.6368,
-    imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    image: require('@/assets/images/beaches/rialto-beach.jpg'),
   },
   
   // Georgia Beaches
@@ -1822,7 +1822,7 @@ export const BEACHES: Beach[] = [
     state: 'Georgia',
     latitude: 32.0002,
     longitude: -80.8454,
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
+    image: require('@/assets/images/beaches/tybee-island.jpg'),
   },
   
   // Virginia Beaches
@@ -1833,7 +1833,7 @@ export const BEACHES: Beach[] = [
     state: 'Virginia',
     latitude: 36.8529,
     longitude: -75.9780,
-    imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800',
+    image: require('@/assets/images/beaches/virginia-beach.jpg'),
   },
 ];
 

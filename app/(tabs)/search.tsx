@@ -55,7 +55,7 @@ export default function SearchScreen() {
     
     return (
       <View style={styles.beachItem}>
-        <Image source={{ uri: item.imageUrl }} style={styles.beachImage} />
+        <Image source={item.image} style={styles.beachImage} />
         <View style={styles.beachInfo}>
           <Text style={styles.beachName}>{item.name}</Text>
           <View style={styles.locationRow}>

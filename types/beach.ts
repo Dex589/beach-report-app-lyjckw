@@ -6,7 +6,7 @@ export interface Beach {
   state: string;
   latitude: number;
   longitude: number;
-  image: any; // Local image using require()
+  image: any; // Can be either a URL string or local image using require()
   distance?: number;
   isFavorite?: boolean;
 }

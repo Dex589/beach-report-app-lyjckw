@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
   FlatList,
   Pressable,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '@/styles/commonStyles';
@@ -16,17 +17,47 @@ import { BEACHES } from '@/data/beachData';
 import { Beach } from '@/types/beach';
 import { useBeachStorage } from '@/hooks/useBeachStorage';
 import { useRouter } from 'expo-router';
+import { useLocation } from '@/hooks/useLocation';
 
 export default function SearchScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const { favorites, addToHome, isOnHome } = useBeachStorage();
   const router = useRouter();
-  
-  const filteredBeaches = BEACHES.filter(beach =>
-    beach.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    beach.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    beach.state.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const { location, loading: locationLoading, error: locationError, calculateDistance } = useLocation();
+
+  // Calculate beaches to display
+  const displayedBeaches = useMemo(() => {
+    // If user is searching, filter by search query
+    if (searchQuery.trim().length > 0) {
+      return BEACHES.filter(beach =>
+        beach.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        beach.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        beach.state.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // If no search query, show closest 6 beaches based on GPS
+    if (location) {
+      // Calculate distance for each beach
+      const beachesWithDistance = BEACHES.map(beach => ({
+        ...beach,
+        distance: calculateDistance(
+          location.latitude,
+          location.longitude,
+          beach.latitude,
+          beach.longitude
+        ),
+      }));
+
+      // Sort by distance and take the closest 6
+      return beachesWithDistance
+        .sort((a, b) => a.distance - b.distance)
+        .slice(0, 6);
+    }
+
+    // If no location available, show first 6 beaches as fallback
+    return BEACHES.slice(0, 6);
+  }, [searchQuery, location, calculateDistance]);
 
   const handleAddToHome = async (beachId: string) => {
     console.log('Adding beach to home:', beachId);
@@ -55,13 +86,18 @@ export default function SearchScreen() {
     
     return (
       <View style={styles.beachItem}>
-        <Image source={item.image} style={styles.beachImage} />
+        <Image source={{ uri: item.image }} style={styles.beachImage} />
         <View style={styles.beachInfo}>
           <Text style={styles.beachName}>{item.name}</Text>
           <View style={styles.locationRow}>
             <IconSymbol name="location.fill" size={14} color={colors.textSecondary} />
             <Text style={styles.beachLocation}>{item.location}, {item.state}</Text>
           </View>
+          {item.distance !== undefined && (
+            <Text style={styles.distanceText}>
+              {item.distance.toFixed(1)} miles away
+            </Text>
+          )}
         </View>
         <Pressable
           onPress={() => handleAddToHome(item.id)}
@@ -74,6 +110,41 @@ export default function SearchScreen() {
             color={iconColor}
           />
         </Pressable>
+      </View>
+    );
+  };
+
+  const renderHeader = () => {
+    if (searchQuery.trim().length > 0) {
+      return null; // No header when searching
+    }
+
+    if (locationLoading) {
+      return (
+        <View style={styles.headerMessage}>
+          <ActivityIndicator size="small" color={colors.primary} />
+          <Text style={styles.headerMessageText}>Getting your location...</Text>
+        </View>
+      );
+    }
+
+    if (locationError || !location) {
+      return (
+        <View style={styles.headerMessage}>
+          <IconSymbol name="location.slash.fill" size={20} color={colors.textSecondary} />
+          <Text style={styles.headerMessageText}>
+            Location unavailable - Showing popular beaches
+          </Text>
+        </View>
+      );
+    }
+
+    return (
+      <View style={styles.headerMessage}>
+        <IconSymbol name="location.fill" size={20} color={colors.primary} />
+        <Text style={styles.headerMessageText}>
+          Showing 6 closest beaches to you
+        </Text>
       </View>
     );
   };
@@ -93,17 +164,18 @@ export default function SearchScreen() {
           />
           {searchQuery.length > 0 && (
             <Pressable onPress={() => setSearchQuery('')} hitSlop={8}>
-              <IconSymbol name="xmark" size={20} color={colors.textSecondary} />
+              <IconSymbol name="xmark.circle.fill" size={20} color={colors.textSecondary} />
             </Pressable>
           )}
         </View>
       </View>
 
       <FlatList
-        data={filteredBeaches}
+        data={displayedBeaches}
         renderItem={renderBeachItem}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.listContent}
+        ListHeaderComponent={renderHeader}
         ListEmptyComponent={
           <View style={styles.emptyState}>
             <IconSymbol name="magnifyingglass" size={64} color={colors.textSecondary} />
@@ -151,6 +223,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.text,
   },
+  headerMessage: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    backgroundColor: colors.card,
+    borderRadius: 8,
+    marginBottom: 16,
+    gap: 8,
+  },
+  headerMessageText: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    fontWeight: '500',
+  },
   listContent: {
     padding: 16,
     paddingBottom: 120,
@@ -185,10 +273,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
+    marginBottom: 2,
   },
   beachLocation: {
     fontSize: 14,
     color: colors.textSecondary,
+  },
+  distanceText: {
+    fontSize: 12,
+    color: colors.primary,
+    fontWeight: '500',
+    marginTop: 2,
   },
   actionButton: {
     padding: 8,

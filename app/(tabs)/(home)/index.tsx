@@ -147,11 +147,13 @@ export default function HomeScreen() {
         >
           <View style={styles.headerTop}>
             <View style={styles.titleRow}>
-              <Image 
-                source={require('@/assets/images/423df9ee-bcfa-46da-9cad-cf4f84271d40.png')}
-                style={styles.logoImage}
-                resizeMode="contain"
-              />
+              <IconSymbol name="water.waves" size={24} color="#FFFFFF" />
+              <View style={styles.logoTextContainer}>
+                <Text style={styles.logoText}>
+                  <Text style={styles.logoBeach}>Beach </Text>
+                  <Text style={styles.logoReport}>Report</Text>
+                </Text>
+              </View>
             </View>
             <Pressable 
               onPress={() => toggleFavorite(beach.id)}
@@ -504,10 +506,22 @@ const styles = StyleSheet.create({
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 8,
   },
-  logoImage: {
-    width: 140,
-    height: 32,
+  logoTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+  },
+  logoText: {
+    fontSize: 24,
+    fontWeight: '700',
+    letterSpacing: 0.5,
+  },
+  logoBeach: {
+    color: '#FFFFFF',
+  },
+  logoReport: {
+    color: '#FFB800',
   },
   heartButton: {
     width: 44,

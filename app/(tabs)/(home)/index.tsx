@@ -147,31 +147,27 @@ export default function HomeScreen() {
         >
           <View style={styles.headerTop}>
             <View style={styles.titleRow}>
-              <IconSymbol name="water.waves" size={24} color="#FFFFFF" />
-              <Text style={styles.appTitle}>
-                Beach <Text style={styles.appTitleHighlight}>Report</Text>
-              </Text>
+              <Image 
+                source={require('@/assets/images/423df9ee-bcfa-46da-9cad-cf4f84271d40.png')}
+                style={styles.logoImage}
+                resizeMode="contain"
+              />
             </View>
-            <View style={styles.headerButtons}>
-              <Pressable style={styles.viewDetailsButton}>
-                <Text style={styles.viewDetailsText}>View Details</Text>
-              </Pressable>
-              <Pressable 
-                onPress={() => toggleFavorite(beach.id)}
-                hitSlop={8}
-                style={styles.heartButton}
-              >
-                <IconSymbol 
-                  name={isFavorite ? "heart.fill" : "heart"} 
-                  size={24} 
-                  color={isFavorite ? "#FF0000" : "#FFFFFF"} 
-                />
-              </Pressable>
-            </View>
+            <Pressable 
+              onPress={() => toggleFavorite(beach.id)}
+              hitSlop={8}
+              style={styles.heartButton}
+            >
+              <IconSymbol 
+                name={isFavorite ? "heart.fill" : "heart"} 
+                size={24} 
+                color={isFavorite ? "#FF0000" : "#FFFFFF"} 
+              />
+            </Pressable>
           </View>
           
           <Text style={styles.recentlyViewed}>
-            {isFavorite ? '⭐ Favorite' : '🕐 Recently Viewed'} • {beach.name}
+            {isFavorite ? '⭐ Favorite' : 'Recently Viewed'} • {beach.name}
           </Text>
           
           <View style={styles.locationRow}>
@@ -503,46 +499,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 12,
   },
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
   },
-  appTitle: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: '#FFFFFF',
-  },
-  appTitleHighlight: {
-    color: '#FFD700',
-  },
-  headerButtons: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  viewDetailsButton: {
-    backgroundColor: 'rgba(255, 255, 255, 0.25)',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.4)',
-  },
-  viewDetailsText: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: '#FFFFFF',
+  logoImage: {
+    width: 140,
+    height: 32,
   },
   heartButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(255, 255, 255, 0.25)',
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
   },
   recentlyViewed: {
     fontSize: 13,

@@ -213,7 +213,7 @@ export default function HomeScreen() {
           <View style={styles.wave} />
         </View>
 
-        {/* Beach Image with Swipe Gesture and Overlay Buttons */}
+        {/* Beach Image with Swipe Gesture */}
         <View style={styles.beachImageContainer}>
           <GestureDetector gesture={swipeGesture}>
             <View>
@@ -222,39 +222,6 @@ export default function HomeScreen() {
                 style={styles.beachImage}
                 resizeMode="cover"
               />
-              
-              {/* Overlay Navigation Buttons */}
-              {displayBeaches.length > 1 && (
-                <>
-                  {/* Left Button */}
-                  <Pressable 
-                    onPress={handlePreviousBeach}
-                    style={styles.overlayButtonLeft}
-                    hitSlop={8}
-                  >
-                    <View style={styles.overlayButtonInner}>
-                      <IconSymbol name="chevron.left" size={28} color="#FFFFFF" />
-                    </View>
-                  </Pressable>
-
-                  {/* Right Button */}
-                  <Pressable 
-                    onPress={handleNextBeach}
-                    style={styles.overlayButtonRight}
-                    hitSlop={8}
-                  >
-                    <View style={styles.overlayButtonInner}>
-                      <IconSymbol name="chevron.right" size={28} color="#FFFFFF" />
-                    </View>
-                  </Pressable>
-
-                  {/* Swipe Indicator */}
-                  <View style={styles.swipeIndicator}>
-                    <IconSymbol name="hand.draw" size={16} color="#FFFFFF" />
-                    <Text style={styles.swipeIndicatorText}>Swipe to navigate</Text>
-                  </View>
-                </>
-              )}
             </View>
           </GestureDetector>
         </View>
@@ -617,52 +584,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     backgroundColor: '#E0E0E0',
-  },
-  overlayButtonLeft: {
-    position: 'absolute',
-    left: 16,
-    top: '50%',
-    marginTop: -28,
-    zIndex: 10,
-  },
-  overlayButtonRight: {
-    position: 'absolute',
-    right: 16,
-    top: '50%',
-    marginTop: -28,
-    zIndex: 10,
-  },
-  overlayButtonInner: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 2,
-    borderColor: 'rgba(255, 255, 255, 0.8)',
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)',
-    elevation: 5,
-  },
-  swipeIndicator: {
-    position: 'absolute',
-    bottom: 12,
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 6,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 16,
-    alignSelf: 'center',
-  },
-  swipeIndicatorText: {
-    fontSize: 12,
-    color: '#FFFFFF',
-    fontWeight: '600',
   },
   safeConditionsBanner: {
     flexDirection: 'row',

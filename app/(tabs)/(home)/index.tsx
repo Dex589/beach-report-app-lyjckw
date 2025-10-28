@@ -148,9 +148,9 @@ export default function HomeScreen() {
           <View style={styles.headerTop}>
             <View style={styles.titleRow}>
               <View style={styles.wavesContainer}>
-                <IconSymbol name="water.waves" size={20} color="#FFFFFF" />
-                <IconSymbol name="water.waves" size={20} color="#FFFFFF" />
-                <IconSymbol name="water.waves" size={20} color="#FFFFFF" />
+                <IconSymbol name="water.waves" size={22} color="#FFFFFF" />
+                <IconSymbol name="water.waves" size={22} color="#FFFFFF" />
+                <IconSymbol name="water.waves" size={22} color="#FFFFFF" />
               </View>
               <View style={styles.logoTextContainer}>
                 <Text style={styles.logoText}>
@@ -510,12 +510,13 @@ const styles = StyleSheet.create({
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 10,
   },
   wavesContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 2,
+    gap: 4,
+    marginRight: 2,
   },
   logoTextContainer: {
     flexDirection: 'row',

@@ -1,3 +1,4 @@
+
 // This file is a fallback for using MaterialIcons on Android and web.
 
 import React from "react";
@@ -161,6 +162,24 @@ const MAPPING = {
   "lightbulb.fill": "lightbulb",
   "moon.fill": "dark-mode",
   "sun.max.fill": "light-mode",
+
+  // Weather & Nature
+  "sun.max": "wb-sunny",
+  "cloud.fill": "cloud",
+  "cloud.rain.fill": "cloud-queue",
+  "snow": "ac-unit",
+  "wind": "air",
+  "thermometer": "thermostat",
+  "drop.fill": "water-drop",
+  "drop": "water-drop",
+  "water.waves": "waves",
+  "umbrella.fill": "beach-access",
+
+  // Beach & Ocean specific
+  "sunrise.fill": "wb-twilight",
+  "sunset.fill": "wb-twilight",
+  "tshirt": "checkroom",
+  "hand.draw": "pan-tool",
 } as Partial<
   Record<
     import("expo-symbols").SymbolViewProps["name"],

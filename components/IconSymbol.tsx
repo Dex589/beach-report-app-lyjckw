@@ -172,7 +172,7 @@ const MAPPING = {
   "thermometer": "thermostat",
   "drop.fill": "water-drop",
   "drop": "water-drop",
-  "water.waves": "waves",
+  "water.waves": "water",
   "umbrella.fill": "beach-access",
 
   // Beach & Ocean specific

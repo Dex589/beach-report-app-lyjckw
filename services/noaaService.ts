@@ -4,6 +4,7 @@ import { BeachConditions, TideInfo } from '@/types/beach';
 // NOAA API endpoints
 const NOAA_TIDES_API = 'https://api.tidesandcurrents.noaa.gov/api/prod/datagetter';
 const NOAA_WEATHER_API = 'https://api.weather.gov/points';
+const SUNRISE_SUNSET_API = 'https://api.sunrisesunset.io/json';
 
 // Station IDs for each beach location - mapped to nearest NOAA tide stations
 export const NOAA_STATIONS: Record<string, { 
@@ -305,6 +306,22 @@ interface NOAAWeatherData {
   };
 }
 
+interface SunriseSunsetResponse {
+  results: {
+    sunrise: string;
+    sunset: string;
+    solar_noon: string;
+    day_length: string;
+    civil_twilight_begin: string;
+    civil_twilight_end: string;
+    nautical_twilight_begin: string;
+    nautical_twilight_end: string;
+    astronomical_twilight_begin: string;
+    astronomical_twilight_end: string;
+  };
+  status: string;
+}
+
 /**
  * Fetch water level (tide) data from NOAA
  */
@@ -540,12 +557,47 @@ const getUVGuide = (uvIndex: number): string => {
 };
 
 /**
- * Calculate sunrise and sunset times
- * This is a simplified calculation - in production, use a dedicated sun times API
+ * Fetch accurate sunrise and sunset times from sunrisesunset.io API
  */
-const calculateSunTimes = (lat: number, lon: number): { sunrise: string; sunset: string } => {
-  // This is a very simplified calculation
-  // In production, use a library like suncalc or an API
+const fetchSunTimes = async (lat: number, lon: number): Promise<{ sunrise: string; sunset: string }> => {
+  try {
+    const url = `${SUNRISE_SUNSET_API}?lat=${lat}&lng=${lon}`;
+    
+    console.log('Fetching sunrise/sunset times from sunrisesunset.io:', url);
+    
+    const response = await fetch(url);
+    const data: SunriseSunsetResponse = await response.json();
+    
+    if (data.status === 'OK' && data.results) {
+      // The API returns times in 12-hour format (e.g., "7:18:23 AM")
+      // We'll format them to be consistent with the rest of the app
+      const formatTime = (timeStr: string): string => {
+        // Parse the time string
+        const [time, period] = timeStr.split(' ');
+        const [hours, minutes] = time.split(':');
+        
+        // Return formatted time
+        return `${parseInt(hours)}:${minutes} ${period}`;
+      };
+      
+      return {
+        sunrise: formatTime(data.results.sunrise),
+        sunset: formatTime(data.results.sunset),
+      };
+    }
+    
+    console.log('Failed to fetch sun times, using fallback');
+    return getFallbackSunTimes();
+  } catch (error) {
+    console.error('Error fetching sun times from API:', error);
+    return getFallbackSunTimes();
+  }
+};
+
+/**
+ * Fallback sun times calculation if API fails
+ */
+const getFallbackSunTimes = (): { sunrise: string; sunset: string } => {
   const now = new Date();
   const sunrise = new Date(now);
   sunrise.setHours(7, 18, 0);
@@ -627,6 +679,7 @@ export const fetchBeachConditions = async (beachId: string): Promise<BeachCondit
       airTemp,
       windData,
       weatherData,
+      sunTimes,
     ] = await Promise.all([
       fetchWaterLevel(stationInfo.tideStation),
       fetchTidePredictions(stationInfo.tideStation),
@@ -634,12 +687,12 @@ export const fetchBeachConditions = async (beachId: string): Promise<BeachCondit
       fetchAirTemperature(stationInfo.tideStation),
       fetchWindData(stationInfo.tideStation),
       fetchWeatherData(stationInfo.weatherLat, stationInfo.weatherLon),
+      fetchSunTimes(stationInfo.weatherLat, stationInfo.weatherLon),
     ]);
     
     // Calculate derived values
     const uvIndex = calculateUVIndex(stationInfo.weatherLat);
     const uvGuide = getUVGuide(uvIndex);
-    const sunTimes = calculateSunTimes(stationInfo.weatherLat, stationInfo.weatherLon);
     
     // Use weather data if available
     let finalAirTemp = airTemp || 75;

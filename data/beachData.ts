@@ -831,8 +831,7 @@ export const BEACHES: Beach[] = [
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/71-grand-isle.jpg',
     noaaStationID: '8761724',
   },
-  
-  // Remaining beaches (76-200) - keeping existing data structure
+  // 76. Gulf Shores | Alabama | 8735180
   {
     id: '72',
     name: 'Gulf Shores',
@@ -841,7 +840,9 @@ export const BEACHES: Beach[] = [
     latitude: 30.2460,
     longitude: -87.7008,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/72-gulf-shores.jpg',
+    noaaStationID: '8735180',
   },
+  // 77. Half Moon Bay | California | 9414290
   {
     id: '73',
     name: 'Half Moon Bay',
@@ -850,7 +851,9 @@ export const BEACHES: Beach[] = [
     latitude: 37.4636,
     longitude: -122.4286,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/73-half-moon-bay.jpg',
+    noaaStationID: '9414290',
   },
+  // 78. Hallandale Beach | Florida | 8723214
   {
     id: '74',
     name: 'Hallandale Beach',
@@ -859,7 +862,9 @@ export const BEACHES: Beach[] = [
     latitude: 25.9812,
     longitude: -80.1248,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/74-hallandale-beach.jpg',
+    noaaStationID: '8723214',
   },
+  // 79. Hampton Beach | New Hampshire | 8423898
   {
     id: '75',
     name: 'Hampton Beach',
@@ -868,7 +873,9 @@ export const BEACHES: Beach[] = [
     latitude: 42.9001,
     longitude: -70.8109,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/75-hampton-beach.jpg',
+    noaaStationID: '8423898',
   },
+  // 80. Hanauma Bay | Hawaii | 1612340
   {
     id: '76',
     name: 'Hanauma Bay',
@@ -877,7 +884,9 @@ export const BEACHES: Beach[] = [
     latitude: 21.2691,
     longitude: -157.6942,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/76-hanauma-bay.jpg',
+    noaaStationID: '1612340',
   },
+  // 81. Harvey Cedars | New Jersey | 8534720 | Water Temp: 8534720
   {
     id: '77',
     name: 'Harvey Cedars',
@@ -886,7 +895,10 @@ export const BEACHES: Beach[] = [
     latitude: 39.6959,
     longitude: -74.1376,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/77-harvey-cedars.jpg',
+    noaaStationID: '8534720',
+    waterTempStation: '8534720',
   },
+  // 82. Hatteras | North Carolina | 8654467
   {
     id: '78',
     name: 'Hatteras',
@@ -895,7 +907,9 @@ export const BEACHES: Beach[] = [
     latitude: 35.2118,
     longitude: -75.6874,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/78-hatteras.jpg',
+    noaaStationID: '8654467',
   },
+  // 83. Hermosa Beach | California | 9410840
   {
     id: '79',
     name: 'Hermosa Beach',
@@ -904,7 +918,9 @@ export const BEACHES: Beach[] = [
     latitude: 33.8622,
     longitude: -118.3998,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/79-hermosa-beach.jpg',
+    noaaStationID: '9410840',
   },
+  // 84. Hilton Head | South Carolina | 8670870
   {
     id: '80',
     name: 'Hilton Head',
@@ -913,7 +929,9 @@ export const BEACHES: Beach[] = [
     latitude: 32.2163,
     longitude: -80.7526,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/80-hilton-head.jpg',
+    noaaStationID: '8670870',
   },
+  // 85. Holgate | New Jersey | 8534720 | Water Temp: 8534720
   {
     id: '81',
     name: 'Holgate',
@@ -922,7 +940,10 @@ export const BEACHES: Beach[] = [
     latitude: 39.6326,
     longitude: -74.2043,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/81-holgate.jpg',
+    noaaStationID: '8534720',
+    waterTempStation: '8534720',
   },
+  // 86. Hollywood Beach | Florida | 8723214
   {
     id: '82',
     name: 'Hollywood Beach',
@@ -931,7 +952,9 @@ export const BEACHES: Beach[] = [
     latitude: 26.0112,
     longitude: -80.1248,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/82-hollywood-beach.jpg',
+    noaaStationID: '8723214',
   },
+  // 87. Honeymoon Island | Florida | 8726520
   {
     id: '83',
     name: 'Honeymoon Island',
@@ -940,7 +963,9 @@ export const BEACHES: Beach[] = [
     latitude: 28.0656,
     longitude: -82.8276,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/83-honeymoon-island.jpg',
+    noaaStationID: '8726520',
   },
+  // 88. Huntington Beach | California | 9410660
   {
     id: '84',
     name: 'Huntington Beach',
@@ -949,7 +974,9 @@ export const BEACHES: Beach[] = [
     latitude: 33.6595,
     longitude: -118.0000,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/84-huntington-beach.jpg',
+    noaaStationID: '9410660',
   },
+  // 89. Imperial Beach | California | 9410170
   {
     id: '85',
     name: 'Imperial Beach',
@@ -958,7 +985,9 @@ export const BEACHES: Beach[] = [
     latitude: 32.5839,
     longitude: -117.1131,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/85-imperial-beach.jpg',
+    noaaStationID: '9410170',
   },
+  // 90. Indian Rocks Beach | Florida | 8726520
   {
     id: '86',
     name: 'Indian Rocks Beach',
@@ -967,7 +996,9 @@ export const BEACHES: Beach[] = [
     latitude: 27.8964,
     longitude: -82.8426,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/86-indian-rocks-beach.jpg',
+    noaaStationID: '8726520',
   },
+  // 91. Indian Shores | Florida | 8726520
   {
     id: '87',
     name: 'Indian Shores',
@@ -976,7 +1007,9 @@ export const BEACHES: Beach[] = [
     latitude: 27.8564,
     longitude: -82.8476,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/87-indian-shores.jpg',
+    noaaStationID: '8726520',
   },
+  // 92. Islamorada | Florida | 8723970
   {
     id: '88',
     name: 'Islamorada',
@@ -985,7 +1018,9 @@ export const BEACHES: Beach[] = [
     latitude: 24.9243,
     longitude: -80.6278,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/88-islamorada.jpg',
+    noaaStationID: '8723970',
   },
+  // 93. Jones Beach | New York | 8510560
   {
     id: '89',
     name: 'Jones Beach',
@@ -994,7 +1029,9 @@ export const BEACHES: Beach[] = [
     latitude: 40.5926,
     longitude: -73.5087,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/89-jones-beach.jpg',
+    noaaStationID: '8510560',
   },
+  // 94. Kennebunk Beach | Maine | 8419317
   {
     id: '90',
     name: 'Kennebunk Beach',
@@ -1003,7 +1040,9 @@ export const BEACHES: Beach[] = [
     latitude: 43.3615,
     longitude: -70.4767,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/90-kennebunk-beach.jpg',
+    noaaStationID: '8419317',
   },
+  // 95. Key Biscayne | Florida | 8723214
   {
     id: '91',
     name: 'Key Biscayne',
@@ -1012,7 +1051,9 @@ export const BEACHES: Beach[] = [
     latitude: 25.6926,
     longitude: -80.1631,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/91-key-biscayne.jpg',
+    noaaStationID: '8723214',
   },
+  // 96. Key West Beach | Florida | 8724580
   {
     id: '92',
     name: 'Key West Beach',
@@ -1021,7 +1062,9 @@ export const BEACHES: Beach[] = [
     latitude: 24.5551,
     longitude: -81.7800,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/92-key-west-beach.jpg',
+    noaaStationID: '8724580',
   },
+  // 97. Kiawah Island | South Carolina | 8665530
   {
     id: '93',
     name: 'Kiawah Island',
@@ -1030,7 +1073,9 @@ export const BEACHES: Beach[] = [
     latitude: 32.6085,
     longitude: -80.0842,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/93-kiawah-island.jpg',
+    noaaStationID: '8665530',
   },
+  // 98. Kill Devil Hills | North Carolina | 8651370
   {
     id: '94',
     name: 'Kill Devil Hills',
@@ -1039,7 +1084,9 @@ export const BEACHES: Beach[] = [
     latitude: 36.0321,
     longitude: -75.6768,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/94-kill-devil-hills.jpg',
+    noaaStationID: '8651370',
   },
+  // 99. Kitty Hawk | North Carolina | 8651370
   {
     id: '95',
     name: 'Kitty Hawk',
@@ -1048,7 +1095,9 @@ export const BEACHES: Beach[] = [
     latitude: 36.0626,
     longitude: -75.7060,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/95-kitty-hawk.jpg',
+    noaaStationID: '8651370',
   },
+  // 100. Laguna Beach | California | 9410660
   {
     id: '96',
     name: 'Laguna Beach',
@@ -1057,7 +1106,9 @@ export const BEACHES: Beach[] = [
     latitude: 33.5427,
     longitude: -117.7854,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/96-laguna-beach.jpg',
+    noaaStationID: '9410660',
   },
+  // 101. La Jolla Cove | California | 9410170
   {
     id: '97',
     name: 'La Jolla Cove',
@@ -1066,7 +1117,9 @@ export const BEACHES: Beach[] = [
     latitude: 32.8509,
     longitude: -117.2713,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/97-la-jolla-cove.jpg',
+    noaaStationID: '9410170',
   },
+  // 102. Lanikai Beach | Hawaii | 1612340
   {
     id: '98',
     name: 'Lanikai Beach',
@@ -1075,7 +1128,9 @@ export const BEACHES: Beach[] = [
     latitude: 21.3931,
     longitude: -157.7179,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/98-lanikai-beach.jpg',
+    noaaStationID: '1612340',
   },
+  // 103. La Push Beach | Washington | 9442396
   {
     id: '99',
     name: 'La Push Beach',
@@ -1084,7 +1139,9 @@ export const BEACHES: Beach[] = [
     latitude: 47.9037,
     longitude: -124.6368,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/99-la-push-beach.jpg',
+    noaaStationID: '9442396',
   },
+  // 104. Leo Carrillo Beach | California | 9410840
   {
     id: '100',
     name: 'Leo Carrillo Beach',
@@ -1093,7 +1150,9 @@ export const BEACHES: Beach[] = [
     latitude: 34.0459,
     longitude: -118.9381,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/100-leo-carrillo-beach.jpg',
+    noaaStationID: '9410840',
   },
+  // 105. Lido Key | Florida | 8726520
   {
     id: '101',
     name: 'Lido Key',
@@ -1102,7 +1161,9 @@ export const BEACHES: Beach[] = [
     latitude: 27.3164,
     longitude: -82.5831,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/101-lido-key.jpg',
+    noaaStationID: '8726520',
   },
+  // 106. Lincoln City | Oregon | 9435380
   {
     id: '102',
     name: 'Lincoln City',
@@ -1111,7 +1172,9 @@ export const BEACHES: Beach[] = [
     latitude: 44.9579,
     longitude: -124.0179,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/102-lincoln-city.jpg',
+    noaaStationID: '9435380',
   },
+  // 107. Long Beach Island | New Jersey | 8534720 | Water Temp: 8534720
   {
     id: '103',
     name: 'Long Beach Island',
@@ -1120,7 +1183,10 @@ export const BEACHES: Beach[] = [
     latitude: 39.6626,
     longitude: -74.1876,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/103-long-beach-island.jpg',
+    noaaStationID: '8534720',
+    waterTempStation: '8534720',
   },
+  // 108. Long Beach Peninsula | Washington | 9440910
   {
     id: '104',
     name: 'Long Beach Peninsula',
@@ -1129,7 +1195,9 @@ export const BEACHES: Beach[] = [
     latitude: 46.3523,
     longitude: -124.0543,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/104-long-beach-peninsula.jpg',
+    noaaStationID: '9440910',
   },
+  // 109. Longboat Key | Florida | 8726520
   {
     id: '105',
     name: 'Longboat Key',
@@ -1138,7 +1206,9 @@ export const BEACHES: Beach[] = [
     latitude: 27.4103,
     longitude: -82.6540,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/105-longboat-key.jpg',
+    noaaStationID: '8726520',
   },
+  // 110. Long Branch | New Jersey | 8531680
   {
     id: '106',
     name: 'Long Branch',
@@ -1147,7 +1217,9 @@ export const BEACHES: Beach[] = [
     latitude: 40.3043,
     longitude: -73.9923,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/106-long-branch.jpg',
+    noaaStationID: '8531680',
   },
+  // 111. Loveladies | New Jersey | 8534720 | Water Temp: 8534720
   {
     id: '107',
     name: 'Loveladies',
@@ -1156,7 +1228,10 @@ export const BEACHES: Beach[] = [
     latitude: 39.7043,
     longitude: -74.1626,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/107-loveladies.jpg',
+    noaaStationID: '8534720',
+    waterTempStation: '8534720',
   },
+  // 112. Madeira Beach | Florida | 8726520
   {
     id: '108',
     name: 'Madeira Beach',
@@ -1165,7 +1240,9 @@ export const BEACHES: Beach[] = [
     latitude: 27.7970,
     longitude: -82.7976,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/108-madeira-beach.jpg',
+    noaaStationID: '8726520',
   },
+  // 113. Malibu Beach | California | 9410840
   {
     id: '109',
     name: 'Malibu Beach',
@@ -1174,7 +1251,9 @@ export const BEACHES: Beach[] = [
     latitude: 34.0259,
     longitude: -118.7798,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/109-malibu-beach.jpg',
+    noaaStationID: '9410840',
   },
+  // 114. Manasquan | New Jersey | 8531680
   {
     id: '110',
     name: 'Manasquan',
@@ -1183,7 +1262,9 @@ export const BEACHES: Beach[] = [
     latitude: 40.1165,
     longitude: -74.0376,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/110-manasquan.jpg',
+    noaaStationID: '8531680',
   },
+  // 115. Manhattan Beach | California | 9410840
   {
     id: '111',
     name: 'Manhattan Beach',
@@ -1192,7 +1273,9 @@ export const BEACHES: Beach[] = [
     latitude: 33.8847,
     longitude: -118.4109,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/111-manhattan-beach.jpg',
+    noaaStationID: '9410840',
   },
+  // 116. Manhattan State Beach | California | 9410840
   {
     id: '112',
     name: 'Manhattan State Beach',
@@ -1201,7 +1284,9 @@ export const BEACHES: Beach[] = [
     latitude: 33.8847,
     longitude: -118.4109,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/112-manhattan-state-beach.jpg',
+    noaaStationID: '9410840',
   },
+  // 117. Manzanita Beach | Oregon | 9435380
   {
     id: '113',
     name: 'Manzanita Beach',
@@ -1210,7 +1295,9 @@ export const BEACHES: Beach[] = [
     latitude: 45.7179,
     longitude: -123.9365,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/113-manzanita-beach.jpg',
+    noaaStationID: '9435380',
   },
+  // 118. Marathon | Florida | 8723970
   {
     id: '114',
     name: 'Marathon',
@@ -1219,7 +1306,9 @@ export const BEACHES: Beach[] = [
     latitude: 24.7137,
     longitude: -81.0865,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/114-marathon.jpg',
+    noaaStationID: '8723970',
   },
+  // 119. Marco Island | Florida | 8725110
   {
     id: '115',
     name: 'Marco Island',
@@ -1228,7 +1317,9 @@ export const BEACHES: Beach[] = [
     latitude: 25.9412,
     longitude: -81.7187,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/115-marco-island.jpg',
+    noaaStationID: '8725110',
   },
+  // 120. Martha's Vineyard | Massachusetts | 8447930
   {
     id: '116',
     name: 'Martha&apos;s Vineyard',
@@ -1237,7 +1328,9 @@ export const BEACHES: Beach[] = [
     latitude: 41.3888,
     longitude: -70.6189,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/116-martha-s-vineyard.jpg',
+    noaaStationID: '8447930',
   },
+  // 121. Matagorda Beach | Texas | 8773259
   {
     id: '117',
     name: 'Matagorda Beach',
@@ -1246,7 +1339,9 @@ export const BEACHES: Beach[] = [
     latitude: 28.6903,
     longitude: -95.9688,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/117-matagorda-beach.jpg',
+    noaaStationID: '8773259',
   },
+  // 122. Mendocino | California | 9416841
   {
     id: '118',
     name: 'Mendocino',
@@ -1255,7 +1350,9 @@ export const BEACHES: Beach[] = [
     latitude: 39.3077,
     longitude: -123.7994,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/118-mendocino.jpg',
+    noaaStationID: '9416841',
   },
+  // 123. Mission Beach | California | 9410170
   {
     id: '119',
     name: 'Mission Beach',
@@ -1264,7 +1361,9 @@ export const BEACHES: Beach[] = [
     latitude: 32.7701,
     longitude: -117.2528,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/119-mission-beach.jpg',
+    noaaStationID: '9410170',
   },
+  // 124. Montauk | New York | 8510560
   {
     id: '120',
     name: 'Montauk',
@@ -1273,7 +1372,9 @@ export const BEACHES: Beach[] = [
     latitude: 41.0357,
     longitude: -71.9579,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/120-montauk.jpg',
+    noaaStationID: '8510560',
   },
+  // 125. Monterey Bay | California | 9413450
   {
     id: '121',
     name: 'Monterey Bay',
@@ -1282,7 +1383,9 @@ export const BEACHES: Beach[] = [
     latitude: 36.6002,
     longitude: -121.8947,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/121-monterey-bay.jpg',
+    noaaStationID: '9413450',
   },
+  // 126. Mustang Island | Texas | 8775870
   {
     id: '122',
     name: 'Mustang Island',
@@ -1291,7 +1394,9 @@ export const BEACHES: Beach[] = [
     latitude: 27.8339,
     longitude: -97.0614,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/122-mustang-island.jpg',
+    noaaStationID: '8775870',
   },
+  // 127. Nags Head | North Carolina | 8652587
   {
     id: '124',
     name: 'Nags Head',
@@ -1300,7 +1405,9 @@ export const BEACHES: Beach[] = [
     latitude: 35.9571,
     longitude: -75.6240,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/124-nags-head.jpg',
+    noaaStationID: '8652587',
   },
+  // 128. Nantucket | Massachusetts | 8449130
   {
     id: '125',
     name: 'Nantucket',
@@ -1309,7 +1416,9 @@ export const BEACHES: Beach[] = [
     latitude: 41.2835,
     longitude: -70.0995,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/125-nantucket.jpg',
+    noaaStationID: '8449130',
   },
+  // 129. Naples Beach | Florida | 8725110
   {
     id: '126',
     name: 'Naples Beach',
@@ -1318,7 +1427,9 @@ export const BEACHES: Beach[] = [
     latitude: 26.1420,
     longitude: -81.7948,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/126-naples-beach.jpg',
+    noaaStationID: '8725110',
   },
+  // 130. Narragansett Beach | Rhode Island | 8452660
   {
     id: '127',
     name: 'Narragansett Beach',
@@ -1327,7 +1438,9 @@ export const BEACHES: Beach[] = [
     latitude: 41.4326,
     longitude: -71.4537,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/127-narragansett-beach.jpg',
+    noaaStationID: '8452660',
   },
+  // 131. New Smyrna Beach | Florida | 8721164
   {
     id: '128',
     name: 'New Smyrna Beach',
@@ -1336,7 +1449,9 @@ export const BEACHES: Beach[] = [
     latitude: 29.0258,
     longitude: -80.9270,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/128-new-smyrna-beach.jpg',
+    noaaStationID: '8721164',
   },
+  // 132. Newport Beach | California | 9410660
   {
     id: '129',
     name: 'Newport Beach',
@@ -1345,7 +1460,9 @@ export const BEACHES: Beach[] = [
     latitude: 33.6189,
     longitude: -117.9289,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/129-newport-beach-ca.jpg',
+    noaaStationID: '9410660',
   },
+  // 133. Newport Beach OR | Oregon | 9435380
   {
     id: '130',
     name: 'Newport Beach OR',
@@ -1354,7 +1471,9 @@ export const BEACHES: Beach[] = [
     latitude: 44.6368,
     longitude: -124.0529,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/130-newport-beach-or.jpg',
+    noaaStationID: '9435380',
   },
+  // 134. Newport Beach | Rhode Island | 8452660
   {
     id: '131',
     name: 'Newport Beach',
@@ -1363,7 +1482,9 @@ export const BEACHES: Beach[] = [
     latitude: 41.4901,
     longitude: -71.3128,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/131-newport-beach-ri.jpg',
+    noaaStationID: '8452660',
   },
+  // 135. Ocean Beach | California | 9410170
   {
     id: '132',
     name: 'Ocean Beach',
@@ -1372,7 +1493,9 @@ export const BEACHES: Beach[] = [
     latitude: 32.7533,
     longitude: -117.2494,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/132-ocean-beach.jpg',
+    noaaStationID: '9410170',
   },
+  // 136. Ocean City | Maryland | 8570283
   {
     id: '133',
     name: 'Ocean City',
@@ -1381,7 +1504,9 @@ export const BEACHES: Beach[] = [
     latitude: 38.3365,
     longitude: -75.0849,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/133-ocean-city.jpg',
+    noaaStationID: '8570283',
   },
+  // 137. Ocean City Boardwalk | New Jersey | 8534720
   {
     id: '134',
     name: 'Ocean City Boardwalk',
@@ -1390,7 +1515,9 @@ export const BEACHES: Beach[] = [
     latitude: 39.2776,
     longitude: -74.5746,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/134-ocean-city-boardwalk.jpg',
+    noaaStationID: '8534720',
   },
+  // 138. Ocean Shores | Washington | 9441102
   {
     id: '135',
     name: 'Ocean Shores',
@@ -1399,7 +1526,9 @@ export const BEACHES: Beach[] = [
     latitude: 46.9737,
     longitude: -124.1568,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/135-ocean-shores.jpg',
+    noaaStationID: '9441102',
   },
+  // 139. Ogunquit Beach | Maine | 8419317
   {
     id: '136',
     name: 'Ogunquit Beach',
@@ -1408,7 +1537,9 @@ export const BEACHES: Beach[] = [
     latitude: 43.2493,
     longitude: -70.5989,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/136-ogunquit-beach.jpg',
+    noaaStationID: '8419317',
   },
+  // 140. Old Orchard Beach | Maine | 8418150
   {
     id: '137',
     name: 'Old Orchard Beach',
@@ -1417,7 +1548,9 @@ export const BEACHES: Beach[] = [
     latitude: 43.5170,
     longitude: -70.3770,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/137-old-orchard-beach.jpg',
+    noaaStationID: '8418150',
   },
+  // 141. Orange Beach | Alabama | 8735180
   {
     id: '138',
     name: 'Orange Beach',
@@ -1426,7 +1559,9 @@ export const BEACHES: Beach[] = [
     latitude: 30.2943,
     longitude: -87.5711,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/138-orange-beach.jpg',
+    noaaStationID: '8735180',
   },
+  // 142. Orleans | Massachusetts | 8447930
   {
     id: '139',
     name: 'Orleans',
@@ -1435,7 +1570,9 @@ export const BEACHES: Beach[] = [
     latitude: 41.7899,
     longitude: -69.9897,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/139-orleans.jpg',
+    noaaStationID: '8447930',
   },
+  // 143. Ormond Beach | Florida | 8721164
   {
     id: '140',
     name: 'Ormond Beach',
@@ -1444,7 +1581,9 @@ export const BEACHES: Beach[] = [
     latitude: 29.2858,
     longitude: -81.0559,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/140-ormond-beach.jpg',
+    noaaStationID: '8721164',
   },
+  // 144. Pacific Beach | California | 9410170
   {
     id: '142',
     name: 'Pacific Beach',
@@ -1453,7 +1592,9 @@ export const BEACHES: Beach[] = [
     latitude: 32.7964,
     longitude: -117.2296,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/142-pacific-beach.jpg',
+    noaaStationID: '9410170',
   },
+  // 145. Pacific City | Oregon | 9435380
   {
     id: '143',
     name: 'Pacific City',
@@ -1462,7 +1603,9 @@ export const BEACHES: Beach[] = [
     latitude: 45.1979,
     longitude: -123.9615,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/143-pacific-city.jpg',
+    noaaStationID: '9435380',
   },
+  // 146. Padre Island | Texas | 8775870
   {
     id: '144',
     name: 'Padre Island',
@@ -1471,7 +1614,9 @@ export const BEACHES: Beach[] = [
     latitude: 27.5808,
     longitude: -97.2108,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/144-padre-island.jpg',
+    noaaStationID: '8775870',
   },
+  // 147. Panama City Beach | Florida | 8729108
   {
     id: '145',
     name: 'Panama City Beach',
@@ -1480,7 +1625,9 @@ export const BEACHES: Beach[] = [
     latitude: 30.1766,
     longitude: -85.8055,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/145-panama-city-beach.jpg',
+    noaaStationID: '8729108',
   },
+  // 148. Pass-a-Grille Beach | Florida | 8726520
   {
     id: '146',
     name: 'Pass-a-Grille Beach',
@@ -1489,7 +1636,9 @@ export const BEACHES: Beach[] = [
     latitude: 27.6953,
     longitude: -82.7426,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/146-pass-a-grille-beach.jpg',
+    noaaStationID: '8726520',
   },
+  // 149. Pismo Beach | California | 9412110
   {
     id: '147',
     name: 'Pismo Beach',
@@ -1498,7 +1647,9 @@ export const BEACHES: Beach[] = [
     latitude: 35.1428,
     longitude: -120.6413,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/147-pismo-beach.jpg',
+    noaaStationID: '9412110',
   },
+  // 150. Plum Island | Massachusetts | 8443970
   {
     id: '148',
     name: 'Plum Island',
@@ -1507,6 +1658,7 @@ export const BEACHES: Beach[] = [
     latitude: 42.8159,
     longitude: -70.8159,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/148-plum-island.jpg',
+    noaaStationID: '8443970',
   },
   {
     id: '149',

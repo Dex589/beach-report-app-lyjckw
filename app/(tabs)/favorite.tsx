@@ -11,6 +11,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
+import { WaveHeader } from '@/components/WaveHeader';
 import { BEACHES } from '@/data/beachData';
 import { Beach } from '@/types/beach';
 import { useBeachStorage } from '@/hooks/useBeachStorage';
@@ -64,6 +65,7 @@ export default function FavoriteScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
+      <WaveHeader />
       <View style={styles.header}>
         <Text style={styles.title}>Favorite Beaches</Text>
         <Text style={styles.subtitle}>
@@ -105,19 +107,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 16,
     paddingBottom: 16,
-    backgroundColor: colors.card,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.secondary,
+    backgroundColor: 'transparent',
+    marginTop: 120,
   },
   title: {
     fontSize: 28,
     fontWeight: '700',
-    color: colors.text,
+    color: '#FFFFFF',
     marginBottom: 4,
   },
   subtitle: {
     fontSize: 14,
-    color: colors.textSecondary,
+    color: '#FFFFFF',
+    opacity: 0.9,
   },
   listContent: {
     padding: 16,

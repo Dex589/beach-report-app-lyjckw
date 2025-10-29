@@ -10,6 +10,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { IconSymbol } from '@/components/IconSymbol';
+import { WaveHeader } from '@/components/WaveHeader';
 import { colors, spacing, borderRadius } from '@/styles/commonStyles';
 import { useBeachConditions } from '@/hooks/useBeachConditions';
 import { BEACHES } from '@/data/beachData';
@@ -34,9 +35,10 @@ export default function BeachAlertsScreen() {
   if (!beach || !conditions) {
     return (
       <SafeAreaView style={styles.container} edges={['top']}>
+        <WaveHeader />
         <View style={styles.header}>
           <Pressable onPress={() => router.back()} style={styles.backButton}>
-            <IconSymbol name="chevron.left" size={24} color={colors.text} />
+            <IconSymbol name="chevron.left" size={24} color="#FFFFFF" />
           </Pressable>
           <Text style={styles.headerTitle}>Beach Alerts</Text>
           <View style={{ width: 40 }} />
@@ -162,9 +164,10 @@ export default function BeachAlertsScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
+      <WaveHeader />
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backButton}>
-          <IconSymbol name="chevron.left" size={24} color={colors.text} />
+          <IconSymbol name="chevron.left" size={24} color="#FFFFFF" />
         </Pressable>
         <Text style={styles.headerTitle}>Beach Alerts</Text>
         <View style={{ width: 40 }} />
@@ -317,22 +320,23 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.md,
-    backgroundColor: '#FFFFFF',
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border,
+    backgroundColor: 'transparent',
+    marginTop: 120,
   },
   backButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: colors.background,
+    backgroundColor: 'rgba(255, 255, 255, 0.25)',
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
   },
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.text,
+    color: '#FFFFFF',
   },
   scrollView: {
     flex: 1,

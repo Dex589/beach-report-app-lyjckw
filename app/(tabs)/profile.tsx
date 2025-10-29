@@ -1,39 +1,38 @@
 
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useTheme } from '@react-navigation/native';
+import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
-import { GlassView } from 'expo-glass-effect';
+import { WaveHeader } from '@/components/WaveHeader';
 
 export default function ProfileScreen() {
-  const theme = useTheme();
-
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
+      <WaveHeader />
       <ScrollView 
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.header}>
-          <Text style={[styles.title, { color: theme.colors.text }]}>Settings</Text>
+          <Text style={styles.title}>Settings</Text>
         </View>
 
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: theme.colors.text }]}>
+          <Text style={styles.sectionTitle}>
             Preferences
           </Text>
-          <View style={[styles.card, { backgroundColor: theme.colors.card }]}>
+          <View style={styles.card}>
             <View style={styles.settingItem}>
-              <IconSymbol name="bell.fill" size={24} color={theme.colors.primary} />
-              <Text style={[styles.settingText, { color: theme.colors.text }]}>
+              <IconSymbol name="bell.fill" size={24} color={colors.primary} />
+              <Text style={styles.settingText}>
                 Notifications
               </Text>
             </View>
             <View style={styles.settingItem}>
-              <IconSymbol name="location.fill" size={24} color={theme.colors.primary} />
-              <Text style={[styles.settingText, { color: theme.colors.text }]}>
+              <IconSymbol name="location.fill" size={24} color={colors.primary} />
+              <Text style={styles.settingText}>
                 Location Services
               </Text>
             </View>
@@ -41,13 +40,13 @@ export default function ProfileScreen() {
         </View>
 
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: theme.colors.text }]}>
+          <Text style={styles.sectionTitle}>
             About
           </Text>
-          <View style={[styles.card, { backgroundColor: theme.colors.card }]}>
+          <View style={styles.card}>
             <View style={styles.settingItem}>
-              <IconSymbol name="info.circle.fill" size={24} color={theme.colors.primary} />
-              <Text style={[styles.settingText, { color: theme.colors.text }]}>
+              <IconSymbol name="info.circle.fill" size={24} color={colors.primary} />
+              <Text style={styles.settingText}>
                 App Version 1.0.0
               </Text>
             </View>
@@ -61,6 +60,7 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colors.background,
   },
   scrollView: {
     flex: 1,
@@ -72,10 +72,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 16,
     paddingBottom: 16,
+    marginTop: 120,
   },
   title: {
     fontSize: 32,
     fontWeight: '700',
+    color: '#FFFFFF',
   },
   section: {
     paddingHorizontal: 16,
@@ -85,8 +87,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     marginBottom: 12,
+    color: colors.text,
   },
   card: {
+    backgroundColor: colors.card,
     borderRadius: 12,
     padding: 16,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
@@ -101,5 +105,6 @@ const styles = StyleSheet.create({
   settingText: {
     fontSize: 16,
     fontWeight: '500',
+    color: colors.text,
   },
 });

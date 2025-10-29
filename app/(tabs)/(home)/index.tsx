@@ -213,12 +213,12 @@ export default function HomeScreen() {
           <View style={styles.wave} />
         </View>
 
-        {/* Beach Image with Swipe Gesture */}
+        {/* Beach Image with Swipe Gesture - FIXED: Using uri property for remote images */}
         <View style={styles.beachImageContainer}>
           <GestureDetector gesture={swipeGesture}>
             <View>
               <Image 
-                source={beach.image} 
+                source={{ uri: beach.image }}
                 style={styles.beachImage}
                 resizeMode="cover"
               />

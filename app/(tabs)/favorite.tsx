@@ -37,7 +37,7 @@ export default function FavoriteScreen() {
         style={styles.beachItem}
         onPress={() => handleBeachPress(item.id)}
       >
-        <Image source={item.image} style={styles.beachImage} />
+        <Image source={{ uri: item.image }} style={styles.beachImage} />
         <View style={styles.beachInfo}>
           <Text style={styles.beachName}>{item.name}</Text>
           <View style={styles.locationRow}>

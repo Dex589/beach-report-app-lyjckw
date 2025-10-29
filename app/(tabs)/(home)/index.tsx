@@ -21,6 +21,7 @@ import { useBeachConditions } from '@/hooks/useBeachConditions';
 import { WaveHeader } from '@/components/WaveHeader';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
+import * as WebBrowser from 'expo-web-browser';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -71,6 +72,17 @@ export default function HomeScreen() {
       pathname: '/(tabs)/(home)/alerts',
       params: { beachId: beach.id }
     });
+  };
+
+  const handleCameraPress = async () => {
+    if (beach.cameraLink) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      try {
+        await WebBrowser.openBrowserAsync(beach.cameraLink);
+      } catch (error) {
+        console.log('Error opening camera link:', error);
+      }
+    }
   };
 
   // Swipe gesture for beach navigation
@@ -381,8 +393,8 @@ export default function HomeScreen() {
         </View>
 
         {/* View Live Camera Button */}
-        {conditions.liveCameraUrl && (
-          <Pressable style={styles.cameraButton}>
+        {beach.cameraLink && (
+          <Pressable style={styles.cameraButton} onPress={handleCameraPress}>
             <IconSymbol name="video.fill" size={20} color="#FFFFFF" />
             <Text style={styles.cameraButtonText}>View Live Camera</Text>
           </Pressable>

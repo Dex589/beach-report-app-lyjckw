@@ -9,6 +9,7 @@ export interface Beach {
   image: any; // Can be either a URL string or local image using require()
   distance?: number;
   isFavorite?: boolean;
+  cameraLink?: string; // Optional live camera link
 }
 
 export interface BeachConditions {

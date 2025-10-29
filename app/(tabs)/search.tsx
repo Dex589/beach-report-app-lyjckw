@@ -153,20 +153,21 @@ export default function SearchScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <WaveHeader />
-      <View style={styles.header}>
-        <Text style={styles.title}>Search Beaches</Text>
+      
+      {/* Search bar positioned within the header area */}
+      <View style={styles.searchBarContainer}>
         <View style={styles.searchContainer}>
-          <IconSymbol name="magnifyingglass" size={20} color={colors.textSecondary} />
+          <IconSymbol name="magnifyingglass" size={18} color="#999999" />
           <TextInput
             style={styles.searchInput}
-            placeholder="Search by name or location..."
-            placeholderTextColor={colors.textSecondary}
+            placeholder="Search beaches..."
+            placeholderTextColor="#999999"
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
           {searchQuery.length > 0 && (
             <Pressable onPress={() => setSearchQuery('')} hitSlop={8}>
-              <IconSymbol name="xmark.circle.fill" size={20} color={colors.textSecondary} />
+              <IconSymbol name="xmark.circle.fill" size={18} color="#999999" />
             </Pressable>
           )}
         </View>
@@ -197,31 +198,27 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
-  header: {
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 12,
-    backgroundColor: 'transparent',
-    marginTop: 120,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: '#FFFFFF',
-    marginBottom: 16,
+  searchBarContainer: {
+    position: 'absolute',
+    top: 110,
+    left: 16,
+    right: 16,
+    zIndex: 2,
   },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-    borderRadius: 12,
-    paddingHorizontal: 12,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    paddingHorizontal: 14,
     paddingVertical: 10,
-    gap: 8,
+    gap: 10,
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
+    elevation: 3,
   },
   searchInput: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 15,
     color: colors.text,
   },
   headerMessage: {
@@ -241,6 +238,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   listContent: {
+    paddingTop: 170,
     padding: 16,
     paddingBottom: 120,
   },

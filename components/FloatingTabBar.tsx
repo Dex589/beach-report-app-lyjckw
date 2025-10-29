@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { useRouter, usePathname } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconSymbol } from '@/components/IconSymbol';
 import { useTheme } from '@react-navigation/native';
 import Animated, {
@@ -45,6 +45,7 @@ export default function FloatingTabBar({
   const pathname = usePathname();
   const theme = useTheme();
   const animatedValue = useSharedValue(0);
+  const insets = useSafeAreaInsets();
 
   // Improved active tab detection with better path matching
   const activeTabIndex = React.useMemo(() => {
@@ -97,12 +98,13 @@ export default function FloatingTabBar({
   };
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+    <View style={styles.wrapper}>
       <View style={[
         styles.container,
         {
           backgroundColor: theme.dark ? '#1C1C1E' : '#FFFFFF',
           borderTopColor: theme.dark ? '#38383A' : '#E5E5EA',
+          paddingBottom: insets.bottom,
         }
       ]}>
         <View style={styles.tabsContainer}>
@@ -137,12 +139,12 @@ export default function FloatingTabBar({
           })}
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
+  wrapper: {
     position: 'absolute',
     bottom: 0,
     left: 0,

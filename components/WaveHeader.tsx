@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: 'absolute',
-    top: 60,
+    top: 12,
     left: 16,
     right: 16,
     flexDirection: 'row',

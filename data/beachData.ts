@@ -57,6 +57,7 @@ export const BEACHES: Beach[] = [
     longitude: -75.4665,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/141-outer-banks.jpg',
     noaaStationID: '8652587',
+    cameraLink: 'https://www.surfchex.com/webcams/hatteras/',
   },
   // 6. Amelia Island | Florida | 8720030
   {
@@ -68,7 +69,7 @@ export const BEACHES: Beach[] = [
     longitude: -81.4651,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/1-amelia-island.jpg',
     noaaStationID: '8720030',
-    cameraLink: 'https://www.seasideameliainn.com/beach-cam/',
+    cameraLink: 'https://www.iplivecams.com/live-cams/amelia-island-club-florida-united-states/',
   },
   // 7. Anna Maria Island | Florida | 8726520
   {
@@ -80,7 +81,7 @@ export const BEACHES: Beach[] = [
     longitude: -82.7326,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/2-anna-maria-island.jpg',
     noaaStationID: '8726520',
-    cameraLink: 'https://www.earthcam.com/usa/florida/annamariaisland/',
+    cameraLink: 'https://worldcam.eu/webcams/north-america/florida-usa/36811-bradenton-beach-moose-lodge-anna-maria-island',
   },
   // 8. Asbury Park | New Jersey | 8531680
   {
@@ -92,7 +93,7 @@ export const BEACHES: Beach[] = [
     longitude: -74.0121,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/3-asbury-park.jpg',
     noaaStationID: '8531680',
-    cameraLink: 'https://www.livebeaches.com/webcams/asbury-park-boardwalk-live-cam/',
+    cameraLink: 'https://www.livebeaches.com/webcams/asbury-park-boardwalk/',
   },
   // 9. Assateague Island | Maryland | 8570283
   {
@@ -104,7 +105,6 @@ export const BEACHES: Beach[] = [
     longitude: -75.1535,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/4-assateague-island.jpg',
     noaaStationID: '8570283',
-    cameraLink: 'https://oceancitylive.com/ocean-city-webcams/assateague-island-cam/',
   },
   // 10. Atlantic City | New Jersey | 8534720
   {
@@ -116,7 +116,7 @@ export const BEACHES: Beach[] = [
     longitude: -74.4229,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/5-atlantic-city.jpg',
     noaaStationID: '8534720',
-    cameraLink: 'https://www.skylinewebcams.com/en/webcam/united-states/new-jersey/atlantic-city/atlantic-city-beach.html',
+    cameraLink: 'https://www.skylinewebcams.com/en/webcam/united-states/new-jersey/atlantic-city/atlantic-city-boardwalk.html',
   },
   // 11. Avalon Beach | New Jersey | 8536110
   {
@@ -128,7 +128,7 @@ export const BEACHES: Beach[] = [
     longitude: -74.7165,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/6-avalon-beach.jpg',
     noaaStationID: '8536110',
-    cameraLink: 'https://www.visitavalonnj.com/webcam',
+    cameraLink: 'https://worldcam.eu/webcams/north-america/new-jersey-usa/24844-avalon-morans-dockside-30th-street-beach',
   },
   // 12. Avon | North Carolina | 8654467
   {
@@ -140,6 +140,7 @@ export const BEACHES: Beach[] = [
     longitude: -75.5063,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/7-avon.jpg',
     noaaStationID: '8654467',
+    cameraLink: 'https://www.livebeaches.com/webcams/avon-fishing-pier/',
   },
   // 13. Bal Harbour | Florida | 8723214
   {
@@ -162,7 +163,7 @@ export const BEACHES: Beach[] = [
     longitude: -124.4084,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/9-bandon-beach.jpg',
     noaaStationID: '9431647',
-    cameraLink: 'https://www.bandon.tv/',
+    cameraLink: 'https://worldcam.eu/webcams/north-america/oregon-usa/6776-bandon-beach',
   },
   // 15. Bar Harbor | Maine | 8413320
   {
@@ -174,6 +175,7 @@ export const BEACHES: Beach[] = [
     longitude: -68.2039,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/10-bar-harbor.jpg',
     noaaStationID: '8413320',
+    cameraLink: 'https://www.earthcam.com/usa/maine/barharbor/?cam=barharbor',
   },
   // 16. Barnegat Light | New Jersey | 8534720 | Water Temp: 8534720
   {
@@ -186,6 +188,7 @@ export const BEACHES: Beach[] = [
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/11-barnegat-light.jpg',
     noaaStationID: '8534720',
     waterTempStation: '8534720',
+    cameraLink: 'https://www.njbeachcams.com/barnegat-nj-webcam/',
   },
   // 17. Beach Haven | New Jersey | 8534720 | Water Temp: 8534720
   {
@@ -198,7 +201,6 @@ export const BEACHES: Beach[] = [
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/12-beach-haven.jpg',
     noaaStationID: '8534720',
     waterTempStation: '8534720',
-    cameraLink: 'https://beachhaven-nj.gov/public-safety/beach-patrol/5th-street-lbi-cam/',
   },
   // 18. Belleair Beach | Florida | 8726520
   {
@@ -210,7 +212,6 @@ export const BEACHES: Beach[] = [
     longitude: -82.8376,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/13-belleair-beach.jpg',
     noaaStationID: '8726520',
-    cameraLink: 'https://www.livebeaches.com/city/belleair-beach-fl/',
   },
   // 19. Belmar | New Jersey | 8531680
   {
@@ -222,7 +223,7 @@ export const BEACHES: Beach[] = [
     longitude: -74.0218,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/14-belmar.jpg',
     noaaStationID: '8531680',
-    cameraLink: 'https://njbeachcams.com/central-new-jersey/belmar-webcam/',
+    cameraLink: 'https://playabowls.com/belmar-surf-cam/',
   },
   // 20. Bethany Beach | Delaware | 8557380
   {
@@ -234,6 +235,7 @@ export const BEACHES: Beach[] = [
     longitude: -75.0552,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/15-bethany-beach.jpg',
     noaaStationID: '8557380',
+    cameraLink: 'https://worldcam.eu/webcams/north-america/delaware-usa/27148-south-indian-river-inlet-beach',
   },
   // 21. Big Pine Key | Florida | 8724580
   {
@@ -245,6 +247,7 @@ export const BEACHES: Beach[] = [
     longitude: -81.3534,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/17-big-pine-key.jpg',
     noaaStationID: '8724580',
+    cameraLink: 'https://www.webcamtaxi.com/en/usa/florida/bahia-honda-state-park.html',
   },
   // 22. Biloxi Beach | Mississippi | 8747437
   {
@@ -256,6 +259,7 @@ export const BEACHES: Beach[] = [
     longitude: -88.8853,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/18-biloxi-beach.jpg',
     noaaStationID: '8747437',
+    cameraLink: 'https://www.webcamtaxi.com/en/usa/mississippi/biloxi-lighthouse-view.html',
   },
   // 23. Block Island | Rhode Island | 8452660
   {
@@ -267,6 +271,7 @@ export const BEACHES: Beach[] = [
     longitude: -71.5773,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/19-block-island.jpg',
     noaaStationID: '8452660',
+    cameraLink: 'https://worldcam.eu/webcams/north-america/rhode-island-usa/103-block-island-old-harbor',
   },
   // 24. Boca Grande | Florida | 8725110
   {
@@ -278,6 +283,7 @@ export const BEACHES: Beach[] = [
     longitude: -82.2626,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/20-boca-grande.jpg',
     noaaStationID: '8725110',
+    cameraLink: 'https://bocabeacon.com/webcam/',
   },
   // 25. Bolivar Peninsula | Texas | 8771450
   {
@@ -289,6 +295,7 @@ export const BEACHES: Beach[] = [
     longitude: -94.6849,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/21-bolivar-peninsula.jpg',
     noaaStationID: '8771450',
+    cameraLink: 'https://www.livebeaches.com/webcams/crystal-beach-surf-cam/',
   },
   // 26. Bonita Springs | Florida | 8725110
   {
@@ -311,7 +318,7 @@ export const BEACHES: Beach[] = [
     longitude: -74.0121,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/23-bradley-beach.jpg',
     noaaStationID: '8531680',
-    cameraLink: 'https://www.livebeaches.com/webcams/bradley-beach-nj-surf-cam/',
+    cameraLink: 'https://www.livebeaches.com/webcams/bradley-beach-surf-cam/',
   },
   // 28. Brant Beach | New Jersey | 8534720 | Water Temp: 8534720
   {
@@ -324,6 +331,7 @@ export const BEACHES: Beach[] = [
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/24-brant-beach.jpg',
     noaaStationID: '8534720',
     waterTempStation: '8534720',
+    cameraLink: 'https://bbyc.net/',
   },
   // 29. Brookings Beach | Oregon | 9431647
   {
@@ -335,6 +343,7 @@ export const BEACHES: Beach[] = [
     longitude: -124.2840,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/25-brookings-beach.jpg',
     noaaStationID: '9431647',
+    cameraLink: 'https://www.livebeaches.com/webcams/brookings-harbor-oregon-coast-webcam/',
   },
   // 30. Brownsville Beach | Texas | 8779770
   {
@@ -346,6 +355,7 @@ export const BEACHES: Beach[] = [
     longitude: -97.1594,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/26-brownsville-beach.jpg',
     noaaStationID: '8779770',
+    cameraLink: 'https://livebeachcam.net/brownsville-texas-live-webcam/',
   },
   // 31. Buxton | North Carolina | 8654467
   {
@@ -357,6 +367,7 @@ export const BEACHES: Beach[] = [
     longitude: -75.5396,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/27-buxton.jpg',
     noaaStationID: '8654467',
+    cameraLink: 'https://www.surfchex.com/webcams/hatteras/',
   },
   // 32. Caladesi Island | Florida | 8726520
   {
@@ -368,6 +379,7 @@ export const BEACHES: Beach[] = [
     longitude: -82.8065,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/28-caladesi-island.jpg',
     noaaStationID: '8726520',
+    cameraLink: 'https://www.earthcam.com/usa/florida/dunedin/?cam=dunedin',
   },
   // 33. Cannon Beach | Oregon | 9435380
   {
@@ -379,6 +391,7 @@ export const BEACHES: Beach[] = [
     longitude: -123.9615,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/29-cannon-beach.jpg',
     noaaStationID: '9435380',
+    cameraLink: 'https://camguide.net/usa/oregon/portland/cannon-beach-haystack-rock',
   },
   // 34. Cape Cod National Seashore | Massachusetts | 8447930
   {
@@ -401,6 +414,7 @@ export const BEACHES: Beach[] = [
     longitude: -75.5297,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/31-cape-hatteras.jpg',
     noaaStationID: '8654467',
+    cameraLink: 'https://www.surfchex.com/webcams/hatteras/',
   },
   // 36. Cape May | New Jersey | 8536110
   {
@@ -919,6 +933,7 @@ export const BEACHES: Beach[] = [
     longitude: -75.6874,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/78-hatteras.jpg',
     noaaStationID: '8654467',
+    cameraLink: 'https://www.surfchex.com/webcams/hatteras/',
   },
   // 83. Hermosa Beach | California | 9410840
   {
@@ -975,6 +990,7 @@ export const BEACHES: Beach[] = [
     longitude: -82.8276,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/83-honeymoon-island.jpg',
     noaaStationID: '8726520',
+    cameraLink: 'https://www.earthcam.com/usa/florida/dunedin/?cam=dunedin',
   },
   // 88. Huntington Beach | California | 9410660
   {

@@ -154,7 +154,7 @@ export default function SearchScreen() {
     <SafeAreaView style={styles.container} edges={['top']}>
       <WaveHeader />
       
-      {/* Search bar positioned within the header area */}
+      {/* Search bar positioned below the wave */}
       <View style={styles.searchBarContainer}>
         <View style={styles.searchContainer}>
           <IconSymbol name="magnifyingglass" size={18} color="#999999" />
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
   },
   searchBarContainer: {
     position: 'absolute',
-    top: 110,
+    top: 170,
     left: 16,
     right: 16,
     zIndex: 2,
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   listContent: {
-    paddingTop: 170,
+    paddingTop: 230,
     padding: 16,
     paddingBottom: 120,
   },

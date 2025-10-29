@@ -10,7 +10,7 @@ const { width } = Dimensions.get('window');
 export const WaveHeader: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Svg width={width} height={120} viewBox={`0 0 ${width} 120`} style={styles.svg}>
+      <Svg width={width} height={180} viewBox={`0 0 ${width} 180`} style={styles.svg}>
         <Defs>
           <LinearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <Stop offset="0%" stopColor="#00CED1" stopOpacity="1" />
@@ -18,16 +18,16 @@ export const WaveHeader: React.FC = () => {
           </LinearGradient>
         </Defs>
         <Path
-          d={`M0,40 Q${width * 0.25},20 ${width * 0.5},40 T${width},40 L${width},0 L0,0 Z`}
+          d={`M0,100 Q${width * 0.25},80 ${width * 0.5},100 T${width},100 L${width},0 L0,0 Z`}
           fill="url(#gradient)"
         />
         <Path
-          d={`M0,60 Q${width * 0.25},40 ${width * 0.5},60 T${width},60 L${width},0 L0,0 Z`}
+          d={`M0,120 Q${width * 0.25},100 ${width * 0.5},120 T${width},120 L${width},0 L0,0 Z`}
           fill="url(#gradient)"
           opacity="0.5"
         />
         <Path
-          d={`M0,80 Q${width * 0.25},60 ${width * 0.5},80 T${width},80 L${width},0 L0,0 Z`}
+          d={`M0,140 Q${width * 0.25},120 ${width * 0.5},140 T${width},140 L${width},0 L0,0 Z`}
           fill="url(#gradient)"
           opacity="0.3"
         />
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 120,
+    height: 180,
     zIndex: 1,
   },
   svg: {

@@ -18,7 +18,7 @@ import { IconSymbol } from '@/components/IconSymbol';
 import { BEACHES } from '@/data/beachData';
 import { useBeachStorage } from '@/hooks/useBeachStorage';
 import { useBeachConditions } from '@/hooks/useBeachConditions';
-import { LinearGradient } from 'expo-linear-gradient';
+import { WaveHeader } from '@/components/WaveHeader';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
 
@@ -126,6 +126,65 @@ export default function HomeScreen() {
         />
       )}
       
+      {/* Wave Header */}
+      <WaveHeader />
+
+      {/* Beach Info and Favorite Button - Positioned over the wave header */}
+      <View style={styles.beachInfoOverlay}>
+        <View style={styles.beachInfoContainer}>
+          <View style={styles.beachInfoLeft}>
+            <Text style={styles.recentlyViewed}>
+              {isFavorite ? '⭐ Favorite' : 'Recently Viewed'} • {beach.name}
+            </Text>
+            
+            <View style={styles.locationRow}>
+              <IconSymbol name="location.fill" size={16} color="#FFFFFF" />
+              <Text style={styles.locationText}>{beach.location}, {beach.state}</Text>
+              <View style={styles.greenDot} />
+            </View>
+
+            {/* Navigation Arrows */}
+            {displayBeaches.length > 1 && (
+              <View style={styles.navigationRow}>
+                <Pressable 
+                  onPress={handlePreviousBeach}
+                  style={styles.navButton}
+                  hitSlop={8}
+                >
+                  <IconSymbol name="chevron.left" size={24} color="#FFFFFF" />
+                </Pressable>
+                
+                <View style={styles.beachIndicator}>
+                  <Text style={styles.beachIndicatorText}>
+                    {currentBeachIndex + 1} / {displayBeaches.length}
+                  </Text>
+                </View>
+
+                <Pressable 
+                  onPress={handleNextBeach}
+                  style={styles.navButton}
+                  hitSlop={8}
+                >
+                  <IconSymbol name="chevron.right" size={24} color="#FFFFFF" />
+                </Pressable>
+              </View>
+            )}
+          </View>
+
+          <Pressable 
+            onPress={() => toggleFavorite(beach.id)}
+            hitSlop={8}
+            style={styles.heartButton}
+          >
+            <IconSymbol 
+              name={isFavorite ? "heart.fill" : "heart"} 
+              size={24} 
+              color={isFavorite ? "#FF0000" : "#FFFFFF"} 
+            />
+          </Pressable>
+        </View>
+      </View>
+      
       <ScrollView 
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -138,82 +197,7 @@ export default function HomeScreen() {
           />
         }
       >
-        {/* Header with Gradient */}
-        <LinearGradient
-          colors={['#00CED1', '#4169E1']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={styles.header}
-        >
-          <View style={styles.headerTop}>
-            <View style={styles.titleRow}>
-              <View style={styles.wavesContainer}>
-                <IconSymbol name="water.waves" size={22} color="#FFFFFF" />
-              </View>
-              <View style={styles.logoTextContainer}>
-                <Text style={styles.logoText}>
-                  <Text style={styles.logoBeach}>Beach </Text>
-                  <Text style={styles.logoReport}>Report</Text>
-                </Text>
-              </View>
-            </View>
-            <Pressable 
-              onPress={() => toggleFavorite(beach.id)}
-              hitSlop={8}
-              style={styles.heartButton}
-            >
-              <IconSymbol 
-                name={isFavorite ? "heart.fill" : "heart"} 
-                size={24} 
-                color={isFavorite ? "#FF0000" : "#FFFFFF"} 
-              />
-            </Pressable>
-          </View>
-          
-          <Text style={styles.recentlyViewed}>
-            {isFavorite ? '⭐ Favorite' : 'Recently Viewed'} • {beach.name}
-          </Text>
-          
-          <View style={styles.locationRow}>
-            <IconSymbol name="location.fill" size={16} color="#FFFFFF" />
-            <Text style={styles.locationText}>{beach.location}, {beach.state}</Text>
-            <View style={styles.greenDot} />
-          </View>
-
-          {/* Navigation Arrows */}
-          {displayBeaches.length > 1 && (
-            <View style={styles.navigationRow}>
-              <Pressable 
-                onPress={handlePreviousBeach}
-                style={styles.navButton}
-                hitSlop={8}
-              >
-                <IconSymbol name="chevron.left" size={24} color="#FFFFFF" />
-              </Pressable>
-              
-              <View style={styles.beachIndicator}>
-                <Text style={styles.beachIndicatorText}>
-                  {currentBeachIndex + 1} / {displayBeaches.length}
-                </Text>
-              </View>
-
-              <Pressable 
-                onPress={handleNextBeach}
-                style={styles.navButton}
-                hitSlop={8}
-              >
-                <IconSymbol name="chevron.right" size={24} color="#FFFFFF" />
-              </Pressable>
-            </View>
-          )}
-        </LinearGradient>
-
-        {/* Wave decoration */}
-        <View style={styles.waveContainer}>
-          <View style={styles.wave} />
-        </View>
-
-        {/* Beach Image with Swipe Gesture - FIXED: Using uri property for remote images */}
+        {/* Beach Image with Swipe Gesture */}
         <View style={styles.beachImageContainer}>
           <GestureDetector gesture={swipeGesture}>
             <View>
@@ -423,6 +407,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
+    paddingTop: 200,
     paddingBottom: 120,
   },
   loadingContainer: {
@@ -461,41 +446,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
-  header: {
+  beachInfoOverlay: {
+    position: 'absolute',
+    top: 50,
+    left: 0,
+    right: 0,
+    zIndex: 2,
     paddingHorizontal: 16,
-    paddingTop: 12,
-    paddingBottom: 20,
   },
-  headerTop: {
+  beachInfoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 12,
+    alignItems: 'flex-start',
   },
-  titleRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  wavesContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: 2,
-  },
-  logoTextContainer: {
-    flexDirection: 'row',
-    alignItems: 'baseline',
-  },
-  logoText: {
-    fontSize: 24,
-    fontWeight: '700',
-    letterSpacing: 0.5,
-  },
-  logoBeach: {
-    color: '#FFFFFF',
-  },
-  logoReport: {
-    color: '#FFB800',
+  beachInfoLeft: {
+    flex: 1,
+    marginRight: 12,
   },
   heartButton: {
     width: 44,
@@ -534,8 +500,9 @@ const styles = StyleSheet.create({
   navigationRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     marginTop: 8,
+    gap: 12,
   },
   navButton: {
     width: 40,
@@ -559,21 +526,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: '#FFFFFF',
-  },
-  waveContainer: {
-    height: 20,
-    overflow: 'hidden',
-    backgroundColor: '#F5F5F5',
-  },
-  wave: {
-    position: 'absolute',
-    top: -10,
-    left: 0,
-    right: 0,
-    height: 30,
-    backgroundColor: '#4169E1',
-    borderBottomLeftRadius: 100,
-    borderBottomRightRadius: 100,
   },
   beachImageContainer: {
     position: 'relative',

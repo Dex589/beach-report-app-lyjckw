@@ -3,8 +3,10 @@ import { BeachConditions, TideInfo } from '@/types/beach';
 
 // NOAA API endpoints
 const NOAA_TIDES_API = 'https://api.tidesandcurrents.noaa.gov/api/prod/datagetter';
-const NOAA_WEATHER_API = 'https://api.weather.gov/points';
 const SUNRISE_SUNSET_API = 'https://api.sunrisesunset.io/json';
+
+// Open-Meteo API endpoint
+const OPEN_METEO_API = 'https://api.open-meteo.com/v1/forecast';
 
 // Station IDs for each beach location - mapped to nearest NOAA tide stations
 export const NOAA_STATIONS: Record<string, { 
@@ -289,23 +291,6 @@ interface NOAATideData {
   type: string; // H or L
 }
 
-interface NOAAWeatherData {
-  properties: {
-    temperature?: {
-      value: number;
-    };
-    relativeHumidity?: {
-      value: number;
-    };
-    windSpeed?: {
-      value: number;
-    };
-    windDirection?: {
-      value: number;
-    };
-  };
-}
-
 interface SunriseSunsetResponse {
   results: {
     sunrise: string;
@@ -320,6 +305,22 @@ interface SunriseSunsetResponse {
     astronomical_twilight_end: string;
   };
   status: string;
+}
+
+interface OpenMeteoResponse {
+  current: {
+    temperature_2m: number;
+    relative_humidity_2m: number;
+    wind_speed_10m: number;
+    wind_direction_10m: number;
+    uv_index: number;
+    weather_code: number;
+  };
+  daily: {
+    sunrise: string[];
+    sunset: string[];
+    uv_index_max: number[];
+  };
 }
 
 /**
@@ -420,129 +421,84 @@ export const fetchWaterTemperature = async (stationId: string): Promise<number |
 };
 
 /**
- * Fetch air temperature from NOAA
+ * Fetch weather data from Open-Meteo API
  */
-export const fetchAirTemperature = async (stationId: string): Promise<number | null> => {
+export const fetchOpenMeteoWeather = async (lat: number, lon: number): Promise<OpenMeteoResponse | null> => {
   try {
-    const url = `${NOAA_TIDES_API}?date=latest&station=${stationId}&product=air_temperature&time_zone=lst_ldt&units=english&format=json`;
-    
-    console.log('Fetching air temperature from NOAA:', url);
-    
-    const response = await fetch(url);
-    const data = await response.json();
-    
-    if (data.data && data.data.length > 0) {
-      const latestReading = data.data[0] as NOAAWaterLevelData;
-      return parseFloat(latestReading.v);
-    }
-    
-    console.log('No air temperature data available');
-    return null;
-  } catch (error) {
-    console.error('Error fetching air temperature:', error);
-    return null;
-  }
-};
-
-/**
- * Fetch wind data from NOAA
- */
-export const fetchWindData = async (stationId: string): Promise<{ speed: number; direction: string } | null> => {
-  try {
-    const url = `${NOAA_TIDES_API}?date=latest&station=${stationId}&product=wind&time_zone=lst_ldt&units=english&format=json`;
-    
-    console.log('Fetching wind data from NOAA:', url);
-    
-    const response = await fetch(url);
-    const data = await response.json();
-    
-    if (data.data && data.data.length > 0) {
-      const latestReading = data.data[0];
-      const speed = parseFloat(latestReading.s); // wind speed
-      const directionDegrees = parseFloat(latestReading.d); // wind direction in degrees
-      
-      // Convert degrees to cardinal direction
-      const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
-      const index = Math.round(directionDegrees / 22.5) % 16;
-      const direction = directions[index];
-      
-      return { speed, direction };
-    }
-    
-    console.log('No wind data available');
-    return null;
-  } catch (error) {
-    console.error('Error fetching wind data:', error);
-    return null;
-  }
-};
-
-/**
- * Fetch weather data from NWS API
- */
-export const fetchWeatherData = async (lat: number, lon: number): Promise<any> => {
-  try {
-    // First, get the grid point
-    const pointUrl = `${NOAA_WEATHER_API}/${lat.toFixed(4)},${lon.toFixed(4)}`;
-    console.log('Fetching weather grid point:', pointUrl);
-    
-    const pointResponse = await fetch(pointUrl, {
-      headers: {
-        'User-Agent': 'BeachReportApp/1.0',
-      },
+    // Open-Meteo API parameters
+    const params = new URLSearchParams({
+      latitude: lat.toString(),
+      longitude: lon.toString(),
+      current: 'temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,uv_index,weather_code',
+      daily: 'sunrise,sunset,uv_index_max',
+      temperature_unit: 'fahrenheit',
+      wind_speed_unit: 'mph',
+      timezone: 'auto',
+      forecast_days: '1',
     });
     
-    if (!pointResponse.ok) {
-      console.log('Weather API point request failed:', pointResponse.status);
+    const url = `${OPEN_METEO_API}?${params.toString()}`;
+    
+    console.log('Fetching weather from Open-Meteo:', url);
+    
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      console.log('Open-Meteo API request failed:', response.status);
       return null;
     }
     
-    const pointData = await pointResponse.json();
-    const forecastUrl = pointData.properties.forecast;
+    const data: OpenMeteoResponse = await response.json();
     
-    // Get the forecast
-    console.log('Fetching weather forecast:', forecastUrl);
-    const forecastResponse = await fetch(forecastUrl, {
-      headers: {
-        'User-Agent': 'BeachReportApp/1.0',
-      },
-    });
-    
-    if (!forecastResponse.ok) {
-      console.log('Weather API forecast request failed:', forecastResponse.status);
-      return null;
-    }
-    
-    const forecastData = await forecastResponse.json();
-    
-    if (forecastData.properties && forecastData.properties.periods && forecastData.properties.periods.length > 0) {
-      return forecastData.properties.periods[0];
-    }
-    
-    return null;
+    console.log('Open-Meteo weather data received:', data);
+    return data;
   } catch (error) {
-    console.error('Error fetching weather data:', error);
+    console.error('Error fetching Open-Meteo weather:', error);
     return null;
   }
 };
 
 /**
- * Calculate UV index based on time of day and location
- * This is a simplified calculation - in production, use a dedicated UV API
+ * Convert wind direction from degrees to cardinal direction
  */
-const calculateUVIndex = (lat: number): number => {
-  const now = new Date();
-  const hour = now.getHours();
+const degreesToCardinal = (degrees: number): string => {
+  const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+  const index = Math.round(degrees / 22.5) % 16;
+  return directions[index];
+};
+
+/**
+ * Get weather description from WMO weather code
+ */
+const getWeatherDescription = (code: number): string => {
+  const weatherCodes: Record<number, string> = {
+    0: 'Clear sky',
+    1: 'Mainly clear',
+    2: 'Partly cloudy',
+    3: 'Overcast',
+    45: 'Foggy',
+    48: 'Depositing rime fog',
+    51: 'Light drizzle',
+    53: 'Moderate drizzle',
+    55: 'Dense drizzle',
+    61: 'Slight rain',
+    63: 'Moderate rain',
+    65: 'Heavy rain',
+    71: 'Slight snow',
+    73: 'Moderate snow',
+    75: 'Heavy snow',
+    77: 'Snow grains',
+    80: 'Slight rain showers',
+    81: 'Moderate rain showers',
+    82: 'Violent rain showers',
+    85: 'Slight snow showers',
+    86: 'Heavy snow showers',
+    95: 'Thunderstorm',
+    96: 'Thunderstorm with slight hail',
+    99: 'Thunderstorm with heavy hail',
+  };
   
-  // UV is highest between 10am and 4pm
-  if (hour < 6 || hour > 18) return 0;
-  if (hour < 10 || hour > 16) return 3;
-  
-  // Higher UV closer to equator
-  const latFactor = 1 + (Math.abs(lat) / 90);
-  const baseUV = 8;
-  
-  return Math.min(11, Math.round(baseUV * latFactor));
+  return weatherCodes[code] || 'Good conditions';
 };
 
 /**
@@ -554,6 +510,23 @@ const getUVGuide = (uvIndex: number): string => {
   if (uvIndex <= 7) return 'High - Wear sunscreen and hat';
   if (uvIndex <= 10) return 'Very High - Extra protection needed';
   return 'Extreme - Avoid sun exposure';
+};
+
+/**
+ * Format time from ISO string to 12-hour format
+ */
+const formatTimeFromISO = (isoString: string): string => {
+  try {
+    const date = new Date(isoString);
+    return date.toLocaleTimeString('en-US', { 
+      hour: 'numeric', 
+      minute: '2-digit',
+      hour12: true 
+    });
+  } catch (error) {
+    console.error('Error formatting time:', error);
+    return '12:00 PM';
+  }
 };
 
 /**
@@ -658,7 +631,7 @@ const determineFlagWarning = (
 };
 
 /**
- * Fetch complete beach conditions from NOAA APIs
+ * Fetch complete beach conditions using Open-Meteo for weather and NOAA for tides
  */
 export const fetchBeachConditions = async (beachId: string): Promise<BeachConditions | null> => {
   try {
@@ -676,48 +649,45 @@ export const fetchBeachConditions = async (beachId: string): Promise<BeachCondit
       waterLevel,
       tidePredictions,
       waterTemp,
-      airTemp,
-      windData,
       weatherData,
-      sunTimes,
     ] = await Promise.all([
       fetchWaterLevel(stationInfo.tideStation),
       fetchTidePredictions(stationInfo.tideStation),
       fetchWaterTemperature(stationInfo.tideStation),
-      fetchAirTemperature(stationInfo.tideStation),
-      fetchWindData(stationInfo.tideStation),
-      fetchWeatherData(stationInfo.weatherLat, stationInfo.weatherLon),
-      fetchSunTimes(stationInfo.weatherLat, stationInfo.weatherLon),
+      fetchOpenMeteoWeather(stationInfo.weatherLat, stationInfo.weatherLon),
     ]);
     
-    // Calculate derived values
-    const uvIndex = calculateUVIndex(stationInfo.weatherLat);
-    const uvGuide = getUVGuide(uvIndex);
-    
-    // Use weather data if available
-    let finalAirTemp = airTemp || 75;
-    let finalWindSpeed = windData?.speed || 10;
-    let finalWindDirection = windData?.direction || 'E';
+    // Default values
+    let finalAirTemp = 75;
+    let finalWindSpeed = 10;
+    let finalWindDirection = 'E';
     let humidity = 60;
+    let uvIndex = 5;
+    let uvGuide = 'Moderate - Wear sunscreen';
+    let sunrise = '7:00 AM';
+    let sunset = '7:00 PM';
+    let currentConditions = 'Good conditions';
     
-    if (weatherData) {
-      if (weatherData.temperature) {
-        // Convert Celsius to Fahrenheit if needed
-        finalAirTemp = weatherData.temperature;
+    // Use Open-Meteo weather data if available
+    if (weatherData && weatherData.current) {
+      finalAirTemp = Math.round(weatherData.current.temperature_2m);
+      finalWindSpeed = Math.round(weatherData.current.wind_speed_10m);
+      finalWindDirection = degreesToCardinal(weatherData.current.wind_direction_10m);
+      humidity = Math.round(weatherData.current.relative_humidity_2m);
+      uvIndex = Math.round(weatherData.current.uv_index);
+      uvGuide = getUVGuide(uvIndex);
+      currentConditions = getWeatherDescription(weatherData.current.weather_code);
+      
+      // Use sunrise/sunset from Open-Meteo if available
+      if (weatherData.daily && weatherData.daily.sunrise && weatherData.daily.sunset) {
+        sunrise = formatTimeFromISO(weatherData.daily.sunrise[0]);
+        sunset = formatTimeFromISO(weatherData.daily.sunset[0]);
       }
-      if (weatherData.windSpeed) {
-        // Parse wind speed (e.g., "10 mph" or "10 to 15 mph")
-        const windMatch = weatherData.windSpeed.match(/(\d+)/);
-        if (windMatch) {
-          finalWindSpeed = parseInt(windMatch[1]);
-        }
-      }
-      if (weatherData.windDirection) {
-        finalWindDirection = weatherData.windDirection;
-      }
-      if (weatherData.relativeHumidity && weatherData.relativeHumidity.value) {
-        humidity = weatherData.relativeHumidity.value;
-      }
+    } else {
+      // Fallback to sunrisesunset.io API if Open-Meteo doesn't have sun times
+      const sunTimes = await fetchSunTimes(stationInfo.weatherLat, stationInfo.weatherLon);
+      sunrise = sunTimes.sunrise;
+      sunset = sunTimes.sunset;
     }
     
     // Estimate surf height (simplified - in production, use a surf forecast API)
@@ -742,9 +712,9 @@ export const fetchBeachConditions = async (beachId: string): Promise<BeachCondit
       humidity,
       uvIndex,
       uvGuide,
-      sunrise: sunTimes.sunrise,
-      sunset: sunTimes.sunset,
-      currentConditions: weatherData?.shortForecast || 'Good conditions',
+      sunrise,
+      sunset,
+      currentConditions,
       flagWarning: flagWarning.flag,
       flagWarningText: flagWarning.text,
       lastUpdated: new Date().toLocaleTimeString('en-US', { 

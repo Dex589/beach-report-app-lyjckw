@@ -320,6 +320,10 @@ interface OpenMeteoResponse {
     sunrise: string[];
     sunset: string[];
     uv_index_max: number[];
+    temperature_2m_max: number[];
+    temperature_2m_min: number[];
+    precipitation_probability_max: number[];
+    weather_code: number[];
   };
 }
 
@@ -425,12 +429,12 @@ export const fetchWaterTemperature = async (stationId: string): Promise<number |
  */
 export const fetchOpenMeteoWeather = async (lat: number, lon: number): Promise<OpenMeteoResponse | null> => {
   try {
-    // Open-Meteo API parameters
+    // Open-Meteo API parameters - now including daily forecast data
     const params = new URLSearchParams({
       latitude: lat.toString(),
       longitude: lon.toString(),
       current: 'temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,uv_index,weather_code',
-      daily: 'sunrise,sunset,uv_index_max',
+      daily: 'sunrise,sunset,uv_index_max,temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code',
       temperature_unit: 'fahrenheit',
       wind_speed_unit: 'mph',
       timezone: 'auto',
@@ -499,6 +503,23 @@ const getWeatherDescription = (code: number): string => {
   };
   
   return weatherCodes[code] || 'Good conditions';
+};
+
+/**
+ * Get weather icon name from WMO weather code
+ */
+export const getWeatherIcon = (code: number): string => {
+  if (code === 0 || code === 1) return 'sun.max.fill';
+  if (code === 2) return 'cloud.sun.fill';
+  if (code === 3) return 'cloud.fill';
+  if (code === 45 || code === 48) return 'cloud.fog.fill';
+  if (code >= 51 && code <= 55) return 'cloud.drizzle.fill';
+  if (code >= 61 && code <= 65) return 'cloud.rain.fill';
+  if (code >= 71 && code <= 77) return 'cloud.snow.fill';
+  if (code >= 80 && code <= 82) return 'cloud.heavyrain.fill';
+  if (code >= 85 && code <= 86) return 'cloud.snow.fill';
+  if (code >= 95 && code <= 99) return 'cloud.bolt.rain.fill';
+  return 'cloud.sun.fill';
 };
 
 /**
@@ -667,6 +688,10 @@ export const fetchBeachConditions = async (beachId: string): Promise<BeachCondit
     let sunrise = '7:00 AM';
     let sunset = '7:00 PM';
     let currentConditions = 'Good conditions';
+    let forecastHighTemp = 78;
+    let forecastLowTemp = 68;
+    let forecastPrecipitation = 10;
+    let forecastConditions = 'Partly cloudy';
     
     // Use Open-Meteo weather data if available
     if (weatherData && weatherData.current) {
@@ -682,6 +707,14 @@ export const fetchBeachConditions = async (beachId: string): Promise<BeachCondit
       if (weatherData.daily && weatherData.daily.sunrise && weatherData.daily.sunset) {
         sunrise = formatTimeFromISO(weatherData.daily.sunrise[0]);
         sunset = formatTimeFromISO(weatherData.daily.sunset[0]);
+      }
+      
+      // Extract daily forecast data
+      if (weatherData.daily) {
+        forecastHighTemp = Math.round(weatherData.daily.temperature_2m_max[0]);
+        forecastLowTemp = Math.round(weatherData.daily.temperature_2m_min[0]);
+        forecastPrecipitation = Math.round(weatherData.daily.precipitation_probability_max[0]);
+        forecastConditions = getWeatherDescription(weatherData.daily.weather_code[0]);
       }
     } else {
       // Fallback to sunrisesunset.io API if Open-Meteo doesn't have sun times
@@ -722,6 +755,10 @@ export const fetchBeachConditions = async (beachId: string): Promise<BeachCondit
         minute: '2-digit',
         hour12: true 
       }),
+      forecastHighTemp,
+      forecastLowTemp,
+      forecastPrecipitation,
+      forecastConditions,
     };
     
     console.log('Successfully fetched beach conditions:', conditions);

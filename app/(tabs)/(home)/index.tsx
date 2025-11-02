@@ -22,6 +22,7 @@ import { WaveHeader } from '@/components/WaveHeader';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
 import * as WebBrowser from 'expo-web-browser';
+import { getWeatherIcon } from '@/services/noaaService';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -282,6 +283,55 @@ export default function HomeScreen() {
             <IconSymbol name="drop.fill" size={24} color="#4A90E2" />
             <Text style={styles.waterTempValue}>{conditions.waterTemp.toFixed(1)}°F</Text>
             <Text style={styles.waterTempSource}>From NOAA Station</Text>
+          </View>
+        </View>
+
+        {/* Weather Forecast for Today */}
+        <View style={styles.section}>
+          <View style={styles.forecastHeader}>
+            <IconSymbol name="calendar" size={20} color="#4A90E2" />
+            <Text style={styles.forecastTitle}>Today&apos;s Forecast</Text>
+          </View>
+          <View style={styles.forecastCard}>
+            <View style={styles.forecastMainRow}>
+              <View style={styles.forecastIconContainer}>
+                <IconSymbol name={getWeatherIcon(0)} size={48} color="#4A90E2" />
+                <Text style={styles.forecastConditionsText}>{conditions.forecastConditions}</Text>
+              </View>
+              
+              <View style={styles.forecastTempContainer}>
+                <View style={styles.forecastTempRow}>
+                  <IconSymbol name="arrow.up" size={16} color="#FF6B35" />
+                  <Text style={styles.forecastHighTemp}>{conditions.forecastHighTemp}°F</Text>
+                </View>
+                <View style={styles.forecastTempRow}>
+                  <IconSymbol name="arrow.down" size={16} color="#4A90E2" />
+                  <Text style={styles.forecastLowTemp}>{conditions.forecastLowTemp}°F</Text>
+                </View>
+              </View>
+            </View>
+
+            <View style={styles.forecastDivider} />
+
+            <View style={styles.forecastDetailsRow}>
+              <View style={styles.forecastDetailItem}>
+                <IconSymbol name="drop.fill" size={18} color="#4A90E2" />
+                <Text style={styles.forecastDetailLabel}>Precipitation</Text>
+                <Text style={styles.forecastDetailValue}>{conditions.forecastPrecipitation}%</Text>
+              </View>
+              
+              <View style={styles.forecastDetailItem}>
+                <IconSymbol name="wind" size={18} color="#4A90E2" />
+                <Text style={styles.forecastDetailLabel}>Wind</Text>
+                <Text style={styles.forecastDetailValue}>{conditions.windSpeed} mph {conditions.windDirection}</Text>
+              </View>
+              
+              <View style={styles.forecastDetailItem}>
+                <IconSymbol name="humidity.fill" size={18} color="#4A90E2" />
+                <Text style={styles.forecastDetailLabel}>Humidity</Text>
+                <Text style={styles.forecastDetailValue}>{conditions.humidity}%</Text>
+              </View>
+            </View>
           </View>
         </View>
 
@@ -650,6 +700,82 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#585858',
     marginLeft: 'auto',
+  },
+  forecastHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 12,
+  },
+  forecastTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#4A90E2',
+  },
+  forecastCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
+    elevation: 2,
+  },
+  forecastMainRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  forecastIconContainer: {
+    alignItems: 'center',
+    gap: 8,
+  },
+  forecastConditionsText: {
+    fontSize: 14,
+    color: '#585858',
+    fontWeight: '500',
+  },
+  forecastTempContainer: {
+    gap: 8,
+  },
+  forecastTempRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  forecastHighTemp: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#FF6B35',
+  },
+  forecastLowTemp: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#4A90E2',
+  },
+  forecastDivider: {
+    height: 1,
+    backgroundColor: '#E0E0E0',
+    marginBottom: 16,
+  },
+  forecastDetailsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  forecastDetailItem: {
+    alignItems: 'center',
+    gap: 4,
+    flex: 1,
+  },
+  forecastDetailLabel: {
+    fontSize: 11,
+    color: '#585858',
+    marginTop: 4,
+  },
+  forecastDetailValue: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#202020',
+    textAlign: 'center',
   },
   uvHeader: {
     flexDirection: 'row',

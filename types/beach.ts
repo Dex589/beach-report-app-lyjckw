@@ -31,6 +31,10 @@ export interface BeachConditions {
   flagWarning: 'green' | 'yellow' | 'red' | 'purple';
   flagWarningText: string;
   lastUpdated: string;
+  forecastHighTemp: number;
+  forecastLowTemp: number;
+  forecastPrecipitation: number;
+  forecastConditions: string;
 }
 
 export interface TideInfo {

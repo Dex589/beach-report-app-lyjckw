@@ -503,6 +503,7 @@ export const BEACHES: Beach[] = [
     longitude: -82.8001,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/39-clearwater-beach.jpg',
     noaaStationID: '8726520',
+    cameraLink: 'https://www.skylinewebcams.com/en/webcam/united-states/florida/clearwater/frenchys-clearwater-beach.html',
   },
   // 44. Cocoa Beach | Florida | 8721164
   {

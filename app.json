@@ -1,3 +1,4 @@
+
 {
   "expo": {
     "name": "beach-report-app-lyjckw",
@@ -41,7 +42,10 @@
       "typedRoutes": true
     },
     "extra": {
-      "router": {}
+      "router": {},
+      "eas": {
+        "projectId": "YOUR_PROJECT_ID_HERE"
+      }
     }
   }
 }

@@ -603,6 +603,7 @@ export const BEACHES: Beach[] = [
     longitude: -81.0228,
     image: 'https://raw.githubusercontent.com/Dex589/beach_photos/main/48-daytona-beach.jpg',
     noaaStationID: '8721164',
+    cameraLink: 'https://www.skylinewebcams.com/en/webcam/united-states/florida/daytona-beach/florida-daytona-beach.html',
   },
   // 53. Deerfield Beach | Florida | 8722670
   {

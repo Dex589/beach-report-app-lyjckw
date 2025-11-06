@@ -1,8 +1,8 @@
 
 {
   "expo": {
-    "name": "beach-report-app-lyjckw",
-    "slug": "beach-report-app-lyjckw",
+    "name": "Beach Report",
+    "slug": "beach-report",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/natively-dark.png",
@@ -15,7 +15,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.Natively",
+      "bundleIdentifier": "com.beachreport.app",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -26,7 +26,7 @@
         "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.beach-report.app"
+      "package": "com.beachreport.app"
     },
     "web": {
       "favicon": "./assets/images/final_quest_240x240.png",
@@ -37,7 +37,7 @@
       "expo-router",
       "expo-web-browser"
     ],
-    "scheme": "natively",
+    "scheme": "beachreport",
     "experiments": {
       "typedRoutes": true
     },

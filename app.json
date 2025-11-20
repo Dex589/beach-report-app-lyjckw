@@ -1,7 +1,8 @@
+
 {
   "expo": {
     "name": "Beach Report",
-    "slug": "Beach Report",
+    "slug": "beach-report-nativley",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/natively-dark.png",
@@ -47,6 +48,5 @@
         "projectId": "4d73e08f-a5c4-4028-9161-b3da098b6c27"
       }
     }
-  },
-  "scheme": "Beach Report"
+  }
 }

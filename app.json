@@ -1,8 +1,7 @@
-
 {
   "expo": {
     "name": "Beach Report",
-    "slug": "beach-report",
+    "slug": "Beach Report",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/natively-dark.png",
@@ -33,6 +32,7 @@
       "bundler": "metro"
     },
     "plugins": [
+      "expo-dev-client",
       "expo-font",
       "expo-router",
       "expo-web-browser"
@@ -47,5 +47,6 @@
         "projectId": "4d73e08f-a5c4-4028-9161-b3da098b6c27"
       }
     }
-  }
+  },
+  "scheme": "Beach Report"
 }
